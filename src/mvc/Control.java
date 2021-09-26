@@ -5,10 +5,31 @@
  */
 package mvc;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author kylefrancis
  */
-public class Control {
+public class Control implements ActionListener{
+    private Model model;
+    private View view;
+
+    public Control(Model model, View view) {
+        this.model = model;
+        this.view = view;
+        
+        view.getSaveButton().addActionListener(this);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent arg0) {
+        view.getNameLabel().setText(view.getNameField().getText());
+        System.out.println("saved");
+        view.updateUI();
+    }
+    
+    
     
 }
