@@ -32,15 +32,13 @@ public class Control implements ActionListener{
         
         if(user.equals("kyle") && password.equals("abcd"))
         {
-            view.getSuccess().setForeground(Color.BLACK);
+            view.getSuccess().setForeground(new Color(6, 156, 24));
             view.getSuccess().setText("Login Successful");
         }
         else
         {
             view.getSuccess().setForeground(Color.RED);
             view.getSuccess().setText("Wrong username or password");
-            view.getUsernameField().setText("");
-            view.getPasswordField().setText("");
         }
     }
     

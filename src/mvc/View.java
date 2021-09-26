@@ -122,11 +122,11 @@ public class View{
     public void setLoginPanel(JPanel loginPanel) {
         this.loginPanel = loginPanel;
     }
-
+    
     public JLabel getSuccess() {
         return success;
     }
-
+    
     public void setSuccess(JLabel success) {
         this.success = success;
     }
