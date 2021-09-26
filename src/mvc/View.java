@@ -6,62 +6,64 @@
 package mvc;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
  *
  * @author kylefrancis
  */
-public class View extends JPanel{
+public class View{
     private JFrame frame;
-    private JLabel nameLabel;
-    private JLabel ageLabel;
-    private JTextField nameField;
-    private JComboBox ageBox;
-    private JButton saveButton;
-    private JPanel inputPanel;
-    private JPanel outputPanel;
-    private Integer[] ageArray;
+    private JLabel usernameLabel;
+    private JLabel passwordLabel;
+    private JTextField usernameField;
+    private JPasswordField passwordField;
+    private JButton loginButton;
+    private JLabel success;
+    private JPanel loginPanel;
+    
     
     public View(String title)
     {
-        
-        //create elements
-        this.nameLabel = new JLabel("Name: ");
-        this.ageLabel = new JLabel("Age: ");
-        this.nameField = new JTextField(10);
-        this.saveButton = new JButton("Save Info");
-        this.inputPanel = new JPanel();
-        this.outputPanel = new JPanel();
-        this.ageArray = new Integer[50];
-        for(int i = 0; i < ageArray.length; i++)
-        {
-            this.ageArray[i] = (i+1);
-        }
-        this.ageBox = new JComboBox(ageArray);
-        
-        outputPanel.add(nameLabel);
-        outputPanel.add(ageLabel);
-        outputPanel.setBackground(Color.RED);
-        inputPanel.add(nameField);
-        inputPanel.add(ageBox);
-        inputPanel.add(saveButton);
-        inputPanel.setBackground(Color.BLUE);
-        this.add(outputPanel, BorderLayout.NORTH);
-        this.add(inputPanel, BorderLayout.SOUTH);
-        
         //frame setup
         this.frame = new JFrame(title);
-        frame.getContentPane().add(this);
+        this.loginPanel = new JPanel();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500, 120);
-        frame.setLocationRelativeTo(null);
+        frame.setSize(350, 200);
+        frame.add(loginPanel);
+        
+        loginPanel.setLayout(null);
+        
+        //create elements
+        this.usernameLabel = new JLabel("Username: ");
+        this.usernameLabel.setBounds(10, 20, 80, 25);
+        loginPanel.add(usernameLabel);
+        
+        this.usernameField = new JTextField(10);
+        this.usernameField.setBounds(100, 20, 150, 25);
+        loginPanel.add(usernameField);
+        
+        this.passwordLabel = new JLabel("Password: ");
+        this.passwordLabel.setBounds(10, 50, 80, 25);
+        loginPanel.add(passwordLabel);
+        
+        this.passwordField = new JPasswordField(10);
+        this.passwordField.setBounds(100, 50, 150, 25);
+        loginPanel.add(passwordField);
+        
+        this.loginButton = new JButton("Log In");
+        this.loginButton.setBounds(10, 80, 80, 25);
+        loginPanel.add(loginButton);
+        
+        this.success = new JLabel("");
+        this.success.setBounds(10, 110, 300, 25);
+        loginPanel.add(success);
+        
         frame.setVisible(true);
     }
     
@@ -73,43 +75,59 @@ public class View extends JPanel{
         this.frame = frame;
     }
     
-    public JLabel getNameLabel() {
-        return nameLabel;
+    public JLabel getUsernameLabel() {
+        return usernameLabel;
     }
     
-    public void setNameLabel(JLabel nameLabel) {
-        this.nameLabel = nameLabel;
+    public void setUsernameLabel(JLabel usernameLabel) {
+        this.usernameLabel = usernameLabel;
     }
     
-    public JLabel getAgeLabel() {
-        return ageLabel;
+    public JLabel getPasswordLabel() {
+        return passwordLabel;
     }
     
-    public void setAgeLabel(JLabel ageLabel) {
-        this.ageLabel = ageLabel;
+    public void setPasswordLabel(JLabel passwordLabel) {
+        this.passwordLabel = passwordLabel;
     }
     
-    public JTextField getNameField() {
-        return nameField;
+    public JTextField getUsernameField() {
+        return usernameField;
     }
     
-    public void setNameField(JTextField nameField) {
-        this.nameField = nameField;
+    public void setUsernameField(JTextField usernameField) {
+        this.usernameField = usernameField;
     }
     
-    public JComboBox getAgeBox() {
-        return ageBox;
+    public JTextField getPasswordField() {
+        return passwordField;
     }
     
-    public void setAgeBox(JComboBox ageBox) {
-        this.ageBox = ageBox;
+    public void setPasswordField(JPasswordField passwordField) {
+        this.passwordField = passwordField;
     }
     
-    public JButton getSaveButton() {
-        return saveButton;
+    public JButton getLoginButton() {
+        return loginButton;
     }
     
-    public void setSaveButton(JButton saveButton) {
-        this.saveButton = saveButton;
+    public void setLoginButton(JButton loginButton) {
+        this.loginButton = loginButton;
+    }
+    
+    public JPanel getLoginPanel() {
+        return loginPanel;
+    }
+    
+    public void setLoginPanel(JPanel loginPanel) {
+        this.loginPanel = loginPanel;
+    }
+
+    public JLabel getSuccess() {
+        return success;
+    }
+
+    public void setSuccess(JLabel success) {
+        this.success = success;
     }
 }

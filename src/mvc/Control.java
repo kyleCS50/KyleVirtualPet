@@ -5,6 +5,7 @@
 */
 package mvc;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,15 +21,27 @@ public class Control implements ActionListener{
         this.model = model;
         this.view = view;
         
-        view.getSaveButton().addActionListener(this);
+        view.getLoginButton().addActionListener(this);
     }
     
     @Override
     public void actionPerformed(ActionEvent ae) {
-        view.getNameLabel().setText("Name: "+view.getNameField().getText());
-        view.getAgeLabel().setText("Age: "+view.getAgeBox().getSelectedItem());
-        view.updateUI();
+        System.out.println("Log In button pressed");
+        String user = view.getUsernameField().getText();
+        String password = view.getPasswordField().getText();
         
+        if(user.equals("kyle") && password.equals("abcd"))
+        {
+            view.getSuccess().setForeground(Color.BLACK);
+            view.getSuccess().setText("Login Successful");
+        }
+        else
+        {
+            view.getSuccess().setForeground(Color.RED);
+            view.getSuccess().setText("Wrong username or password");
+            view.getUsernameField().setText("");
+            view.getPasswordField().setText("");
+        }
     }
     
     
