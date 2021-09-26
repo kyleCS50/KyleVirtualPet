@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package mvc;
 
 /**
@@ -10,29 +10,30 @@ package mvc;
  * @author kylefrancis
  */
 public class Model {
-    private String name;
-    private int age;
     
-    public Model(String n, int a)
-    {
-        this.name = n;
-        this.age = a;
+    private String user;
+    private String pass;
+    
+    public Model(String user, String pass) {
+        this.user = user;
+        this.pass = pass;
     }
 
-    public String getName() {
-        return name;
+    public String getUser() {
+        return user;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUser(String user) {
+        this.user = user;
     }
 
-    public int getAge() {
-        return age;
+    public String getPass() {
+        return pass;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setPass(String pass) {
+        this.pass = pass;
     }
+    
     
 }

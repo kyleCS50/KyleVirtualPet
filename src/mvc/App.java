@@ -11,8 +11,8 @@ package mvc;
  */
 public class App {
     public static void main(String[] args) {
-        Model m = new Model("Kyle", 19);
-        View v = new View("MVC Test");
+        Model m = new Model("pdc", "pdc");
+        View v = new View("Virtual Pet Game");
         Control c = new Control(m, v);
     }
 }

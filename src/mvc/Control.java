@@ -22,26 +22,35 @@ public class Control implements ActionListener{
         this.view = view;
         
         view.getLoginButton().addActionListener(this);
+        view.getSignUpButton().addActionListener(this);
     }
     
     @Override
     public void actionPerformed(ActionEvent ae) {
-        System.out.println("Log In button pressed");
-        String user = view.getUsernameField().getText();
-        String password = view.getPasswordField().getText();
-        
-        if(user.equals("kyle") && password.equals("abcd"))
+        Object source = ae.getSource();
+        if(source == view.getLoginButton())
         {
-            view.getSuccess().setForeground(new Color(6, 156, 24));
-            view.getSuccess().setText("Login Successful");
+            System.out.println("Log In button pressed");
+            String user = view.getLiUserField().getText();
+            String password = view.getPasswordField().getText();
+            
+            if(user.equals(model.getUser()) && password.equals(model.getPass()))
+            {
+                view.getLiSuccess().setForeground(new Color(6, 156, 24));
+                view.getLiSuccess().setText("Login Successful");
+            }
+            else
+            {
+                view.getLiSuccess().setForeground(Color.RED);
+                view.getLiSuccess().setText("Wrong username or password");
+            }
         }
-        else
+        if(source == view.getSignUpButton())
         {
-            view.getSuccess().setForeground(Color.RED);
-            view.getSuccess().setText("Wrong username or password");
+            System.out.println("Sign Up button clicked");
+            view.getSuFrame().setLocation(view.getLiFrame().getX(), view.getLiFrame().getY());
+            view.getLiFrame().setVisible(false);
+            view.getSuFrame().setVisible(true);
         }
     }
-    
-    
-    
 }
