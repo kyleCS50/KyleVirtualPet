@@ -5,6 +5,8 @@
 */
 package mvc;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -130,10 +132,15 @@ public class View{
         //login frame setup
         this.liFrame = new JFrame(title);
         this.loginPanel = new JPanel();
-        getLiFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        getLiFrame().setSize(350, 200);
-        getLiFrame().add(loginPanel);
-        getLiFrame().setResizable(false);
+        liFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        liFrame.setSize(350, 200);
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        Dimension screenDimension = tk.getScreenSize();
+        Dimension frameDimension = liFrame.getSize();
+        liFrame.setLocation((screenDimension.width-frameDimension.width)/2,
+                (screenDimension.height-frameDimension.height)/2);
+        liFrame.add(loginPanel);
+        liFrame.setResizable(false);
         loginPanel.setLayout(null);
         
         //create elements
@@ -209,7 +216,7 @@ public class View{
         this.suCreateButton.setBounds(30, 115, 120, 25);
         signUpPanel.add(suCreateButton);
         
-         this.suSuccessLabel = new JLabel("");
+        this.suSuccessLabel = new JLabel("");
         this.suSuccessLabel.setBounds(40, 140, 300, 25);
         signUpPanel.add(suSuccessLabel);
         
