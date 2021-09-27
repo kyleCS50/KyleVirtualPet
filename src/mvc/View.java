@@ -5,6 +5,7 @@
 */
 package mvc;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JButton;
@@ -141,10 +142,13 @@ public class View{
                 (screenDimension.height-frameDimension.height)/2);
         liFrame.add(loginPanel);
         liFrame.setResizable(false);
+        
         loginPanel.setLayout(null);
+        loginPanel.setBackground(new Color(35, 36, 38));
         
         //create elements
         this.liUserLabel = new JLabel("Username: ");
+        this.liUserLabel.setForeground(new Color(220, 219, 217));
         this.liUserLabel.setBounds(40, 40, 80, 25);
         loginPanel.add(liUserLabel);
         
@@ -153,6 +157,7 @@ public class View{
         loginPanel.add(liUserField);
         
         this.liPassLabel = new JLabel("Password: ");
+        this.liPassLabel.setForeground(new Color(220, 219, 217));
         this.liPassLabel.setBounds(40, 70, 80, 25);
         loginPanel.add(liPassLabel);
         
@@ -185,10 +190,13 @@ public class View{
         suFrame.setSize(350, 200);
         suFrame.add(signUpPanel);
         suFrame.setResizable(false);
+        
         signUpPanel.setLayout(null);
+        signUpPanel.setBackground(new Color(35, 36, 38));
         
         //create elements
         this.suUserLabel = new JLabel("Username: ");
+        this.suUserLabel.setForeground(new Color(220, 219, 217));
         this.suUserLabel.setBounds(40, 20, 80, 25);
         signUpPanel.add(suUserLabel);
         
@@ -197,6 +205,7 @@ public class View{
         signUpPanel.add(suUserField);
         
         this.suPassLabel = new JLabel("Password: ");
+        this.suPassLabel.setForeground(new Color(220, 219, 217));
         this.suPassLabel.setBounds(40, 50, 80, 25);
         signUpPanel.add(suPassLabel);
         
@@ -205,6 +214,7 @@ public class View{
         signUpPanel.add(suPassField);
         
         this.suConfirmLabel = new JLabel("Confirm Password: ");
+        this.suConfirmLabel.setForeground(new Color(220, 219, 217));
         this.suConfirmLabel.setBounds(40, 80, 130, 25);
         signUpPanel.add(suConfirmLabel);
         
