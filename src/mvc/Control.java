@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 public class Control implements ActionListener{
     private Model model;
     private View view;
+    private int clicks = 0;
     
     public Control(Model model, View view) {
         this.model = model;
@@ -24,11 +25,13 @@ public class Control implements ActionListener{
         view.getLoginButton().addActionListener(this);
         view.getSignUpButton().addActionListener(this);
         view.getSuCreateButton().addActionListener(this);
+        view.getSelectButton().addActionListener(this);
     }
     
     @Override
     public void actionPerformed(ActionEvent ae) {
         Object source = ae.getSource();
+        
         if(source == view.getLoginButton())
         {
             System.out.println("Log In button pressed");
@@ -39,6 +42,8 @@ public class Control implements ActionListener{
             {
                 view.getLiSuccessLabel().setForeground(new Color(6, 156, 24));
                 view.getLiSuccessLabel().setText("Login Successful");
+                view.getLiFrame().setVisible(false);
+                view.getSelectFrame().setVisible(true);
             }
             else
             {
@@ -46,6 +51,7 @@ public class Control implements ActionListener{
                 view.getLiSuccessLabel().setText("Wrong username or password");
             }
         }
+        
         if(source == view.getSignUpButton())
         {
             System.out.println("Sign Up button clicked");
@@ -53,6 +59,7 @@ public class Control implements ActionListener{
             view.getLiFrame().setVisible(false);
             view.getSuFrame().setVisible(true);
         }
+        
         if(source == view.getSuCreateButton())
         {
             System.out.println("Create Account button clicked");
@@ -71,6 +78,8 @@ public class Control implements ActionListener{
                 {
                     view.getSuSuccessLabel().setForeground(new Color(6, 156, 24));
                     view.getSuSuccessLabel().setText("Account Created Successfully!");
+                    view.getSuFrame().setVisible(false);
+                    view.getSelectFrame().setVisible(true);
                 }
                 else
                 {
@@ -79,6 +88,18 @@ public class Control implements ActionListener{
                     view.getSuPassField().setText("");
                     view.getSuConfirmField().setText("");
                 }
+            }
+        }
+        
+        if(source == view.getSelectButton())
+        {
+            clicks++;
+            view.getSelectLabel().setText("Clicks: "+ clicks);
+            
+            if(clicks == 5)
+            {
+                view.getSelectPanel().add(view.getImgLabel());
+                view.getSelectPanel().repaint();
             }
         }
     }

@@ -7,7 +7,15 @@ package mvc;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -44,11 +52,21 @@ public class View{
     private JLabel suSuccessLabel;
     private JPanel signUpPanel;
     
+    //select pet
+    private JFrame selectFrame;
+    private JPanel selectPanel;
+    private JButton selectButton;
+    private JLabel selectLabel;
+    private BufferedImage bi;
+    private Image img;
+    private ImageIcon icon;
+    private JLabel imgLabel;
     
     public View(String title)
     {
         this.constructLogIn(title+ " - Login");
         this.constructSignUp(title+ " - Sign Up");
+        this.constructSelect(title+ " - Select Pet");
     }
     //----------------------------------GETTERS AND SETTERS---------------------
     public JFrame getLiFrame() {
@@ -127,6 +145,38 @@ public class View{
         return signUpPanel;
     }
     
+    public JFrame getSelectFrame() {
+        return selectFrame;
+    }
+    
+    public JPanel getSelectPanel() {
+        return selectPanel;
+    }
+    
+    public JButton getSelectButton() {
+        return selectButton;
+    }
+    
+    public JLabel getSelectLabel() {
+        return selectLabel;
+    }
+    
+    public BufferedImage getBi() {
+        return bi;
+    }
+    
+    public Image getImg() {
+        return img;
+    }
+    
+    public ImageIcon getIcon() {
+        return icon;
+    }
+    
+    public JLabel getImgLabel() {
+        return imgLabel;
+    }
+    
     //----------------------------------LOG IN FRAME----------------------------
     private void constructLogIn(String title)
     {
@@ -178,7 +228,7 @@ public class View{
         this.liSuccessLabel.setBounds(40, 125, 300, 25);
         loginPanel.add(liSuccessLabel);
         
-        getLiFrame().setVisible(true);
+        this.liFrame.setVisible(true);
     }
     
     //----------------------------------SIGN UP FRAME---------------------------
@@ -231,5 +281,46 @@ public class View{
         signUpPanel.add(suSuccessLabel);
         
         suFrame.setVisible(false);
+    }
+    
+    private void constructSelect(String title)
+    {
+        this.selectFrame = new JFrame(title);
+        this.selectPanel = new JPanel();
+        selectFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        selectFrame.setSize(1250, 750);
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        Dimension screenDimension = tk.getScreenSize();
+        Dimension frameDimension = selectFrame.getSize();
+        selectFrame.setLocation((screenDimension.width-frameDimension.width)/2,
+                (screenDimension.height-frameDimension.height)/2);
+        selectFrame.add(selectPanel);
+        selectFrame.setResizable(false);
+        
+        selectPanel.setLayout(null);
+        selectPanel.setBackground(new Color(35, 36, 38));
+        
+        this.selectButton = new JButton("Click Me!");
+        this.selectButton.setBounds(300, 300, 120, 25);
+        selectPanel.add(selectButton);
+        
+        this.selectLabel = new JLabel("Clicks: 0");
+        this.selectLabel.setForeground(new Color(220, 219, 217));
+        this.selectLabel.setBounds(250, 250, 120, 25);
+        selectPanel.add(selectLabel);
+        
+        try {
+            this.bi = ImageIO.read(new File("./meme.jpg"));
+            this.img = bi.getScaledInstance(selectFrame.getWidth(), selectFrame.getHeight(), Image.SCALE_DEFAULT);
+            this.icon = new ImageIcon(img);
+            this.imgLabel = new JLabel();
+            imgLabel.setIcon(icon);
+            imgLabel.setBounds(0, 0, icon.getIconWidth(), icon.getIconHeight());            
+        } catch (IOException ex) {
+            Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        selectFrame.setVisible(false);
     }
 }
