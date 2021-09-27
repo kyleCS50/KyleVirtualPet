@@ -25,7 +25,7 @@ public class View{
     private JTextField liUserField;
     private JPasswordField liPassField;
     private JButton loginButton;
-    private JLabel liSuccess;
+    private JLabel liSuccessLabel;
     private JPanel loginPanel;
     private JButton signUpButton;
     
@@ -33,8 +33,10 @@ public class View{
     private JFrame suFrame;
     private JLabel suUserLabel;
     private JLabel suPassLabel;
+    private JLabel suConfirmLabel;
     private JTextField suUserField;
     private JPasswordField suPassField;
+    private JPasswordField suConfirmField;
     private JButton suCreateButton;
     private JLabel suSuccessLabel;
     private JPanel signUpPanel;
@@ -50,140 +52,76 @@ public class View{
         return liFrame;
     }
     
-    public void setLiFrame(JFrame liFrame) {
-        this.liFrame = liFrame;
-    }
-    
     public JLabel getLiUserLabel() {
         return liUserLabel;
-    }
-    
-    public void setLiUserLabel(JLabel liUserLabel) {
-        this.liUserLabel = liUserLabel;
     }
     
     public JLabel getLiPassLabel() {
         return liPassLabel;
     }
     
-    public void setLiPassLabel(JLabel liPassLabel) {
-        this.liPassLabel = liPassLabel;
-    }
-    
     public JTextField getLiUserField() {
         return liUserField;
     }
     
-    public void setLiUserField(JTextField liUserField) {
-        this.liUserField = liUserField;
-    }
-    
-    public JTextField getPasswordField() {
-        return getLiPassField();
-    }
-    
-    public void setLiPassField(JPasswordField liPassField) {
-        this.liPassField = liPassField;
+    public JTextField getLiPassField() {
+        return liPassField;
     }
     
     public JButton getLoginButton() {
         return loginButton;
     }
     
-    public void setLoginButton(JButton loginButton) {
-        this.loginButton = loginButton;
-    }
-    
     public JPanel getLoginPanel() {
         return loginPanel;
     }
     
-    public void setLoginPanel(JPanel loginPanel) {
-        this.loginPanel = loginPanel;
-    }
-    
-    public JLabel getLiSuccess() {
-        return liSuccess;
-    }
-    
-    public void setLiSuccess(JLabel liSuccess) {
-        this.liSuccess = liSuccess;
+    public JLabel getLiSuccessLabel() {
+        return liSuccessLabel;
     }
     
     public JButton getSignUpButton() {
         return signUpButton;
     }
     
-    public void setSignUpButton(JButton signUpButton) {
-        this.signUpButton = signUpButton;
-    }
-    
-    public JPasswordField getLiPassField() {
-        return liPassField;
-    }
-    
     public JFrame getSuFrame() {
         return suFrame;
-    }
-    
-    public void setSuFrame(JFrame suFrame) {
-        this.suFrame = suFrame;
     }
     
     public JLabel getSuUserLabel() {
         return suUserLabel;
     }
     
-    public void setSuUserLabel(JLabel suUserLabel) {
-        this.suUserLabel = suUserLabel;
-    }
-    
     public JLabel getSuPassLabel() {
         return suPassLabel;
     }
     
-    public void setSuPassLabel(JLabel suPassLabel) {
-        this.suPassLabel = suPassLabel;
+    public JLabel getSuConfirmLabel() {
+        return suConfirmLabel;
     }
     
     public JTextField getSuUserField() {
         return suUserField;
     }
     
-    public void setSuUserField(JTextField suUserField) {
-        this.suUserField = suUserField;
-    }
-    
-    public JPasswordField getSuPassField() {
+    public JTextField getSuPassField() {
         return suPassField;
     }
     
-    public void setSuPassField(JPasswordField suPassField) {
-        this.suPassField = suPassField;
+    public JTextField getSuConfirmField() {
+        return suConfirmField;
     }
     
     public JButton getSuCreateButton() {
         return suCreateButton;
     }
     
-    public void setSuCreateButton(JButton suCreateButton) {
-        this.suCreateButton = suCreateButton;
-    }
-    
     public JLabel getSuSuccessLabel() {
         return suSuccessLabel;
     }
     
-    public void setSuSuccessLabel(JLabel suSuccessLabel) {
-        this.suSuccessLabel = suSuccessLabel;
-    }
-    
     public JPanel getSignUpPanel() {
         return signUpPanel;
-    }
-    
-    public void setSignUpPanel(JPanel signUpPanel) {
-        this.signUpPanel = signUpPanel;
     }
     
     //----------------------------------LOG IN FRAME----------------------------
@@ -192,10 +130,10 @@ public class View{
         //login frame setup
         this.liFrame = new JFrame(title);
         this.loginPanel = new JPanel();
-        liFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        liFrame.setSize(350, 200);
-        liFrame.add(loginPanel);
-        liFrame.setResizable(false);
+        getLiFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        getLiFrame().setSize(350, 200);
+        getLiFrame().add(loginPanel);
+        getLiFrame().setResizable(false);
         loginPanel.setLayout(null);
         
         //create elements
@@ -224,11 +162,11 @@ public class View{
         this.signUpButton.setToolTipText("Don't have an account? Sign Up!");
         loginPanel.add(signUpButton);
         
-        this.liSuccess = new JLabel("");
-        this.liSuccess.setBounds(40, 125, 300, 25);
-        loginPanel.add(liSuccess);
+        this.liSuccessLabel = new JLabel("");
+        this.liSuccessLabel.setBounds(40, 125, 300, 25);
+        loginPanel.add(liSuccessLabel);
         
-        liFrame.setVisible(true);
+        getLiFrame().setVisible(true);
     }
     
     //----------------------------------SIGN UP FRAME---------------------------
@@ -244,24 +182,36 @@ public class View{
         
         //create elements
         this.suUserLabel = new JLabel("Username: ");
-        this.suUserLabel.setBounds(40, 40, 80, 25);
+        this.suUserLabel.setBounds(40, 20, 80, 25);
         signUpPanel.add(suUserLabel);
         
         this.suUserField = new JTextField(10);
-        this.suUserField.setBounds(130, 40, 150, 25);
+        this.suUserField.setBounds(160, 20, 150, 25);
         signUpPanel.add(suUserField);
         
         this.suPassLabel = new JLabel("Password: ");
-        this.suPassLabel.setBounds(40, 70, 80, 25);
+        this.suPassLabel.setBounds(40, 50, 80, 25);
         signUpPanel.add(suPassLabel);
         
         this.suPassField = new JPasswordField(10);
-        this.suPassField.setBounds(130, 70, 150, 25);
+        this.suPassField.setBounds(160, 50, 150, 25);
         signUpPanel.add(suPassField);
         
+        this.suConfirmLabel = new JLabel("Confirm Password: ");
+        this.suConfirmLabel.setBounds(40, 80, 130, 25);
+        signUpPanel.add(suConfirmLabel);
+        
+        this.suConfirmField = new JPasswordField(10);
+        this.suConfirmField.setBounds(160, 80, 150, 25);
+        signUpPanel.add(suConfirmField);
+        
         this.suCreateButton = new JButton("Create Account");
-        this.suCreateButton.setBounds(30, 100, 120, 25);
+        this.suCreateButton.setBounds(30, 115, 120, 25);
         signUpPanel.add(suCreateButton);
+        
+         this.suSuccessLabel = new JLabel("");
+        this.suSuccessLabel.setBounds(40, 140, 300, 25);
+        signUpPanel.add(suSuccessLabel);
         
         suFrame.setVisible(false);
     }
