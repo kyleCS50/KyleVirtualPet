@@ -25,7 +25,6 @@ public class Control implements ActionListener{
         view.getLoginButton().addActionListener(this);
         view.getSignUpButton().addActionListener(this);
         view.getSuCreateButton().addActionListener(this);
-        view.getSelectButton().addActionListener(this);
     }
     
     @Override
@@ -88,18 +87,6 @@ public class Control implements ActionListener{
                     view.getSuPassField().setText("");
                     view.getSuConfirmField().setText("");
                 }
-            }
-        }
-        
-        if(source == view.getSelectButton())
-        {
-            clicks++;
-            view.getSelectLabel().setText("Clicks: "+ clicks);
-            
-            if(clicks == 5)
-            {
-                view.getSelectPanel().add(view.getImgLabel());
-                view.getSelectPanel().repaint();
             }
         }
     }
