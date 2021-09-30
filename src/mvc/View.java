@@ -8,12 +8,8 @@ package mvc;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -34,6 +30,9 @@ import javax.swing.JTextField;
  * @author kylefrancis
  */
 public class View{
+    private Color fontColour = new Color(220, 219, 217);
+    private Color backgroundColour = new Color(35, 36, 38);
+    private Font font = new Font("Display", Font.BOLD, 30);
     //login
     private JFrame liFrame;
     private JLabel liUserLabel;
@@ -60,7 +59,10 @@ public class View{
     //select pet
     private JFrame selectFrame;
     private JPanel selectPanel;
+    private JLabel nameLabel;
     private JLabel dogLabel;
+    private JLabel catLabel;
+    private JLabel birdLabel;
     //bulldog
     private BufferedImage bulldogBuff;
     private Image bulldogImg;
@@ -197,9 +199,21 @@ public class View{
     public JPanel getSelectPanel() {
         return selectPanel;
     }
+
+    public JLabel getNameLabel() {
+        return nameLabel;
+    }
     
     public JLabel getDogLabel() {
         return dogLabel;
+    }
+    
+    public JLabel getCatLabel() {
+        return catLabel;
+    }
+    
+    public JLabel getBirdLabel() {
+        return birdLabel;
     }
     
     public BufferedImage getBulldogBuff() {
@@ -362,11 +376,11 @@ public class View{
         liFrame.setResizable(false);
         
         loginPanel.setLayout(null);
-        loginPanel.setBackground(new Color(35, 36, 38));
+        loginPanel.setBackground(backgroundColour);
         
         //create elements
         this.liUserLabel = new JLabel("Username: ");
-        this.liUserLabel.setForeground(new Color(220, 219, 217));
+        this.liUserLabel.setForeground(fontColour);
         this.liUserLabel.setBounds(40, 40, 80, 25);
         loginPanel.add(liUserLabel);
         
@@ -375,7 +389,7 @@ public class View{
         loginPanel.add(liUserField);
         
         this.liPassLabel = new JLabel("Password: ");
-        this.liPassLabel.setForeground(new Color(220, 219, 217));
+        this.liPassLabel.setForeground(fontColour);
         this.liPassLabel.setBounds(40, 70, 80, 25);
         loginPanel.add(liPassLabel);
         
@@ -410,11 +424,11 @@ public class View{
         suFrame.setResizable(false);
         
         signUpPanel.setLayout(null);
-        signUpPanel.setBackground(new Color(35, 36, 38));
+        signUpPanel.setBackground(backgroundColour);
         
         //create elements
         this.suUserLabel = new JLabel("Username: ");
-        this.suUserLabel.setForeground(new Color(220, 219, 217));
+        this.suUserLabel.setForeground(fontColour);
         this.suUserLabel.setBounds(40, 20, 80, 25);
         signUpPanel.add(suUserLabel);
         
@@ -423,7 +437,7 @@ public class View{
         signUpPanel.add(suUserField);
         
         this.suPassLabel = new JLabel("Password: ");
-        this.suPassLabel.setForeground(new Color(220, 219, 217));
+        this.suPassLabel.setForeground(fontColour);
         this.suPassLabel.setBounds(40, 50, 80, 25);
         signUpPanel.add(suPassLabel);
         
@@ -432,7 +446,7 @@ public class View{
         signUpPanel.add(suPassField);
         
         this.suConfirmLabel = new JLabel("Confirm Password: ");
-        this.suConfirmLabel.setForeground(new Color(220, 219, 217));
+        this.suConfirmLabel.setForeground(fontColour);
         this.suConfirmLabel.setBounds(40, 80, 130, 25);
         signUpPanel.add(suConfirmLabel);
         
@@ -466,11 +480,31 @@ public class View{
         selectFrame.setResizable(false);
         
         selectPanel.setLayout(null);
-        selectPanel.setBackground(new Color(35, 36, 38));
+        selectPanel.setBackground(backgroundColour);
         
-        this.dogLabel = new RotateLabel("Dogs");
-        this.dogLabel.setBounds(40, 140, 300, 25);
+        this.nameLabel = new JLabel();
+        getNameLabel().setFont(font);
+        getNameLabel().setForeground(fontColour);
+        getNameLabel().setVisible(false);
+        selectPanel.add(getNameLabel());
+        
+        this.dogLabel = new JLabel("Dogs");
+        dogLabel.setFont(font);
+        dogLabel.setForeground(fontColour);
+        this.dogLabel.setBounds(75, 111, 90, 50);
         selectPanel.add(dogLabel);
+        
+        this.catLabel = new JLabel("Cats");
+        catLabel.setFont(font);
+        catLabel.setForeground(fontColour);
+        this.catLabel.setBounds(75, 341, 90, 50);
+        selectPanel.add(catLabel);
+        
+        this.birdLabel = new JLabel("Birds");
+        birdLabel.setFont(font);
+        birdLabel.setForeground(fontColour);
+        this.birdLabel.setBounds(75, 571, 90, 50);
+        selectPanel.add(birdLabel);
         
         try {
             //--------------------------DOGS------------------------------------
@@ -562,20 +596,5 @@ public class View{
         
         
         selectFrame.setVisible(true);
-    }
-    
-    private class RotateLabel extends JLabel
-    {
-        public RotateLabel(String s)
-        {
-            super(s);
-        }
-        
-        @Override
-        public void paintComponent(Graphics g) {
-            Graphics2D g2 = (Graphics2D) g;
-            g2.rotate(0, getX() + getWidth()/2, getY() + getHeight()/2);
-            super.paintComponent(g);
-        }
     }
 }

@@ -23,3 +23,4 @@ Name: CHARLIE | Happiness: 5 | Food: 5 | Cleanliness: 0
 Name: FELIX | Happiness: 6 | Food: 4 | Cleanliness: 0
 Name: BRANDY | Happiness: 7 | Food: 6 | Cleanliness: 6
 Name: FELIX | Happiness: 3 | Food: 3 | Cleanliness: 0
+Name: BRANDY | Happiness: 9 | Food: 0 | Cleanliness: 6

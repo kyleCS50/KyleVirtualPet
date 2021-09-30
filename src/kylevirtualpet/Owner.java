@@ -40,7 +40,7 @@ public class Owner {
         this.rounds = 0;
     }
     
-    //define minusStats
+    //define addStat
     private int addStat(Animal a)
     {
         int addStat = 0;
