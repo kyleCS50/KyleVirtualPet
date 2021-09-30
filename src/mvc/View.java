@@ -410,7 +410,7 @@ public class View{
         this.liSuccessLabel.setBounds(40, 125, 300, 25);
         loginPanel.add(liSuccessLabel);
         
-        this.liFrame.setVisible(false);
+        this.liFrame.setVisible(true);
     }
     
     //----------------------------------SIGN UP FRAME---------------------------
@@ -470,7 +470,7 @@ public class View{
         this.selectFrame = new JFrame(title);
         this.selectPanel = new JPanel();
         selectFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        selectFrame.setSize(1250, 750);
+        selectFrame.setSize(1250, 850);
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension screenDimension = tk.getScreenSize();
         Dimension frameDimension = selectFrame.getSize();
@@ -491,19 +491,19 @@ public class View{
         this.dogLabel = new JLabel("Dogs");
         dogLabel.setFont(font);
         dogLabel.setForeground(fontColour);
-        this.dogLabel.setBounds(75, 111, 90, 50);
+        this.dogLabel.setBounds(75, 211, 90, 50);
         selectPanel.add(dogLabel);
         
         this.catLabel = new JLabel("Cats");
         catLabel.setFont(font);
         catLabel.setForeground(fontColour);
-        this.catLabel.setBounds(75, 341, 90, 50);
+        this.catLabel.setBounds(75, 441, 90, 50);
         selectPanel.add(catLabel);
         
         this.birdLabel = new JLabel("Birds");
         birdLabel.setFont(font);
         birdLabel.setForeground(fontColour);
-        this.birdLabel.setBounds(75, 571, 90, 50);
+        this.birdLabel.setBounds(75, 671, 90, 50);
         selectPanel.add(birdLabel);
         
         try {
@@ -514,7 +514,7 @@ public class View{
             this.bulldogIcon = new ImageIcon(bulldogImg);
             this.bulldogLabel = new JLabel();
             bulldogLabel.setIcon(bulldogIcon);
-            bulldogLabel.setBounds(230, 40, bulldogIcon.getIconWidth(), bulldogIcon.getIconHeight());
+            bulldogLabel.setBounds(230, 140, bulldogIcon.getIconWidth(), bulldogIcon.getIconHeight());
             selectPanel.add(bulldogLabel);
             
             //beagle
@@ -523,7 +523,7 @@ public class View{
             this.beagleIcon = new ImageIcon(beagleImg);
             this.beagleLabel = new JLabel();
             beagleLabel.setIcon(beagleIcon);
-            beagleLabel.setBounds(530, 40, beagleIcon.getIconWidth(), beagleIcon.getIconHeight());
+            beagleLabel.setBounds(530, 140, beagleIcon.getIconWidth(), beagleIcon.getIconHeight());
             selectPanel.add(beagleLabel);
             
             //lab
@@ -532,7 +532,7 @@ public class View{
             this.labIcon = new ImageIcon(labImg);
             this.labLabel = new JLabel();
             labLabel.setIcon(labIcon);
-            labLabel.setBounds(830, 40, labIcon.getIconWidth(), labIcon.getIconHeight());
+            labLabel.setBounds(830, 140, labIcon.getIconWidth(), labIcon.getIconHeight());
             selectPanel.add(labLabel);
             
             //--------------------------CATS------------------------------------
@@ -542,7 +542,7 @@ public class View{
             this.perIcon = new ImageIcon(perImg);
             this.perLabel = new JLabel();
             perLabel.setIcon(perIcon);
-            perLabel.setBounds(230, 270, perIcon.getIconWidth(), perIcon.getIconHeight());
+            perLabel.setBounds(230, 370, perIcon.getIconWidth(), perIcon.getIconHeight());
             selectPanel.add(perLabel);
             
             //shorthair
@@ -551,7 +551,7 @@ public class View{
             this.shortIcon = new ImageIcon(shortImg);
             this.shortLabel = new JLabel();
             shortLabel.setIcon(shortIcon);
-            shortLabel.setBounds(530, 270, shortIcon.getIconWidth(), shortIcon.getIconHeight());
+            shortLabel.setBounds(530, 370, shortIcon.getIconWidth(), shortIcon.getIconHeight());
             selectPanel.add(shortLabel);
             
             //siamese
@@ -560,7 +560,7 @@ public class View{
             this.siaIcon = new ImageIcon(siaImg);
             this.siaLabel = new JLabel();
             siaLabel.setIcon(siaIcon);
-            siaLabel.setBounds(830, 270, siaIcon.getIconWidth(), siaIcon.getIconHeight());
+            siaLabel.setBounds(830, 370, siaIcon.getIconWidth(), siaIcon.getIconHeight());
             selectPanel.add(siaLabel);
             
             //--------------------------BIRDS------------------------------------
@@ -570,7 +570,7 @@ public class View{
             this.canIcon = new ImageIcon(canImg);
             this.canLabel = new JLabel();
             canLabel.setIcon(canIcon);
-            canLabel.setBounds(230, 500, canIcon.getIconWidth(), canIcon.getIconHeight());
+            canLabel.setBounds(230, 600, canIcon.getIconWidth(), canIcon.getIconHeight());
             selectPanel.add(canLabel);
             
             //parakeet
@@ -579,7 +579,7 @@ public class View{
             this.parIcon = new ImageIcon(parImg);
             this.parLabel = new JLabel();
             parLabel.setIcon(parIcon);
-            parLabel.setBounds(530, 500, parIcon.getIconWidth(), parIcon.getIconHeight());
+            parLabel.setBounds(530, 600, parIcon.getIconWidth(), parIcon.getIconHeight());
             selectPanel.add(parLabel);
             
             //budgie
@@ -588,13 +588,11 @@ public class View{
             this.budIcon = new ImageIcon(budImg);
             this.budLabel = new JLabel();
             budLabel.setIcon(budIcon);
-            budLabel.setBounds(830, 500, budIcon.getIconWidth(), budIcon.getIconHeight());
+            budLabel.setBounds(830, 600, budIcon.getIconWidth(), budIcon.getIconHeight());
             selectPanel.add(budLabel);
         } catch (IOException ex) {
             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        selectFrame.setVisible(true);
+        selectFrame.setVisible(false);
     }
 }

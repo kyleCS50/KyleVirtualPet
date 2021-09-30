@@ -130,7 +130,7 @@ public class Control implements ActionListener, MouseListener
         if(source == view.getBulldogLabel())
         {
             view.getNameLabel().setText("Angus the Bulldog");
-            view.getNameLabel().setBounds(181, 242, 290, 50);
+            view.getNameLabel().setBounds(181, 342, 290, 50);
             view.getBeagleLabel().setVisible(false);
             view.getLabLabel().setVisible(false);
             view.getPerLabel().setVisible(false);
@@ -144,7 +144,7 @@ public class Control implements ActionListener, MouseListener
         if(source == view.getBeagleLabel())
         {
             view.getNameLabel().setText("Brandy the Beagle");
-            view.getNameLabel().setBounds(481, 242, 290, 50);
+            view.getNameLabel().setBounds(481, 342, 290, 50);
             view.getBulldogLabel().setVisible(false);
             view.getLabLabel().setVisible(false);
             view.getPerLabel().setVisible(false);
@@ -158,7 +158,7 @@ public class Control implements ActionListener, MouseListener
         if(source == view.getLabLabel())
         {
             view.getNameLabel().setText("Charlie the Labrador");
-            view.getNameLabel().setBounds(757, 242, 350, 50);
+            view.getNameLabel().setBounds(757, 342, 350, 50);
             view.getBulldogLabel().setVisible(false);
             view.getBeagleLabel().setVisible(false);
             view.getPerLabel().setVisible(false);
@@ -172,7 +172,7 @@ public class Control implements ActionListener, MouseListener
         if(source == view.getPerLabel())
         {
             view.getNameLabel().setText("Diamond the Persian");
-            view.getNameLabel().setBounds(157, 462, 350, 50);
+            view.getNameLabel().setBounds(157, 562, 350, 50);
             view.getBeagleLabel().setVisible(false);
             view.getLabLabel().setVisible(false);
             view.getBulldogLabel().setVisible(false);
@@ -186,7 +186,7 @@ public class Control implements ActionListener, MouseListener
         if(source == view.getShortLabel())
         {
             view.getNameLabel().setText("Eve the Shorthair");
-            view.getNameLabel().setBounds(491, 462, 270, 50);
+            view.getNameLabel().setBounds(491, 562, 270, 50);
             view.getBulldogLabel().setVisible(false);
             view.getLabLabel().setVisible(false);
             view.getPerLabel().setVisible(false);
@@ -200,7 +200,7 @@ public class Control implements ActionListener, MouseListener
         if(source == view.getSiaLabel())
         {
             view.getNameLabel().setText("Felix the Siamese");
-            view.getNameLabel().setBounds(791, 462, 270, 50);
+            view.getNameLabel().setBounds(791, 562, 270, 50);
             view.getBulldogLabel().setVisible(false);
             view.getBeagleLabel().setVisible(false);
             view.getPerLabel().setVisible(false);
@@ -214,7 +214,7 @@ public class Control implements ActionListener, MouseListener
         if(source == view.getCanLabel())
         {
             view.getNameLabel().setText("Gandalf the Canary");
-            view.getNameLabel().setBounds(181, 450, 300, 50);
+            view.getNameLabel().setBounds(181, 550, 300, 50);
             view.getBeagleLabel().setVisible(false);
             view.getLabLabel().setVisible(false);
             view.getPerLabel().setVisible(false);
@@ -228,7 +228,7 @@ public class Control implements ActionListener, MouseListener
         if(source == view.getParLabel())
         {
             view.getNameLabel().setText("Harry the Parakeet");
-            view.getNameLabel().setBounds(475, 450, 300, 50);
+            view.getNameLabel().setBounds(475, 550, 300, 50);
             view.getBulldogLabel().setVisible(false);
             view.getLabLabel().setVisible(false);
             view.getPerLabel().setVisible(false);
@@ -242,7 +242,7 @@ public class Control implements ActionListener, MouseListener
         if(source == view.getBudLabel())
         {
             view.getNameLabel().setText("Icarus the Budgie");
-            view.getNameLabel().setBounds(786, 450, 280, 50);
+            view.getNameLabel().setBounds(786, 550, 280, 50);
             view.getBulldogLabel().setVisible(false);
             view.getBeagleLabel().setVisible(false);
             view.getPerLabel().setVisible(false);
