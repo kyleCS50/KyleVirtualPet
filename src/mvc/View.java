@@ -59,55 +59,24 @@ public class View{
     //select pet
     private JFrame selectFrame;
     private JPanel selectPanel;
-    private JLabel nameLabel;
-    private JLabel dogLabel;
-    private JLabel catLabel;
-    private JLabel birdLabel;
-    //bulldog
-    private BufferedImage bulldogBuff;
-    private Image bulldogImg;
-    private ImageIcon bulldogIcon;
-    private JLabel bulldogLabel;
-    //beagle
-    private BufferedImage beagleBuff;
-    private Image beagleImg;
-    private ImageIcon beagleIcon;
-    private JLabel beagleLabel;
     //labrador
+    private JLabel dogNameLabel;
     private BufferedImage labBuff;
     private Image labImg;
     private ImageIcon labIcon;
     private JLabel labLabel;
-    //persian
-    private BufferedImage perBuff;
-    private Image perImg;
-    private ImageIcon perIcon;
-    private JLabel perLabel;
     //shorthair
+    private JLabel catNameLabel;
     private BufferedImage shortBuff;
     private Image shortImg;
     private ImageIcon shortIcon;
     private JLabel shortLabel;
-    //siamese
-    private BufferedImage siaBuff;
-    private Image siaImg;
-    private ImageIcon siaIcon;
-    private JLabel siaLabel;
     //canary
+    private JLabel birdNameLabel;
     private BufferedImage canBuff;
     private Image canImg;
     private ImageIcon canIcon;
     private JLabel canLabel;
-    //parakeet
-    private BufferedImage parBuff;
-    private Image parImg;
-    private ImageIcon parIcon;
-    private JLabel parLabel;
-    //budgie
-    private BufferedImage budBuff;
-    private Image budImg;
-    private ImageIcon budIcon;
-    private JLabel budLabel;
     
     public View(String title)
     {
@@ -199,53 +168,17 @@ public class View{
     public JPanel getSelectPanel() {
         return selectPanel;
     }
-
-    public JLabel getNameLabel() {
-        return nameLabel;
+    
+    public JLabel getDogNameLabel() {
+        return dogNameLabel;
     }
     
-    public JLabel getDogLabel() {
-        return dogLabel;
+    public JLabel getCatNameLabel() {
+        return catNameLabel;
     }
     
-    public JLabel getCatLabel() {
-        return catLabel;
-    }
-    
-    public JLabel getBirdLabel() {
-        return birdLabel;
-    }
-    
-    public BufferedImage getBulldogBuff() {
-        return bulldogBuff;
-    }
-    
-    public Image getBulldogImg() {
-        return bulldogImg;
-    }
-    
-    public ImageIcon getBulldogIcon() {
-        return bulldogIcon;
-    }
-    
-    public JLabel getBulldogLabel() {
-        return bulldogLabel;
-    }
-    
-    public BufferedImage getBeagleBuff() {
-        return beagleBuff;
-    }
-    
-    public Image getBeagleImg() {
-        return beagleImg;
-    }
-    
-    public ImageIcon getBeagleIcon() {
-        return beagleIcon;
-    }
-    
-    public JLabel getBeagleLabel() {
-        return beagleLabel;
+    public JLabel getBirdNameLabel() {
+        return birdNameLabel;
     }
     
     public BufferedImage getLabBuff() {
@@ -264,22 +197,6 @@ public class View{
         return labLabel;
     }
     
-    public BufferedImage getPerBuff() {
-        return perBuff;
-    }
-    
-    public Image getPerImg() {
-        return perImg;
-    }
-    
-    public ImageIcon getPerIcon() {
-        return perIcon;
-    }
-    
-    public JLabel getPerLabel() {
-        return perLabel;
-    }
-    
     public BufferedImage getShortBuff() {
         return shortBuff;
     }
@@ -296,22 +213,6 @@ public class View{
         return shortLabel;
     }
     
-    public BufferedImage getSiaBuff() {
-        return siaBuff;
-    }
-    
-    public Image getSiaImg() {
-        return siaImg;
-    }
-    
-    public ImageIcon getSiaIcon() {
-        return siaIcon;
-    }
-    
-    public JLabel getSiaLabel() {
-        return siaLabel;
-    }
-    
     public BufferedImage getCanBuff() {
         return canBuff;
     }
@@ -326,38 +227,6 @@ public class View{
     
     public JLabel getCanLabel() {
         return canLabel;
-    }
-    
-    public BufferedImage getParBuff() {
-        return parBuff;
-    }
-    
-    public Image getParImg() {
-        return parImg;
-    }
-    
-    public ImageIcon getParIcon() {
-        return parIcon;
-    }
-    
-    public JLabel getParLabel() {
-        return parLabel;
-    }
-    
-    public BufferedImage getBudBuff() {
-        return budBuff;
-    }
-    
-    public Image getBudImg() {
-        return budImg;
-    }
-    
-    public ImageIcon getBudIcon() {
-        return budIcon;
-    }
-    
-    public JLabel getBudLabel() {
-        return budLabel;
     }
     //----------------------------------LOG IN FRAME----------------------------
     private void constructLogIn(String title)
@@ -410,7 +279,7 @@ public class View{
         this.liSuccessLabel.setBounds(40, 125, 300, 25);
         loginPanel.add(liSuccessLabel);
         
-        this.liFrame.setVisible(true);
+        this.liFrame.setVisible(false);
     }
     
     //----------------------------------SIGN UP FRAME---------------------------
@@ -470,7 +339,7 @@ public class View{
         this.selectFrame = new JFrame(title);
         this.selectPanel = new JPanel();
         selectFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        selectFrame.setSize(1250, 850);
+        selectFrame.setSize(1250, 700);
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension screenDimension = tk.getScreenSize();
         Dimension frameDimension = selectFrame.getSize();
@@ -482,117 +351,55 @@ public class View{
         selectPanel.setLayout(null);
         selectPanel.setBackground(backgroundColour);
         
-        this.nameLabel = new JLabel();
-        getNameLabel().setFont(font);
-        getNameLabel().setForeground(fontColour);
-        getNameLabel().setVisible(false);
-        selectPanel.add(getNameLabel());
+        this.dogNameLabel = new JLabel("Charlie the Labrador");
+        dogNameLabel.setFont(font);
+        dogNameLabel.setForeground(fontColour);
+        dogNameLabel.setBounds(845, 200, 350, 50);
+        selectPanel.add(dogNameLabel);
         
-        this.dogLabel = new JLabel("Dogs");
-        dogLabel.setFont(font);
-        dogLabel.setForeground(fontColour);
-        this.dogLabel.setBounds(75, 211, 90, 50);
-        selectPanel.add(dogLabel);
+        this.catNameLabel = new JLabel("Eve the Shorthair");
+        catNameLabel.setFont(font);
+        catNameLabel.setForeground(fontColour);
+        catNameLabel.setBounds(465, 200, 270, 50);
+        selectPanel.add(catNameLabel);
         
-        this.catLabel = new JLabel("Cats");
-        catLabel.setFont(font);
-        catLabel.setForeground(fontColour);
-        this.catLabel.setBounds(75, 441, 90, 50);
-        selectPanel.add(catLabel);
-        
-        this.birdLabel = new JLabel("Birds");
-        birdLabel.setFont(font);
-        birdLabel.setForeground(fontColour);
-        this.birdLabel.setBounds(75, 671, 90, 50);
-        selectPanel.add(birdLabel);
+        this.birdNameLabel = new JLabel("Gandalf the Canary");
+        birdNameLabel.setFont(font);
+        birdNameLabel.setForeground(fontColour);
+        birdNameLabel.setBounds(85, 200, 300, 50);
+        selectPanel.add(birdNameLabel);
         
         try {
-            //--------------------------DOGS------------------------------------
-            //bulldog
-            this.bulldogBuff = ImageIO.read(new File("petAssets/bulldog.jpg"));
-            this.bulldogImg = bulldogBuff.getScaledInstance(bulldogBuff.getWidth()/5, bulldogBuff.getHeight()/5, Image.SCALE_DEFAULT);
-            this.bulldogIcon = new ImageIcon(bulldogImg);
-            this.bulldogLabel = new JLabel();
-            bulldogLabel.setIcon(bulldogIcon);
-            bulldogLabel.setBounds(230, 140, bulldogIcon.getIconWidth(), bulldogIcon.getIconHeight());
-            selectPanel.add(bulldogLabel);
-            
-            //beagle
-            this.beagleBuff = ImageIO.read(new File("petAssets/beagle.jpg"));
-            this.beagleImg = beagleBuff.getScaledInstance(beagleBuff.getWidth()/5, beagleBuff.getHeight()/5, Image.SCALE_DEFAULT);
-            this.beagleIcon = new ImageIcon(beagleImg);
-            this.beagleLabel = new JLabel();
-            beagleLabel.setIcon(beagleIcon);
-            beagleLabel.setBounds(530, 140, beagleIcon.getIconWidth(), beagleIcon.getIconHeight());
-            selectPanel.add(beagleLabel);
-            
             //lab
             this.labBuff = ImageIO.read(new File("petAssets/lab.jpg"));
-            this.labImg = labBuff.getScaledInstance(labBuff.getWidth()/5, labBuff.getHeight()/5, Image.SCALE_DEFAULT);
+            this.labImg = labBuff.getScaledInstance(labBuff.getWidth()/3, labBuff.getHeight()/3, Image.SCALE_DEFAULT);
             this.labIcon = new ImageIcon(labImg);
             this.labLabel = new JLabel();
             labLabel.setIcon(labIcon);
-            labLabel.setBounds(830, 140, labIcon.getIconWidth(), labIcon.getIconHeight());
+            labLabel.setBounds(845, 254, labIcon.getIconWidth(), labIcon.getIconHeight());
             selectPanel.add(labLabel);
-            
-            //--------------------------CATS------------------------------------
-            //persian
-            this.perBuff = ImageIO.read(new File("petAssets/persian.jpg"));
-            this.perImg = perBuff.getScaledInstance(perBuff.getWidth()/5, perBuff.getHeight()/5, Image.SCALE_DEFAULT);
-            this.perIcon = new ImageIcon(perImg);
-            this.perLabel = new JLabel();
-            perLabel.setIcon(perIcon);
-            perLabel.setBounds(230, 370, perIcon.getIconWidth(), perIcon.getIconHeight());
-            selectPanel.add(perLabel);
             
             //shorthair
             this.shortBuff = ImageIO.read(new File("petAssets/shorthair.jpg"));
-            this.shortImg = shortBuff.getScaledInstance(shortBuff.getWidth()/5, shortBuff.getHeight()/5, Image.SCALE_DEFAULT);
+            this.shortImg = shortBuff.getScaledInstance(shortBuff.getWidth()/3, shortBuff.getHeight()/3, Image.SCALE_DEFAULT);
             this.shortIcon = new ImageIcon(shortImg);
             this.shortLabel = new JLabel();
             shortLabel.setIcon(shortIcon);
-            shortLabel.setBounds(530, 370, shortIcon.getIconWidth(), shortIcon.getIconHeight());
+            shortLabel.setBounds(465, 254, shortIcon.getIconWidth(), shortIcon.getIconHeight());
             selectPanel.add(shortLabel);
             
-            //siamese
-            this.siaBuff = ImageIO.read(new File("petAssets/siamese.jpg"));
-            this.siaImg = siaBuff.getScaledInstance(siaBuff.getWidth()/5, siaBuff.getHeight()/5, Image.SCALE_DEFAULT);
-            this.siaIcon = new ImageIcon(siaImg);
-            this.siaLabel = new JLabel();
-            siaLabel.setIcon(siaIcon);
-            siaLabel.setBounds(830, 370, siaIcon.getIconWidth(), siaIcon.getIconHeight());
-            selectPanel.add(siaLabel);
-            
-            //--------------------------BIRDS------------------------------------
             //canary
             this.canBuff = ImageIO.read(new File("petAssets/canary.jpg"));
-            this.canImg = canBuff.getScaledInstance(canBuff.getWidth()/5, canBuff.getHeight()/5, Image.SCALE_DEFAULT);
+            this.canImg = canBuff.getScaledInstance(canBuff.getWidth()/3, canBuff.getHeight()/3, Image.SCALE_DEFAULT);
             this.canIcon = new ImageIcon(canImg);
             this.canLabel = new JLabel();
             canLabel.setIcon(canIcon);
-            canLabel.setBounds(230, 600, canIcon.getIconWidth(), canIcon.getIconHeight());
+            canLabel.setBounds(85, 254, canIcon.getIconWidth(), canIcon.getIconHeight());
             selectPanel.add(canLabel);
             
-            //parakeet
-            this.parBuff = ImageIO.read(new File("petAssets/parakeet.jpg"));
-            this.parImg = parBuff.getScaledInstance(parBuff.getWidth()/5, parBuff.getHeight()/5, Image.SCALE_DEFAULT);
-            this.parIcon = new ImageIcon(parImg);
-            this.parLabel = new JLabel();
-            parLabel.setIcon(parIcon);
-            parLabel.setBounds(530, 600, parIcon.getIconWidth(), parIcon.getIconHeight());
-            selectPanel.add(parLabel);
-            
-            //budgie
-            this.budBuff = ImageIO.read(new File("petAssets/budgie.jpg"));
-            this.budImg = budBuff.getScaledInstance(budBuff.getWidth()/5, budBuff.getHeight()/5, Image.SCALE_DEFAULT);
-            this.budIcon = new ImageIcon(budImg);
-            this.budLabel = new JLabel();
-            budLabel.setIcon(budIcon);
-            budLabel.setBounds(830, 600, budIcon.getIconWidth(), budIcon.getIconHeight());
-            selectPanel.add(budLabel);
         } catch (IOException ex) {
             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
         }
-        selectFrame.setVisible(false);
+        selectFrame.setVisible(true);
     }
 }
