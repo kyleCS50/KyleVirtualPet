@@ -6,6 +6,7 @@
 package mvc;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
@@ -22,6 +23,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 
@@ -56,9 +58,22 @@ public class View{
     private JLabel suSuccessLabel;
     private JPanel signUpPanel;
     
+    //menu screen
+    private JFrame menuFrame;
+    private JLabel menuLabel;
+    private JButton playButton;
+    private JButton statsButton;
+    private JButton howToButton;
+    private JFrame howToFrame;
+    private JPanel howToPanel;
+    private JLabel howToText;
+    private JButton doneButton;
+    private JPanel menuPanel;
+    
     //select pet
     private JFrame selectFrame;
     private JPanel selectPanel;
+    private JLabel selectLabel;
     //labrador
     private JLabel dogNameLabel;
     private BufferedImage labBuff;
@@ -82,19 +97,12 @@ public class View{
     {
         this.constructLogIn(title+ " - Login");
         this.constructSignUp(title+ " - Sign Up");
+        this.constructMenu(title+ " - Menu");
         this.constructSelect(title+ " - Select Pet");
     }
     //----------------------------------GETTERS---------------------------------
     public JFrame getLiFrame() {
         return liFrame;
-    }
-    
-    public JLabel getLiUserLabel() {
-        return liUserLabel;
-    }
-    
-    public JLabel getLiPassLabel() {
-        return liPassLabel;
     }
     
     public JTextField getLiUserField() {
@@ -108,11 +116,7 @@ public class View{
     public JButton getLoginButton() {
         return loginButton;
     }
-    
-    public JPanel getLoginPanel() {
-        return loginPanel;
-    }
-    
+   
     public JLabel getLiSuccessLabel() {
         return liSuccessLabel;
     }
@@ -124,19 +128,7 @@ public class View{
     public JFrame getSuFrame() {
         return suFrame;
     }
-    
-    public JLabel getSuUserLabel() {
-        return suUserLabel;
-    }
-    
-    public JLabel getSuPassLabel() {
-        return suPassLabel;
-    }
-    
-    public JLabel getSuConfirmLabel() {
-        return suConfirmLabel;
-    }
-    
+   
     public JTextField getSuUserField() {
         return suUserField;
     }
@@ -157,77 +149,46 @@ public class View{
         return suSuccessLabel;
     }
     
-    public JPanel getSignUpPanel() {
-        return signUpPanel;
-    }
-    
     public JFrame getSelectFrame() {
         return selectFrame;
-    }
-    
-    public JPanel getSelectPanel() {
-        return selectPanel;
-    }
-    
-    public JLabel getDogNameLabel() {
-        return dogNameLabel;
-    }
-    
-    public JLabel getCatNameLabel() {
-        return catNameLabel;
-    }
-    
-    public JLabel getBirdNameLabel() {
-        return birdNameLabel;
-    }
-    
-    public BufferedImage getLabBuff() {
-        return labBuff;
-    }
-    
-    public Image getLabImg() {
-        return labImg;
-    }
-    
-    public ImageIcon getLabIcon() {
-        return labIcon;
     }
     
     public JLabel getLabLabel() {
         return labLabel;
     }
     
-    public BufferedImage getShortBuff() {
-        return shortBuff;
-    }
-    
-    public Image getShortImg() {
-        return shortImg;
-    }
-    
-    public ImageIcon getShortIcon() {
-        return shortIcon;
-    }
-    
     public JLabel getShortLabel() {
         return shortLabel;
-    }
-    
-    public BufferedImage getCanBuff() {
-        return canBuff;
-    }
-    
-    public Image getCanImg() {
-        return canImg;
-    }
-    
-    public ImageIcon getCanIcon() {
-        return canIcon;
     }
     
     public JLabel getCanLabel() {
         return canLabel;
     }
+    
+    public JFrame getMenuFrame() {
+        return menuFrame;
+    }
+    
+    public JButton getPlayButton() {
+        return playButton;
+    }
+    
+    public JButton getStatsButton() {
+        return statsButton;
+    }
+    
+    public JButton getHowToButton() {
+        return howToButton;
+    }
+    
+    public JFrame getHowToFrame() {
+        return howToFrame;
+    }
+    
+    public JButton getDoneButton() {
+        return doneButton;
+    }
+    
     //----------------------------------LOG IN FRAME----------------------------
     private void constructLogIn(String title)
     {
@@ -279,7 +240,7 @@ public class View{
         this.liSuccessLabel.setBounds(40, 125, 300, 25);
         loginPanel.add(liSuccessLabel);
         
-        this.liFrame.setVisible(false);
+        this.liFrame.setVisible(true);
     }
     
     //----------------------------------SIGN UP FRAME---------------------------
@@ -334,6 +295,77 @@ public class View{
         suFrame.setVisible(false);
     }
     
+    //----------------------------------MENU FRAME------------------------------
+    private void constructMenu(String title)
+    {
+        this.menuFrame = new JFrame(title);
+        this.menuPanel = new JPanel();
+        
+        menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        menuFrame.setSize(1250, 700);
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        Dimension screenDimension = tk.getScreenSize();
+        Dimension frameDimension = menuFrame.getSize();
+        menuFrame.setLocation((screenDimension.width-frameDimension.width)/2,
+                (screenDimension.height-frameDimension.height)/2);
+        menuFrame.add(menuPanel);
+        menuFrame.setResizable(false);
+        
+        menuPanel.setLayout(null);
+        menuPanel.setBackground(backgroundColour);
+        
+        this.menuLabel = new JLabel("Kyle's Virtual Pet Game");
+        menuLabel.setFont(font);
+        menuLabel.setForeground(fontColour);
+        menuLabel.setBounds(445, 20, 360, 50);
+        menuPanel.add(menuLabel);
+        
+        this.playButton = new JButton("Play Game");
+        playButton.setFont(font);
+        playButton.setBounds(85, 190, 320, 320);
+        menuPanel.add(playButton);
+        
+        this.statsButton = new JButton("Game Stats");
+        statsButton.setFont(font);
+        statsButton.setBounds(465, 190, 320, 320);
+        menuPanel.add(statsButton);
+        
+        this.howToButton = new JButton("How To Play");
+        howToButton.setFont(font);
+        howToButton.setBounds(845, 190, 320, 320);
+        menuPanel.add(howToButton);
+        
+        this.howToFrame = new JFrame("How To Play");
+        this.howToPanel = new JPanel();
+        howToFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        howToFrame.setSize(450, 220);
+        howToFrame.setLocation((screenDimension.width-frameDimension.width)/2,
+                (screenDimension.height-frameDimension.height)/2);
+        howToFrame.add(howToPanel);
+        howToFrame.setResizable(false);
+        
+        howToPanel.setLayout(null);
+        howToPanel.setBackground(backgroundColour);
+        
+        String text = "To play my virtual pet game first you must choose a pet. "
+                + "Each pet has a happiness, food and cleanliness meter. "
+                + "To increase the stats you a meter you can do an activity with your pet. "
+                + "To increase happiness you can play with your pet, to increase food you feed your pet and to increase cleanliness you clean your pet. "
+                + "Each pet has a different difficulty level which determines their starting stats and how much you can increase them for each activity.";
+        this.howToText = new JLabel("<html>"+text+"</html>");
+        howToText.setForeground(fontColour);
+        howToText.setBounds(25, 10, 400, 150);
+        howToPanel.add(howToText);
+        
+        this.doneButton = new JButton("Done");
+        this.doneButton.setBounds(345, 160, 80, 25);
+        howToPanel.add(doneButton);
+        
+        menuFrame.setVisible(false);
+        howToFrame.setVisible(false);
+    }
+    
+    //----------------------------------SELECT FRAME----------------------------
     private void constructSelect(String title)
     {
         this.selectFrame = new JFrame(title);
@@ -351,17 +383,11 @@ public class View{
         selectPanel.setLayout(null);
         selectPanel.setBackground(backgroundColour);
         
-        this.dogNameLabel = new JLabel("Charlie the Labrador");
-        dogNameLabel.setFont(font);
-        dogNameLabel.setForeground(fontColour);
-        dogNameLabel.setBounds(845, 200, 350, 50);
-        selectPanel.add(dogNameLabel);
-        
-        this.catNameLabel = new JLabel("Eve the Shorthair");
-        catNameLabel.setFont(font);
-        catNameLabel.setForeground(fontColour);
-        catNameLabel.setBounds(465, 200, 270, 50);
-        selectPanel.add(catNameLabel);
+        this.selectLabel = new JLabel("Select A Pet");
+        selectLabel.setFont(font);
+        selectLabel.setForeground(fontColour);
+        selectLabel.setBounds(445, 20, 300, 50);
+        selectPanel.add(selectLabel);
         
         this.birdNameLabel = new JLabel("Gandalf the Canary");
         birdNameLabel.setFont(font);
@@ -369,15 +395,27 @@ public class View{
         birdNameLabel.setBounds(85, 200, 300, 50);
         selectPanel.add(birdNameLabel);
         
+        this.catNameLabel = new JLabel("Eve the Shorthair");
+        catNameLabel.setFont(font);
+        catNameLabel.setForeground(fontColour);
+        catNameLabel.setBounds(465, 200, 270, 50);
+        selectPanel.add(catNameLabel);
+        
+        this.dogNameLabel = new JLabel("Charlie the Labrador");
+        dogNameLabel.setFont(font);
+        dogNameLabel.setForeground(fontColour);
+        dogNameLabel.setBounds(845, 200, 350, 50);
+        selectPanel.add(dogNameLabel);
         try {
-            //lab
-            this.labBuff = ImageIO.read(new File("petAssets/lab.jpg"));
-            this.labImg = labBuff.getScaledInstance(labBuff.getWidth()/3, labBuff.getHeight()/3, Image.SCALE_DEFAULT);
-            this.labIcon = new ImageIcon(labImg);
-            this.labLabel = new JLabel();
-            labLabel.setIcon(labIcon);
-            labLabel.setBounds(845, 254, labIcon.getIconWidth(), labIcon.getIconHeight());
-            selectPanel.add(labLabel);
+            //canary
+            this.canBuff = ImageIO.read(new File("petAssets/canary.jpg"));
+            this.canImg = canBuff.getScaledInstance(canBuff.getWidth()/3, canBuff.getHeight()/3, Image.SCALE_DEFAULT);
+            this.canIcon = new ImageIcon(canImg);
+            this.canLabel = new JLabel();
+            canLabel.setIcon(canIcon);
+            canLabel.setBounds(85, 254, canIcon.getIconWidth(), canIcon.getIconHeight());
+            canLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            selectPanel.add(canLabel);
             
             //shorthair
             this.shortBuff = ImageIO.read(new File("petAssets/shorthair.jpg"));
@@ -386,20 +424,22 @@ public class View{
             this.shortLabel = new JLabel();
             shortLabel.setIcon(shortIcon);
             shortLabel.setBounds(465, 254, shortIcon.getIconWidth(), shortIcon.getIconHeight());
+            shortLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             selectPanel.add(shortLabel);
             
-            //canary
-            this.canBuff = ImageIO.read(new File("petAssets/canary.jpg"));
-            this.canImg = canBuff.getScaledInstance(canBuff.getWidth()/3, canBuff.getHeight()/3, Image.SCALE_DEFAULT);
-            this.canIcon = new ImageIcon(canImg);
-            this.canLabel = new JLabel();
-            canLabel.setIcon(canIcon);
-            canLabel.setBounds(85, 254, canIcon.getIconWidth(), canIcon.getIconHeight());
-            selectPanel.add(canLabel);
+            //lab
+            this.labBuff = ImageIO.read(new File("petAssets/lab.jpg"));
+            this.labImg = labBuff.getScaledInstance(labBuff.getWidth()/3, labBuff.getHeight()/3, Image.SCALE_DEFAULT);
+            this.labIcon = new ImageIcon(labImg);
+            this.labLabel = new JLabel();
+            labLabel.setIcon(labIcon);
+            labLabel.setBounds(845, 254, labIcon.getIconWidth(), labIcon.getIconHeight());
+            labLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            selectPanel.add(labLabel);
             
         } catch (IOException ex) {
             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
         }
-        selectFrame.setVisible(true);
+        selectFrame.setVisible(false);
     }
 }

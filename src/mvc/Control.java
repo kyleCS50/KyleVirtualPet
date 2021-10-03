@@ -8,12 +8,14 @@ package mvc;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  *
  * @author kylefrancis
  */
-public class Control implements ActionListener
+public class Control implements ActionListener, MouseListener
 {
     private Model model;
     private View view;
@@ -25,6 +27,13 @@ public class Control implements ActionListener
         view.getLoginButton().addActionListener(this);
         view.getSignUpButton().addActionListener(this);
         view.getSuCreateButton().addActionListener(this);
+        view.getPlayButton().addActionListener(this);
+        view.getHowToButton().addActionListener(this);
+        view.getDoneButton().addActionListener(this);
+        
+        view.getCanLabel().addMouseListener(this);
+        view.getShortLabel().addMouseListener(this);
+        view.getLabLabel().addMouseListener(this);
     }
     
     @Override
@@ -41,13 +50,15 @@ public class Control implements ActionListener
             {
                 view.getLiSuccessLabel().setForeground(new Color(6, 156, 24));
                 view.getLiSuccessLabel().setText("Login Successful");
+                System.out.println("Login Successful");
                 view.getLiFrame().setVisible(false);
-                view.getSelectFrame().setVisible(true);
+                view.getMenuFrame().setVisible(true);
             }
             else
             {
                 view.getLiSuccessLabel().setForeground(Color.RED);
                 view.getLiSuccessLabel().setText("Wrong username or password");
+                System.out.println("Login Unsuccessful");
             }
         }
         
@@ -78,7 +89,8 @@ public class Control implements ActionListener
                     view.getSuSuccessLabel().setForeground(new Color(6, 156, 24));
                     view.getSuSuccessLabel().setText("Account Created Successfully!");
                     view.getSuFrame().setVisible(false);
-                    view.getSelectFrame().setVisible(true);
+                    view.getMenuFrame().setVisible(true);
+                    System.out.println("Create Account Successful");
                 }
                 else
                 {
@@ -86,8 +98,65 @@ public class Control implements ActionListener
                     view.getSuSuccessLabel().setText("Passwords must match to create new account.");
                     view.getSuPassField().setText("");
                     view.getSuConfirmField().setText("");
+                    System.out.println("Create Account Unsuccessful");
                 }
             }
         }
+        
+        if(source == view.getPlayButton())
+        {
+            view.getMenuFrame().setVisible(false);
+            view.getSelectFrame().setVisible(true);
+            System.out.println("Play button clicked");
+        }
+        
+        if(source == view.getHowToButton())
+        {
+            view.getHowToFrame().setVisible(true);
+            System.out.println("How To button clicked");
+        }
+        
+        if(source == view.getDoneButton())
+        {
+            view.getHowToFrame().setVisible(false);
+            System.out.println("How To Done button clicked");
+        }
+    }
+    
+    @Override
+    public void mouseClicked(MouseEvent me) {
+        Object source = me.getSource();
+        if(source == view.getCanLabel())
+        {
+            System.out.println("Canary was picked as pet");
+        }
+        if(source == view.getShortLabel())
+        {
+            System.out.println("Shorthair was picked as pet");
+        }
+        if(source == view.getLabLabel())
+        {
+            System.out.println("Labrador was picked as pet");
+        }
+    }
+    
+    @Override
+    public void mousePressed(MouseEvent arg0) {
+        
+    }
+    
+    @Override
+    public void mouseReleased(MouseEvent arg0) {
+        
+    }
+    
+    @Override
+    public void mouseEntered(MouseEvent arg0) {
+        
+    }
+    
+    @Override
+    public void mouseExited(MouseEvent arg0) {
+        
     }
 }
