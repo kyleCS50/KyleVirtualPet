@@ -23,7 +23,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 
@@ -61,7 +60,7 @@ public class View{
     //menu screen
     private JFrame menuFrame;
     private JLabel menuLabel;
-    private JButton playButton;
+    private JButton playGameButton;
     private JButton statsButton;
     private JButton howToButton;
     private JFrame howToFrame;
@@ -93,12 +92,32 @@ public class View{
     private ImageIcon canIcon;
     private JLabel canLabel;
     
+    //game
+    private JFrame gameFrame;
+    private JPanel gamePanel;
+    private JLabel myPetLabel;
+    private JPanel petIsPanel;
+    private JPanel petStatsPanel;
+    private JPanel petActionsPanel;
+    private JLabel petIsLabel;
+    private JLabel happyLabel;
+    private JLabel foodLabel;
+    private JLabel cleanLabel;
+    private JLabel happyStatLabel;
+    private JLabel foodStatLabel;
+    private JLabel cleanStatLabel;
+    private JButton playButton;
+    private JButton feedButton;
+    private JButton cleanButton;
+    
+    
     public View(String title)
     {
         this.constructLogIn(title+ " - Login");
         this.constructSignUp(title+ " - Sign Up");
         this.constructMenu(title+ " - Menu");
         this.constructSelect(title+ " - Select Pet");
+        this.constructGame(title+ " - Virtual Pet Game");
     }
     //----------------------------------GETTERS---------------------------------
     public JFrame getLiFrame() {
@@ -116,7 +135,7 @@ public class View{
     public JButton getLoginButton() {
         return loginButton;
     }
-   
+    
     public JLabel getLiSuccessLabel() {
         return liSuccessLabel;
     }
@@ -128,7 +147,7 @@ public class View{
     public JFrame getSuFrame() {
         return suFrame;
     }
-   
+    
     public JTextField getSuUserField() {
         return suUserField;
     }
@@ -169,8 +188,8 @@ public class View{
         return menuFrame;
     }
     
-    public JButton getPlayButton() {
-        return playButton;
+    public JButton getPlayGameButton() {
+        return playGameButton;
     }
     
     public JButton getStatsButton() {
@@ -187,6 +206,50 @@ public class View{
     
     public JButton getDoneButton() {
         return doneButton;
+    }
+    
+    public JFrame getGameFrame() {
+        return gameFrame;
+    }
+    
+    public JPanel getGamePanel() {
+        return gamePanel;
+    }
+    
+    public JLabel getMyPetLabel() {
+        return myPetLabel;
+    }
+    
+    public void setMyPetLabel(JLabel myPetLabel) {
+        this.myPetLabel = myPetLabel;
+    }
+    
+    public JLabel getPetIsLabel() {
+        return petIsLabel;
+    }
+    
+    public JLabel getHappyStatLabel() {
+        return happyStatLabel;
+    }
+    
+    public JLabel getFoodStatLabel() {
+        return foodStatLabel;
+    }
+    
+    public JLabel getCleanStatLabel() {
+        return cleanStatLabel;
+    }
+    
+    public JButton getPlayButton() {
+        return playButton;
+    }
+    
+    public JButton getFeedButton() {
+        return feedButton;
+    }
+    
+    public JButton getCleanButton() {
+        return cleanButton;
     }
     
     //----------------------------------LOG IN FRAME----------------------------
@@ -320,10 +383,10 @@ public class View{
         menuLabel.setBounds(445, 20, 360, 50);
         menuPanel.add(menuLabel);
         
-        this.playButton = new JButton("Play Game");
-        playButton.setFont(font);
-        playButton.setBounds(85, 190, 320, 320);
-        menuPanel.add(playButton);
+        this.playGameButton = new JButton("Play Game");
+        playGameButton.setFont(font);
+        playGameButton.setBounds(85, 190, 320, 320);
+        menuPanel.add(playGameButton);
         
         this.statsButton = new JButton("Game Stats");
         statsButton.setFont(font);
@@ -441,5 +504,47 @@ public class View{
             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
         }
         selectFrame.setVisible(false);
+    }
+    
+    //----------------------------------GAME FRAME------------------------------
+    private void constructGame(String title)
+    {
+        this.gameFrame = new JFrame(title);
+        this.gamePanel = new JPanel();
+        gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gameFrame.setSize(1250, 700);
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        Dimension screenDimension = tk.getScreenSize();
+        Dimension frameDimension = gameFrame.getSize();
+        gameFrame.setLocation((screenDimension.width-frameDimension.width)/2,
+                (screenDimension.height-frameDimension.height)/2);
+        gameFrame.add(getGamePanel());
+        gameFrame.setResizable(false);
+        
+        gamePanel.setLayout(null);
+        gamePanel.setBackground(backgroundColour);
+        
+        this.petIsPanel = new JPanel();
+        petIsPanel.setBackground(new Color(62, 62, 64));
+        petIsPanel.setBounds(340, 10, 900, 210);
+        
+        this.petStatsPanel = new JPanel();
+        petStatsPanel.setBackground(new Color(62, 62, 64));
+        petStatsPanel.setBounds(340, 230, 900, 210);
+        
+        this.petActionsPanel = new JPanel();
+        petActionsPanel.setBackground(new Color(62, 62, 64));
+        petActionsPanel.setBounds(340, 450, 900, 210);
+        
+        this.petIsLabel = new JLabel("My pet is ______");
+        petIsLabel.setFont(font);
+        petIsLabel.setForeground(fontColour);
+        petIsPanel.add(petIsLabel);
+        
+        gamePanel.add(petIsPanel);
+        gamePanel.add(petStatsPanel);
+        gamePanel.add(petActionsPanel);
+        
+        gameFrame.setVisible(false);
     }
 }

@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JLabel;
 
 /**
  *
@@ -27,7 +28,7 @@ public class Control implements ActionListener, MouseListener
         view.getLoginButton().addActionListener(this);
         view.getSignUpButton().addActionListener(this);
         view.getSuCreateButton().addActionListener(this);
-        view.getPlayButton().addActionListener(this);
+        view.getPlayGameButton().addActionListener(this);
         view.getHowToButton().addActionListener(this);
         view.getDoneButton().addActionListener(this);
         
@@ -103,7 +104,7 @@ public class Control implements ActionListener, MouseListener
             }
         }
         
-        if(source == view.getPlayButton())
+        if(source == view.getPlayGameButton())
         {
             view.getMenuFrame().setVisible(false);
             view.getSelectFrame().setVisible(true);
@@ -138,6 +139,12 @@ public class Control implements ActionListener, MouseListener
         {
             System.out.println("Labrador was picked as pet");
         }
+        view.setMyPetLabel((JLabel) source);
+        view.getMyPetLabel().setBounds(10, 10, 320, 320);
+        view.getGamePanel().add(view.getMyPetLabel());
+        
+        view.getSelectFrame().setVisible(false);
+        view.getGameFrame().setVisible(true);
     }
     
     @Override
