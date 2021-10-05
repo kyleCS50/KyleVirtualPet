@@ -23,12 +23,4 @@ public class Labrador extends Animal{
         this.setCleanMeter(3);
         this.setDiff(Difficulty.HARD);
     }
-    
-    //override sounds like method
-    @Override
-    public void soundsLike()
-    {
-        System.out.println(this.getName()+ " does a quiet bark");
-    }
-    
 }

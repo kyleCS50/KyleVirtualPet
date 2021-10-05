@@ -26,7 +26,6 @@ public class Control implements ActionListener, MouseListener
     public Control(Model model, View view) {
         this.model = model;
         this.view = view;
-        this.action = new Actions(model.getMyPet(), model.getOwner());
         
         view.getLoginButton().addActionListener(this);
         view.getSignUpButton().addActionListener(this);
@@ -42,6 +41,59 @@ public class Control implements ActionListener, MouseListener
         view.getShortLabel().addMouseListener(this);
         view.getLabLabel().addMouseListener(this);
     }
+    
+    @Override
+    public void mouseClicked(MouseEvent me) {
+        Object source = me.getSource();
+        
+        if(source == view.getCanLabel())
+        {
+            model.setMyPet(new Canary("Icarus"));
+        }
+        
+        if(source == view.getShortLabel())
+        {
+            model.setMyPet(new Shorthair("Eve"));
+        }
+        
+        if(source == view.getLabLabel())
+        {
+            model.setMyPet(new Labrador("Charlie"));
+        }
+        view.setMyPetLabel((JLabel) source);
+        view.getMyPetLabel().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        view.getMyPetLabel().setBounds(10, 10, 320, 320);
+        view.getGamePanel().add(view.getMyPetLabel());
+        
+        this.action = new Actions(model.getMyPet(), model.getOwner());
+        view.getHappyStatLabel().setText(model.getMyPet().getHappyMeter()+"");
+        view.getFoodStatLabel().setText(model.getMyPet().getHungerMeter()+"");
+        view.getCleanStatLabel().setText(model.getMyPet().getCleanMeter()+"");
+        
+        view.getSelectFrame().setVisible(false);
+        view.getGameFrame().setVisible(true);
+    }
+    
+    @Override
+    public void mousePressed(MouseEvent arg0) {
+        
+    }
+    
+    @Override
+    public void mouseReleased(MouseEvent arg0) {
+        
+    }
+    
+    @Override
+    public void mouseEntered(MouseEvent arg0) {
+        
+    }
+    
+    @Override
+    public void mouseExited(MouseEvent arg0) {
+        
+    }
+    
     
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -141,56 +193,14 @@ public class Control implements ActionListener, MouseListener
         {
             action.pickClean();
         }
-    }
-    
-    @Override
-    public void mouseClicked(MouseEvent me) {
-        Object source = me.getSource();
         
-        if(source == view.getCanLabel())
+        if(view.getGameFrame().isVisible())
         {
-            model.setMyPet(new Canary("Icarus"));
+            view.getHappyStatLabel().setText(model.getMyPet().getHappyMeter()+"");
+            view.getFoodStatLabel().setText(model.getMyPet().getHungerMeter()+"");
+            view.getCleanStatLabel().setText(model.getMyPet().getCleanMeter()+"");
+            view.getPetIsLabel().setText("My pet is " +action.nextRandEvent()+ "!");
+            view.getGamePanel().repaint();
         }
-        
-        if(source == view.getShortLabel())
-        {
-            model.setMyPet(new Shorthair("Eve"));
-        }
-        
-        if(source == view.getLabLabel())
-        {
-            model.setMyPet(new Labrador("Charlie"));
-        }
-        view.setMyPetLabel((JLabel) source);
-        view.getMyPetLabel().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-        view.getMyPetLabel().setBounds(10, 10, 320, 320);
-        view.getGamePanel().add(view.getMyPetLabel());
-        
-        view.getHappyStatLabel().setText(model.getMyPet().getHappyMeter()+"");
-        view.getFoodStatLabel().setText(model.getMyPet().getHungerMeter()+"");
-        view.getCleanStatLabel().setText(model.getMyPet().getCleanMeter()+"");
-        
-        view.getSelectFrame().setVisible(false);
-        view.getGameFrame().setVisible(true);
-    }
-    
-    @Override
-    public void mousePressed(MouseEvent arg0) {
-        
-    }
-    
-    @Override
-    public void mouseReleased(MouseEvent arg0) {
-        
-    }
-    
-    @Override
-    public void mouseEntered(MouseEvent arg0) {
-        
-    }
-    
-    @Override
-    public void mouseExited(MouseEvent arg0) {
-        
     }
 }

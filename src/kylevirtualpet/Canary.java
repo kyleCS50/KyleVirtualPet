@@ -23,10 +23,4 @@ public class Canary extends Animal{
         this.setCleanMeter(9);
         this.setDiff(Difficulty.EASY);
     }
-    
-    @Override
-    public void soundsLike() //override sounds like
-    {
-        System.out.println(this.getName()+ " sings a  song");
-    }
 }

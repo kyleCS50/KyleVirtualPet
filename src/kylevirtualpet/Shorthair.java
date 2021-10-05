@@ -23,10 +23,4 @@ public class Shorthair extends Animal{
         this.setCleanMeter(6);
         this.setDiff(Difficulty.MEDIUM);
     }
-    
-    @Override
-    public void soundsLike() //override sounds like method
-    {
-        System.out.println(this.getName()+ " meows");
-    }
 }

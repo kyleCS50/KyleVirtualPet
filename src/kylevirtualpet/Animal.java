@@ -87,33 +87,19 @@ public abstract class Animal {
     }
     
     //methods
-    public void isSad()
+    public String isSad()
     {
-        System.out.println(this.getName()+" is sad. What will you do?");
         this.setHappyMeter(this.getHappyMeter() - 3);
+        return "sad";
     }
-    public void isHungry()
+    public String isHungry()
     {
-        System.out.println(this.getName()+" is hungry. What will you do?");
         this.setHungerMeter(this.getHungerMeter() - 3);
-        
+        return "hungry";
     }
-    public void isDirty()
+    public String isDirty()
     {
-        System.out.println(this.getName()+" is dirty. What will you do?");
         this.setCleanMeter(this.getCleanMeter() - 3);
-        
+        return "dirty";
     }
-    
-    //abstract method
-    public abstract void soundsLike();
-    
-    //override to string method
-    @Override
-    public String toString()
-    {
-        return "Name: " +this.getName().toUpperCase()+ " | Happiness: " +this.getHappyMeter()+
-                " | Food: " +this.getHungerMeter()+ " | Cleanliness: " +this.getCleanMeter();
-    }
-    
 }

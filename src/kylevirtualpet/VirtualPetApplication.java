@@ -56,7 +56,7 @@ public class VirtualPetApplication {
                             +"Try get through as many rounds as you can to score higher!"); //show basic instructions on how to play
                     
                     Actions actions = new Actions(myPet, owner);
-                    actions.pickAction(); //run actions for game
+                    //actions.pickAction(); //run actions for game
                     
                     System.out.println("");
                     

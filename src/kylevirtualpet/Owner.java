@@ -63,19 +63,16 @@ public class Owner {
     public void play(Animal a)
     {
         a.setHappyMeter(a.getHappyMeter() + addStat(a));
-        a.soundsLike();
     }
     
     public void feed(Animal a)
     {
         a.setHungerMeter(a.getHungerMeter() + addStat(a));
-        a.soundsLike();
     }
     
     public void clean(Animal a)
     {
         a.setCleanMeter(a.getCleanMeter() + addStat(a));
-        a.soundsLike();
     }
     
 }

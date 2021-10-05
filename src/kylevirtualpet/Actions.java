@@ -29,23 +29,25 @@ public class Actions {
     }
     
     //method to randomly pick the next event
-    public void nextRandEvent()
+    public String nextRandEvent()
     {
         Random random = new Random();
         int number = random.nextInt(3)+1;
         
         if (number == 1)
         {
-            animal.isSad();
+            return animal.isSad();
         }
         else if (number == 2)
         {
-            animal.isHungry();
+            return animal.isHungry();
         }
         else if(number == 3)
         {
-            animal.isDirty();
+            return animal.isDirty();
         }
+        else
+            return "test";
     }
     
 //user picks to play with pet
@@ -53,7 +55,6 @@ public class Actions {
     {
         owner.play(animal);
         this.roundCount++;
-        this.nextRandEvent();
     }
     
     //user picks to feed pet
@@ -61,13 +62,11 @@ public class Actions {
     {
         owner.feed(animal);
         this.roundCount++;
-        this.nextRandEvent();
     }
     //user picks to clean pet
     public void pickClean()
     {
         owner.clean(animal);
         this.roundCount++;
-        this.nextRandEvent();
     }
 }
