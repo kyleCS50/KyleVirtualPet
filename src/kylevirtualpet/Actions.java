@@ -25,7 +25,7 @@ public class Actions {
         this.animal = animal;
         this.owner = owner;
         this.scan = new Scanner(System.in);
-        roundCount = 0;
+        roundCount = 1;
     }
     
     //method to randomly pick the next event
@@ -54,19 +54,19 @@ public class Actions {
     public void pickPlay()
     {
         owner.play(animal);
-        this.roundCount++;
+        owner.setRounds(roundCount++);
     }
     
     //user picks to feed pet
     public void pickFeed()
     {
         owner.feed(animal);
-        this.roundCount++;
+        owner.setRounds(roundCount++);
     }
     //user picks to clean pet
     public void pickClean()
     {
         owner.clean(animal);
-        this.roundCount++;
+        owner.setRounds(roundCount++);
     }
 }

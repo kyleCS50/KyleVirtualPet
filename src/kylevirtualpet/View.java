@@ -99,6 +99,7 @@ public class View{
     private JPanel petIsPanel;
     private JPanel petStatsPanel;
     private JPanel petActionsPanel;
+    private JPanel infoPanel;
     private JLabel petIsLabel;
     private JLabel happyLabel;
     private JLabel foodLabel;
@@ -109,6 +110,10 @@ public class View{
     private JButton playButton;
     private JButton feedButton;
     private JButton cleanButton;
+    private JLabel petName;
+    private JLabel petBreed;
+    private JLabel petDiff;
+    private JLabel numRounds;
     
     
     public View(String title)
@@ -252,6 +257,21 @@ public class View{
         return cleanButton;
     }
     
+    public JLabel getPetName() {
+        return petName;
+    }
+    
+    public JLabel getPetBreed() {
+        return petBreed;
+    }
+    
+    public JLabel getPetDiff() {
+        return petDiff;
+    }
+    
+    public JLabel getNumRounds() {
+        return numRounds;
+    }
     //----------------------------------LOG IN FRAME----------------------------
     private void constructLogIn(String title)
     {
@@ -452,10 +472,10 @@ public class View{
         selectLabel.setBounds(445, 20, 300, 50);
         selectPanel.add(selectLabel);
         
-        this.birdNameLabel = new JLabel("Gandalf the Canary");
+        this.birdNameLabel = new JLabel("Mordecai the Blue Jay");
         birdNameLabel.setFont(font);
         birdNameLabel.setForeground(fontColour);
-        birdNameLabel.setBounds(85, 200, 300, 50);
+        birdNameLabel.setBounds(85, 200, 350, 50);
         selectPanel.add(birdNameLabel);
         
         this.catNameLabel = new JLabel("Eve the Shorthair");
@@ -471,7 +491,7 @@ public class View{
         selectPanel.add(dogNameLabel);
         try {
             //canary
-            this.canBuff = ImageIO.read(new File("petAssets/canary.jpg"));
+            this.canBuff = ImageIO.read(new File("petAssets/bluejay.jpg"));
             this.canImg = canBuff.getScaledInstance(canBuff.getWidth()/3, canBuff.getHeight()/3, Image.SCALE_DEFAULT);
             this.canIcon = new ImageIcon(canImg);
             this.canLabel = new JLabel();
@@ -539,10 +559,15 @@ public class View{
         petActionsPanel.setBounds(340, 450, 900, 210);
         petActionsPanel.setLayout(null);
         
-        this.petIsLabel = new JLabel("My pet is ______");
+        this.infoPanel = new JPanel();
+        infoPanel.setBackground(new Color(62, 62, 64));
+        infoPanel.setBounds(10, 340, 320, 320);
+        infoPanel.setLayout(null);
+        
+        this.petIsLabel = new JLabel();
         petIsLabel.setFont(font);
         petIsLabel.setForeground(fontColour);
-        petIsLabel.setBounds(10, petIsPanel.getHeight()/2, 300, 35);
+        petIsLabel.setBounds(10, petIsPanel.getHeight()/2, 850, 35);
         petIsPanel.add(petIsLabel);
         
         this.happyLabel = new JLabel("Happiness");
@@ -563,19 +588,19 @@ public class View{
         cleanLabel.setBounds(600, 10, 250, 30);
         petStatsPanel.add(cleanLabel);
         
-        this.happyStatLabel = new JLabel("test1");
+        this.happyStatLabel = new JLabel();
         happyStatLabel.setFont(font);
         happyStatLabel.setForeground(fontColour);
         happyStatLabel.setBounds(10, 50, 250, 30);
         petStatsPanel.add(happyStatLabel);
         
-        this.foodStatLabel = new JLabel("test2");
+        this.foodStatLabel = new JLabel();
         foodStatLabel.setFont(font);
         foodStatLabel.setForeground(fontColour);
         foodStatLabel.setBounds(300, 50, 250, 30);
         petStatsPanel.add(foodStatLabel);
         
-        this.cleanStatLabel = new JLabel("test3");
+        this.cleanStatLabel = new JLabel();
         cleanStatLabel.setFont(font);
         cleanStatLabel.setForeground(fontColour);
         cleanStatLabel.setBounds(600, 50, 250, 30);
@@ -596,9 +621,34 @@ public class View{
         cleanButton.setBounds(600, 10, 190, 190);
         petActionsPanel.add(cleanButton);
         
+        this.petName = new JLabel();
+        petName.setFont(font);
+        petName.setForeground(fontColour);
+        petName.setBounds(10, 0, 320, 50);
+        infoPanel.add(petName);
+        
+        this.petBreed = new JLabel();
+        petBreed.setFont(font);
+        petBreed.setForeground(fontColour);
+        petBreed.setBounds(10, 80, 320, 50);
+        infoPanel.add(petBreed);
+        
+        this.petDiff = new JLabel();
+        petDiff.setFont(font);
+        petDiff.setForeground(fontColour);
+        petDiff.setBounds(10, 160, 320, 50);
+        infoPanel.add(petDiff);
+        
+        this.numRounds = new JLabel("Rounds Played: 0");
+        numRounds.setFont(font);
+        numRounds.setForeground(fontColour);
+        numRounds.setBounds(10, 240, 320, 50);
+        infoPanel.add(numRounds);
+        
         gamePanel.add(petIsPanel);
         gamePanel.add(petStatsPanel);
         gamePanel.add(petActionsPanel);
+        gamePanel.add(infoPanel);
         
         gameFrame.setVisible(false);
     }

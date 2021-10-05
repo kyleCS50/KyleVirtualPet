@@ -48,7 +48,7 @@ public class Control implements ActionListener, MouseListener
         
         if(source == view.getCanLabel())
         {
-            model.setMyPet(new Canary("Icarus"));
+            model.setMyPet(new BlueJay("Mordecai"));
         }
         
         if(source == view.getShortLabel())
@@ -69,6 +69,10 @@ public class Control implements ActionListener, MouseListener
         view.getHappyStatLabel().setText(model.getMyPet().getHappyMeter()+"");
         view.getFoodStatLabel().setText(model.getMyPet().getHungerMeter()+"");
         view.getCleanStatLabel().setText(model.getMyPet().getCleanMeter()+"");
+        
+        view.getPetName().setText("Name: " +model.getMyPet().getName());
+        view.getPetBreed().setText("Breed: "+model.getMyPet().getBreed());
+        view.getPetDiff().setText("Difficulty: "+model.getMyPet().getDiff());
         
         view.getSelectFrame().setVisible(false);
         view.getGameFrame().setVisible(true);
@@ -184,14 +188,17 @@ public class Control implements ActionListener, MouseListener
         if(source == view.getPlayButton())
         {
             action.pickPlay();
+            view.getPetIsLabel().setText("You just played with " +model.getMyPet().getName()+ ". Now they are " +action.nextRandEvent()+ "!");
         }
         if(source == view.getFeedButton())
         {
             action.pickFeed();
+            view.getPetIsLabel().setText("You just fed " +model.getMyPet().getName()+ ". Now they are " +action.nextRandEvent()+ "!");
         }
         if(source == view.getCleanButton())
         {
             action.pickClean();
+            view.getPetIsLabel().setText("You just cleaned " +model.getMyPet().getName()+ ". Now they are " +action.nextRandEvent()+ "!");
         }
         
         if(view.getGameFrame().isVisible())
@@ -199,7 +206,8 @@ public class Control implements ActionListener, MouseListener
             view.getHappyStatLabel().setText(model.getMyPet().getHappyMeter()+"");
             view.getFoodStatLabel().setText(model.getMyPet().getHungerMeter()+"");
             view.getCleanStatLabel().setText(model.getMyPet().getCleanMeter()+"");
-            view.getPetIsLabel().setText("My pet is " +action.nextRandEvent()+ "!");
+            
+            view.getNumRounds().setText("Rounds Played: "+model.getOwner().getRounds());
             view.getGamePanel().repaint();
         }
     }

@@ -10,14 +10,14 @@ package kylevirtualpet;
  *
  * @author Kyle
  */
-public class Canary extends Animal{
+public class BlueJay extends Animal{
     
-    public Canary(String name) //canary constructor
+    public BlueJay(String name) //blue jay constructor
     {
         //set variables
         super(name);
         this.setAnimalType("Bird");
-        this.setBreed("Canary");
+        this.setBreed("Blue Jay");
         this.setHappyMeter(10);
         this.setHungerMeter(8);
         this.setCleanMeter(9);

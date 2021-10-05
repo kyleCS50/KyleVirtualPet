@@ -22,7 +22,7 @@ public class VirtualPetApplication {
         ArrayList<Animal> pets = new ArrayList<>();
         pets.add(new Labrador("Charlie"));
         pets.add(new Shorthair("Eve"));
-        pets.add(new Canary("Gandalf"));
+        pets.add(new BlueJay("Mordecai"));
         
         //show menu
         System.out.println("Welcome to Kyle's Virtual Pet Game!");
