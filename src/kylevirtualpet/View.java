@@ -3,7 +3,7 @@
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
 */
-package mvc;
+package kylevirtualpet;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -117,7 +117,7 @@ public class View{
         this.constructSignUp(title+ " - Sign Up");
         this.constructMenu(title+ " - Menu");
         this.constructSelect(title+ " - Select Pet");
-        this.constructGame(title+ " - Virtual Pet Game");
+        this.constructGame(title);
     }
     //----------------------------------GETTERS---------------------------------
     public JFrame getLiFrame() {
@@ -527,19 +527,74 @@ public class View{
         this.petIsPanel = new JPanel();
         petIsPanel.setBackground(new Color(62, 62, 64));
         petIsPanel.setBounds(340, 10, 900, 210);
+        petIsPanel.setLayout(null);
         
         this.petStatsPanel = new JPanel();
         petStatsPanel.setBackground(new Color(62, 62, 64));
         petStatsPanel.setBounds(340, 230, 900, 210);
+        petStatsPanel.setLayout(null);
         
         this.petActionsPanel = new JPanel();
         petActionsPanel.setBackground(new Color(62, 62, 64));
         petActionsPanel.setBounds(340, 450, 900, 210);
+        petActionsPanel.setLayout(null);
         
         this.petIsLabel = new JLabel("My pet is ______");
         petIsLabel.setFont(font);
         petIsLabel.setForeground(fontColour);
+        petIsLabel.setBounds(10, petIsPanel.getHeight()/2, 300, 35);
         petIsPanel.add(petIsLabel);
+        
+        this.happyLabel = new JLabel("Happiness");
+        happyLabel.setFont(font);
+        happyLabel.setForeground(fontColour);
+        happyLabel.setBounds(10, 10, 250, 30);
+        petStatsPanel.add(happyLabel);
+        
+        this.foodLabel = new JLabel("Food");
+        foodLabel.setFont(font);
+        foodLabel.setForeground(fontColour);
+        foodLabel.setBounds(300, 10, 250, 30);
+        petStatsPanel.add(foodLabel);
+        
+        this.cleanLabel = new JLabel("Cleanliness");
+        cleanLabel.setFont(font);
+        cleanLabel.setForeground(fontColour);
+        cleanLabel.setBounds(600, 10, 250, 30);
+        petStatsPanel.add(cleanLabel);
+        
+        this.happyStatLabel = new JLabel("test1");
+        happyStatLabel.setFont(font);
+        happyStatLabel.setForeground(fontColour);
+        happyStatLabel.setBounds(10, 50, 250, 30);
+        petStatsPanel.add(happyStatLabel);
+        
+        this.foodStatLabel = new JLabel("test2");
+        foodStatLabel.setFont(font);
+        foodStatLabel.setForeground(fontColour);
+        foodStatLabel.setBounds(300, 50, 250, 30);
+        petStatsPanel.add(foodStatLabel);
+        
+        this.cleanStatLabel = new JLabel("test3");
+        cleanStatLabel.setFont(font);
+        cleanStatLabel.setForeground(fontColour);
+        cleanStatLabel.setBounds(600, 50, 250, 30);
+        petStatsPanel.add(cleanStatLabel);
+        
+        this.playButton = new JButton("Play");
+        playButton.setFont(font);
+        playButton.setBounds(10, 10, 190, 190);
+        petActionsPanel.add(playButton);
+        
+        this.feedButton = new JButton("Feed");
+        feedButton.setFont(font);
+        feedButton.setBounds(300, 10, 190, 190);
+        petActionsPanel.add(feedButton);
+        
+        this.cleanButton = new JButton("Clean");
+        cleanButton.setFont(font);
+        cleanButton.setBounds(600, 10, 190, 190);
+        petActionsPanel.add(cleanButton);
         
         gamePanel.add(petIsPanel);
         gamePanel.add(petStatsPanel);

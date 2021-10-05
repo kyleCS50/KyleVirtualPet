@@ -3,9 +3,10 @@
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
 */
-package mvc;
+package kylevirtualpet;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -20,10 +21,12 @@ public class Control implements ActionListener, MouseListener
 {
     private Model model;
     private View view;
+    private Actions action;
     
     public Control(Model model, View view) {
         this.model = model;
         this.view = view;
+        this.action = new Actions(model.getMyPet(), model.getOwner());
         
         view.getLoginButton().addActionListener(this);
         view.getSignUpButton().addActionListener(this);
@@ -31,6 +34,9 @@ public class Control implements ActionListener, MouseListener
         view.getPlayGameButton().addActionListener(this);
         view.getHowToButton().addActionListener(this);
         view.getDoneButton().addActionListener(this);
+        view.getPlayButton().addActionListener(this);
+        view.getFeedButton().addActionListener(this);
+        view.getCleanButton().addActionListener(this);
         
         view.getCanLabel().addMouseListener(this);
         view.getShortLabel().addMouseListener(this);
@@ -122,26 +128,47 @@ public class Control implements ActionListener, MouseListener
             view.getHowToFrame().setVisible(false);
             System.out.println("How To Done button clicked");
         }
+        
+        if(source == view.getPlayButton())
+        {
+            action.pickPlay();
+        }
+        if(source == view.getFeedButton())
+        {
+            action.pickFeed();
+        }
+        if(source == view.getCleanButton())
+        {
+            action.pickClean();
+        }
     }
     
     @Override
     public void mouseClicked(MouseEvent me) {
         Object source = me.getSource();
+        
         if(source == view.getCanLabel())
         {
-            System.out.println("Canary was picked as pet");
+            model.setMyPet(new Canary("Icarus"));
         }
+        
         if(source == view.getShortLabel())
         {
-            System.out.println("Shorthair was picked as pet");
+            model.setMyPet(new Shorthair("Eve"));
         }
+        
         if(source == view.getLabLabel())
         {
-            System.out.println("Labrador was picked as pet");
+            model.setMyPet(new Labrador("Charlie"));
         }
         view.setMyPetLabel((JLabel) source);
+        view.getMyPetLabel().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         view.getMyPetLabel().setBounds(10, 10, 320, 320);
         view.getGamePanel().add(view.getMyPetLabel());
+        
+        view.getHappyStatLabel().setText(model.getMyPet().getHappyMeter()+"");
+        view.getFoodStatLabel().setText(model.getMyPet().getHungerMeter()+"");
+        view.getCleanStatLabel().setText(model.getMyPet().getCleanMeter()+"");
         
         view.getSelectFrame().setVisible(false);
         view.getGameFrame().setVisible(true);
