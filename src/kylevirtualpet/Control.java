@@ -36,6 +36,7 @@ public class Control implements ActionListener, MouseListener
         view.getPlayButton().addActionListener(this);
         view.getFeedButton().addActionListener(this);
         view.getCleanButton().addActionListener(this);
+        view.getEndButton().addActionListener(this);
         
         view.getCanLabel().addMouseListener(this);
         view.getShortLabel().addMouseListener(this);
@@ -208,7 +209,22 @@ public class Control implements ActionListener, MouseListener
             view.getCleanStatLabel().setText(model.getMyPet().getCleanMeter()+"");
             
             view.getNumRounds().setText("Rounds Played: "+model.getOwner().getRounds());
+            
+            if(model.getMyPet().getHappyMeter() <= 0 || model.getMyPet().getHungerMeter() <= 0 || model.getMyPet().getCleanMeter() <= 0)
+            {
+                view.getPlayButton().setEnabled(false);
+                view.getFeedButton().setEnabled(false);
+                view.getCleanButton().setEnabled(false);
+                
+                view.getEndFrame().setVisible(true);
+            }
             view.getGamePanel().repaint();
+        }
+        
+        if(source == view.getEndButton())
+        {
+            view.getGameFrame().setVisible(false);
+            view.getMenuFrame().setVisible(true);
         }
     }
 }

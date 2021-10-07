@@ -114,6 +114,10 @@ public class View{
     private JLabel petBreed;
     private JLabel petDiff;
     private JLabel numRounds;
+    private JFrame endFrame;
+    private JPanel endPanel;
+    private JLabel endLabel;
+    private JButton endButton;
     
     
     public View(String title)
@@ -271,6 +275,19 @@ public class View{
     
     public JLabel getNumRounds() {
         return numRounds;
+    }
+    
+    public JFrame getEndFrame() {
+        return endFrame;
+    }
+    
+    public JLabel getEndLabel()
+    {
+        return endLabel;
+    }
+    
+    public JButton getEndButton() {
+        return endButton;
     }
     //----------------------------------LOG IN FRAME----------------------------
     private void constructLogIn(String title)
@@ -538,7 +555,7 @@ public class View{
         Dimension frameDimension = gameFrame.getSize();
         gameFrame.setLocation((screenDimension.width-frameDimension.width)/2,
                 (screenDimension.height-frameDimension.height)/2);
-        gameFrame.add(getGamePanel());
+        gameFrame.add(gamePanel);
         gameFrame.setResizable(false);
         
         gamePanel.setLayout(null);
@@ -650,6 +667,31 @@ public class View{
         gamePanel.add(petActionsPanel);
         gamePanel.add(infoPanel);
         
+        this.endFrame = new JFrame("Game Over");
+        this.endPanel = new JPanel();
+        endFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        endFrame.setSize(450, 220);
+        Toolkit tk2 = Toolkit.getDefaultToolkit();
+        Dimension screenDimension2 = tk2.getScreenSize();
+        Dimension frameDimension2 = endFrame.getSize();
+        endFrame.setLocation((screenDimension2.width-frameDimension2.width)/2,
+                (screenDimension2.height-frameDimension2.height)/2);
+        endFrame.add(endPanel);
+        endFrame.setResizable(false);
+        
+        endPanel.setLayout(null);
+        endPanel.setBackground(backgroundColour);
+        
+        this.endLabel = new JLabel("Game Over!");
+        endLabel.setForeground(fontColour);
+        endLabel.setBounds(25, 10, 400, 150);
+        endPanel.add(endLabel);
+        
+        this.endButton = new JButton("End Game");
+        this.endButton.setBounds(345, 160, 80, 25);
+        endPanel.add(endButton);
+        
+        endFrame.setVisible(false);
         gameFrame.setVisible(false);
     }
 }
