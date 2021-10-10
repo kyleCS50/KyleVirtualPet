@@ -36,23 +36,26 @@ public class SelectView extends JFrame{
     private JPanel selectPanel;
     private JLabel selectLabel;
     //labrador
+    private JLabel dogDiffLabel;
     private JLabel dogNameLabel;
-    private BufferedImage labBuff;
-    private Image labImg;
-    private ImageIcon labIcon;
-    private JLabel labLabel;
+    private BufferedImage dogBuff;
+    private Image dogImg;
+    private ImageIcon dogIcon;
+    private JLabel dogLabel;
     //shorthair
+    private JLabel catDiffLabel;
     private JLabel catNameLabel;
-    private BufferedImage shortBuff;
-    private Image shortImg;
-    private ImageIcon shortIcon;
-    private JLabel shortLabel;
+    private BufferedImage catBuff;
+    private Image catImg;
+    private ImageIcon catIcon;
+    private JLabel catLabel;
     //canary
+    private JLabel birdDiffLabel;
     private JLabel birdNameLabel;
-    private BufferedImage canBuff;
-    private Image canImg;
-    private ImageIcon canIcon;
-    private JLabel canLabel;
+    private BufferedImage birdBuff;
+    private Image birdImg;
+    private ImageIcon birdIcon;
+    private JLabel birdLabel;
     
     private boolean petSelected;
     
@@ -79,6 +82,24 @@ public class SelectView extends JFrame{
         selectLabel.setBounds(445, 20, 300, 50);
         selectPanel.add(selectLabel);
         
+        this.birdDiffLabel = new JLabel("Easy");
+        birdDiffLabel.setFont(font);
+        birdDiffLabel.setForeground(Color.GREEN);
+        birdDiffLabel.setBounds(85, 150, 350, 50);
+        selectPanel.add(birdDiffLabel);
+        
+        this.catDiffLabel = new JLabel("Medium");
+        catDiffLabel.setFont(font);
+        catDiffLabel.setForeground(Color.ORANGE);
+        catDiffLabel.setBounds(465, 150, 270, 50);
+        selectPanel.add(catDiffLabel);
+        
+        this.dogDiffLabel = new JLabel("Hard");
+        dogDiffLabel.setFont(font);
+        dogDiffLabel.setForeground(Color.RED);
+        dogDiffLabel.setBounds(845, 150, 350, 50);
+        selectPanel.add(dogDiffLabel);
+        
         this.birdNameLabel = new JLabel("Mordecai the Blue Jay");
         birdNameLabel.setFont(font);
         birdNameLabel.setForeground(fontColour);
@@ -101,34 +122,34 @@ public class SelectView extends JFrame{
         
         try {
             //canary
-            this.canBuff = ImageIO.read(new File("petAssets/bluejay.jpg"));
-            this.canImg = canBuff.getScaledInstance(canBuff.getWidth()/3, canBuff.getHeight()/3, Image.SCALE_DEFAULT);
-            this.canIcon = new ImageIcon(canImg);
-            this.canLabel = new JLabel();
-            canLabel.setIcon(canIcon);
-            canLabel.setBounds(85, 254, canIcon.getIconWidth(), canIcon.getIconHeight());
-            canLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            selectPanel.add(canLabel);
+            this.birdBuff = ImageIO.read(new File("petAssets/bluejay.jpg"));
+            this.birdImg = birdBuff.getScaledInstance(birdBuff.getWidth()/3, birdBuff.getHeight()/3, Image.SCALE_DEFAULT);
+            this.birdIcon = new ImageIcon(birdImg);
+            this.birdLabel = new JLabel();
+            birdLabel.setIcon(birdIcon);
+            birdLabel.setBounds(85, 254, birdIcon.getIconWidth(), birdIcon.getIconHeight());
+            birdLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            selectPanel.add(birdLabel);
             
             //shorthair
-            this.shortBuff = ImageIO.read(new File("petAssets/shorthair.jpg"));
-            this.shortImg = shortBuff.getScaledInstance(shortBuff.getWidth()/3, shortBuff.getHeight()/3, Image.SCALE_DEFAULT);
-            this.shortIcon = new ImageIcon(shortImg);
-            this.shortLabel = new JLabel();
-            shortLabel.setIcon(shortIcon);
-            shortLabel.setBounds(465, 254, shortIcon.getIconWidth(), shortIcon.getIconHeight());
-            shortLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            selectPanel.add(shortLabel);
+            this.catBuff = ImageIO.read(new File("petAssets/shorthair.jpg"));
+            this.catImg = catBuff.getScaledInstance(catBuff.getWidth()/3, catBuff.getHeight()/3, Image.SCALE_DEFAULT);
+            this.catIcon = new ImageIcon(catImg);
+            this.catLabel = new JLabel();
+            catLabel.setIcon(catIcon);
+            catLabel.setBounds(465, 254, catIcon.getIconWidth(), catIcon.getIconHeight());
+            catLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            selectPanel.add(catLabel);
             
             //lab
-            this.labBuff = ImageIO.read(new File("petAssets/lab.jpg"));
-            this.labImg = labBuff.getScaledInstance(labBuff.getWidth()/3, labBuff.getHeight()/3, Image.SCALE_DEFAULT);
-            this.labIcon = new ImageIcon(labImg);
-            this.labLabel = new JLabel();
-            labLabel.setIcon(labIcon);
-            labLabel.setBounds(845, 254, labIcon.getIconWidth(), labIcon.getIconHeight());
-            labLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            selectPanel.add(labLabel);
+            this.dogBuff = ImageIO.read(new File("petAssets/lab.jpg"));
+            this.dogImg = dogBuff.getScaledInstance(dogBuff.getWidth()/3, dogBuff.getHeight()/3, Image.SCALE_DEFAULT);
+            this.dogIcon = new ImageIcon(dogImg);
+            this.dogLabel = new JLabel();
+            dogLabel.setIcon(dogIcon);
+            dogLabel.setBounds(845, 254, dogIcon.getIconWidth(), dogIcon.getIconHeight());
+            dogLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            selectPanel.add(dogLabel);
             
         } catch (IOException ex) {
             Logger.getLogger(SelectView.class.getName()).log(Level.SEVERE, null, ex);
@@ -136,23 +157,23 @@ public class SelectView extends JFrame{
         this.setVisible(false);
         
     }
-
-    JLabel getCanLabel() {
-        return canLabel;
+    
+    JLabel getBirdLabel() {
+        return birdLabel;
     }
-
-    JLabel getShortLabel() {
-        return shortLabel;
+    
+    JLabel getCatLabel() {
+        return catLabel;
     }
-
-    JLabel getLabLabel() {
-       return labLabel;
+    
+    JLabel getDogLabel() {
+        return dogLabel;
     }
-
+    
     public boolean isPetSelected() {
         return petSelected;
     }
-
+    
     public void setPetSelected(boolean petSelected) {
         this.petSelected = petSelected;
     }

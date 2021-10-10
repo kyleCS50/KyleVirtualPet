@@ -43,9 +43,9 @@ public class Control implements ActionListener, MouseListener
         menuView.getHowToButton().addActionListener(this);
         menuView.getDoneButton().addActionListener(this);
         
-        selectView.getCanLabel().addMouseListener(this);
-        selectView.getShortLabel().addMouseListener(this);
-        selectView.getLabLabel().addMouseListener(this);
+        selectView.getBirdLabel().addMouseListener(this);
+        selectView.getCatLabel().addMouseListener(this);
+        selectView.getDogLabel().addMouseListener(this);
     }
     
     
@@ -53,17 +53,17 @@ public class Control implements ActionListener, MouseListener
     @Override
     public void mouseClicked(MouseEvent me) {
         Object source = me.getSource();
-        if(source == selectView.getCanLabel())
+        if(source == selectView.getBirdLabel())
         {
             model.setMyPet(new BlueJay("Mordecai"));
             gameView = new GameView("Virtual Pet Game - Mordecai", new File("petAssets/bluejay.jpg"));
         }
-        if(source == selectView.getShortLabel())
+        if(source == selectView.getCatLabel())
         {
             model.setMyPet(new Shorthair("Eve"));
             gameView = new GameView("Virtual Pet Game - Eve", new File("petAssets/shorthair.jpg"));
         }
-        if(source == selectView.getLabLabel())
+        if(source == selectView.getDogLabel())
         {
             model.setMyPet(new Labrador("Charlie"));
             gameView = new GameView("Virtual Pet Game - Charlie", new File("petAssets/lab.jpg"));
