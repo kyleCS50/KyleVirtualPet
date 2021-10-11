@@ -61,17 +61,17 @@ public class Control implements ActionListener, MouseListener
         if(source == selectView.getBirdLabel())
         {
             model.setMyPet(new BlueJay("Mordecai"));
-            gameView = new GameView("Virtual Pet Game - Mordecai", new File("petAssets/bluejay.jpg"));
+            gameView = new GameView("Mordecai", new File("petAssets/bluejay.jpg"));
         }
         if(source == selectView.getCatLabel())
         {
             model.setMyPet(new Shorthair("Eve"));
-            gameView = new GameView("Virtual Pet Game - Eve", new File("petAssets/shorthair.jpg"));
+            gameView = new GameView("Eve", new File("petAssets/shorthair.jpg"));
         }
         if(source == selectView.getDogLabel())
         {
             model.setMyPet(new Labrador("Charlie"));
-            gameView = new GameView("Virtual Pet Game - Charlie", new File("petAssets/lab.jpg"));
+            gameView = new GameView("Charlie", new File("petAssets/lab.jpg"));
         }
         
         this.action = new Actions(model.getMyPet(), model.getOwner());
@@ -201,6 +201,8 @@ public class Control implements ActionListener, MouseListener
                 {
                     signUpView.getSuccessLabel().setForeground(new Color(6, 156, 24));
                     signUpView.getSuccessLabel().setText("Account Created Successfully!");
+                    model.setUser(user);
+                    model.setPass(pass2);
                     signUpView.setVisible(false);
                     selectView.setVisible(true);
                     System.out.println("Create Account Successful");
