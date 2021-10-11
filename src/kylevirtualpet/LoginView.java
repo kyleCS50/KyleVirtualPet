@@ -29,12 +29,13 @@ public class LoginView extends JFrame{
     //login
     private JLabel liUserLabel;
     private JLabel liPassLabel;
-    private JTextField liUserField;
-    private JPasswordField liPassField;
+    private JTextField userField;
+    private JPasswordField passField;
     private JButton loginButton;
-    private JLabel liSuccessLabel;
+    private JLabel successLabel;
     private JPanel loginPanel;
     private JButton signUpButton;
+    private JButton backButton;
     
     public LoginView(String title){
         super(title);
@@ -59,18 +60,18 @@ public class LoginView extends JFrame{
         this.liUserLabel.setBounds(40, 40, 80, 25);
         loginPanel.add(liUserLabel);
         
-        this.liUserField = new JTextField(10);
-        this.liUserField.setBounds(130, 40, 150, 25);
-        loginPanel.add(liUserField);
+        this.userField = new JTextField(10);
+        this.userField.setBounds(130, 40, 150, 25);
+        loginPanel.add(userField);
         
         this.liPassLabel = new JLabel("Password: ");
         this.liPassLabel.setForeground(fontColour);
         this.liPassLabel.setBounds(40, 70, 80, 25);
         loginPanel.add(liPassLabel);
         
-        this.liPassField = new JPasswordField(10);
-        this.liPassField.setBounds(130, 70, 150, 25);
-        loginPanel.add(liPassField);
+        this.passField = new JPasswordField(10);
+        this.passField.setBounds(130, 70, 150, 25);
+        loginPanel.add(passField);
         
         this.loginButton = new JButton("Log In");
         this.loginButton.setBounds(205, 100, 80, 25);
@@ -81,11 +82,15 @@ public class LoginView extends JFrame{
         this.signUpButton.setToolTipText("Don't have an account? Sign Up!");
         loginPanel.add(signUpButton);
         
-        this.liSuccessLabel = new JLabel("");
-        this.liSuccessLabel.setBounds(40, 125, 300, 25);
-        loginPanel.add(liSuccessLabel);
+        this.backButton = new JButton("Back");
+        backButton.setBounds(5, 5, 80, 25);
+        loginPanel.add(backButton);
         
-        this.setVisible(true);
+        this.successLabel = new JLabel("");
+        this.successLabel.setBounds(40, 125, 300, 25);
+        loginPanel.add(successLabel);
+        
+        this.setVisible(false);
     }
     
     JButton getLoginButton() {
@@ -95,17 +100,21 @@ public class LoginView extends JFrame{
     JButton getSignUpButton() {
         return signUpButton;
     }
-
-    public JTextField getLiUserField() {
-        return liUserField;
+    
+    JButton getBackButton(){
+        return backButton;
     }
-
-    public JTextField getLiPassField() {
-        return liPassField;
+    
+    public JTextField getUserField() {
+        return userField;
     }
-
-    public JLabel getLiSuccessLabel() {
-        return liSuccessLabel;
+    
+    public JTextField getPassField() {
+        return passField;
+    }
+    
+    public JLabel getSuccessLabel() {
+        return successLabel;
     }
     
     

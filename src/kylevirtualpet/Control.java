@@ -27,25 +27,30 @@ public class Control implements ActionListener, MouseListener
     private GameView gameView;
     private Actions action;
     
-    public Control(Model model, LoginView loginView, SignUpView signUpView, MenuView menuView, SelectView selectView) {
+    public Control(Model model)
+    {
         this.model = model;
-        this.loginView = loginView;
-        this.signUpView = signUpView;
-        this.menuView = menuView;
-        this.selectView = selectView;
         
-        loginView.getLoginButton().addActionListener(this);
-        loginView.getSignUpButton().addActionListener(this);
-        
-        signUpView.getSuCreateButton().addActionListener(this);
+        this.menuView = new MenuView("Menu");
+        this.loginView = new LoginView("LogIn");
+        this.signUpView = new SignUpView("Sign Up");
+        this.selectView = new SelectView("Select Pet");
         
         menuView.getPlayGameButton().addActionListener(this);
         menuView.getHowToButton().addActionListener(this);
         menuView.getDoneButton().addActionListener(this);
         
+        loginView.getLoginButton().addActionListener(this);
+        loginView.getSignUpButton().addActionListener(this);
+        loginView.getBackButton().addActionListener(this);
+        
+        signUpView.getCreateButton().addActionListener(this);
+        signUpView.getBackButton().addActionListener(this);
+        
         selectView.getBirdLabel().addMouseListener(this);
         selectView.getCatLabel().addMouseListener(this);
         selectView.getDogLabel().addMouseListener(this);
+        selectView.getBackButton().addActionListener(this);
     }
     
     
@@ -74,7 +79,7 @@ public class Control implements ActionListener, MouseListener
         gameView.getPlayButton().addActionListener(this);
         gameView.getFeedButton().addActionListener(this);
         gameView.getCleanButton().addActionListener(this);
-        gameView.getEndButton().addActionListener(this);
+        gameView.getQuitButton().addActionListener(this);
         
         gameView.getHappyStatLabel().setText(model.getMyPet().getHappyMeter()+"");
         gameView.getFoodStatLabel().setText(model.getMyPet().getHungerMeter()+"");
@@ -117,72 +122,13 @@ public class Control implements ActionListener, MouseListener
     public void actionPerformed(ActionEvent ae) {
         Object source = ae.getSource();
         
-        if(source == loginView.getLoginButton())
-        {
-            System.out.println("Log In button pressed");
-            String user = loginView.getLiUserField().getText();
-            String password = loginView.getLiPassField().getText();
-            
-            if(user.equals(model.getUser()) && password.equals(model.getPass()))
-            {
-                loginView.getLiSuccessLabel().setForeground(new Color(6, 156, 24));
-                loginView.getLiSuccessLabel().setText("Login Successful");
-                System.out.println("Login Successful");
-                loginView.setVisible(false);
-                menuView.setVisible(true);
-            }
-            else
-            {
-                loginView.getLiSuccessLabel().setForeground(Color.RED);
-                loginView.getLiSuccessLabel().setText("Wrong username or password");
-                System.out.println("Login Unsuccessful");
-            }
-        }
-        
-        if(source == loginView.getSignUpButton())
-        {
-            System.out.println("Sign Up button clicked");
-            loginView.setVisible(false);
-            signUpView.setVisible(true);
-        }
-        
-        if(source == signUpView.getSuCreateButton())
-        {
-            System.out.println("Create Account button clicked");
-            String user = signUpView.getSuUserField().getText().trim();
-            String pass1 = signUpView.getSuPassField().getText();
-            String pass2 = signUpView.getSuConfirmField().getText();
-            
-            if(user.equals("") || pass1.equals("") || pass2.equals(""))
-            {
-                signUpView.getSuSuccessLabel().setForeground(Color.RED);
-                signUpView.getSuSuccessLabel().setText("Fields can not remain empty.");
-            }
-            else
-            {
-                if(pass1.equals(pass2))
-                {
-                    signUpView.getSuSuccessLabel().setForeground(new Color(6, 156, 24));
-                    signUpView.getSuSuccessLabel().setText("Account Created Successfully!");
-                    signUpView.setVisible(false);
-                    menuView.setVisible(true);
-                    System.out.println("Create Account Successful");
-                }
-                else
-                {
-                    signUpView.getSuSuccessLabel().setForeground(Color.RED);
-                    signUpView.getSuSuccessLabel().setText("Passwords must match to create new account.");
-                    signUpView.getSuPassField().setText("");
-                    signUpView.getSuConfirmField().setText("");
-                    System.out.println("Create Account Unsuccessful");
-                }
-            }
-        }
-        
         if(source == menuView.getPlayGameButton())
         {
             menuView.setVisible(false);
-            selectView.setVisible(true);
+            loginView.getUserField().setText("");
+            loginView.getPassField().setText("");
+            loginView.getSuccessLabel().setText("");
+            loginView.setVisible(true);
             System.out.println("Play button clicked");
         }
         
@@ -198,25 +144,122 @@ public class Control implements ActionListener, MouseListener
             System.out.println("How To Done button clicked");
         }
         
+        if(source == loginView.getLoginButton())
+        {
+            System.out.println("Log In button pressed");
+            String user = loginView.getUserField().getText();
+            String password = loginView.getPassField().getText();
+            
+            if(user.equals(model.getUser()) && password.equals(model.getPass()))
+            {
+                loginView.getSuccessLabel().setForeground(new Color(6, 156, 24));
+                loginView.getSuccessLabel().setText("Login Successful");
+                System.out.println("Login Successful");
+                loginView.setVisible(false);
+                selectView.setVisible(true);
+            }
+            else
+            {
+                loginView.getSuccessLabel().setForeground(Color.RED);
+                loginView.getSuccessLabel().setText("Wrong username or password");
+                System.out.println("Login Unsuccessful");
+            }
+        }
+        
+        if(source == loginView.getSignUpButton())
+        {
+            System.out.println("Sign Up button clicked");
+            signUpView.getUserField().setText("");
+            signUpView.getPassField().setText("");
+            signUpView.getConfirmPassField().setText("");
+            signUpView.getSuccessLabel().setText("");
+            loginView.setVisible(false);
+            signUpView.setVisible(true);
+        }
+        
+        if(source == loginView.getBackButton())
+        {
+            loginView.setVisible(false);
+            menuView.setVisible(true);
+        }
+        
+        if(source == signUpView.getCreateButton())
+        {
+            System.out.println("Create Account button clicked");
+            String user = signUpView.getUserField().getText().trim();
+            String pass1 = signUpView.getPassField().getText();
+            String pass2 = signUpView.getConfirmPassField().getText();
+            
+            if(user.equals("") || pass1.equals("") || pass2.equals(""))
+            {
+                signUpView.getSuccessLabel().setForeground(Color.RED);
+                signUpView.getSuccessLabel().setText("Fields can not remain empty.");
+            }
+            else
+            {
+                if(pass1.equals(pass2))
+                {
+                    signUpView.getSuccessLabel().setForeground(new Color(6, 156, 24));
+                    signUpView.getSuccessLabel().setText("Account Created Successfully!");
+                    signUpView.setVisible(false);
+                    selectView.setVisible(true);
+                    System.out.println("Create Account Successful");
+                }
+                else
+                {
+                    signUpView.getSuccessLabel().setForeground(Color.RED);
+                    signUpView.getSuccessLabel().setText("Passwords must match to create new account.");
+                    signUpView.getPassField().setText("");
+                    signUpView.getConfirmPassField().setText("");
+                    System.out.println("Create Account Unsuccessful");
+                }
+            }
+        }
+        
+        if(source == signUpView.getBackButton())
+        {
+            signUpView.setVisible(false);
+            menuView.setVisible(true);
+        }
+            
+        if(source == selectView.getBackButton())
+        {
+            selectView.setVisible(false);
+            menuView.setVisible(true);
+        }
+        
         if(selectView.isPetSelected())
         {
             if(source == gameView.getPlayButton())
             {
-                System.out.println("play pressed");
                 action.pickPlay();
-                gameView.getPetIsLabel().setText("You just played with " +model.getMyPet().getName()+ ". Now they are " +action.nextRandEvent()+ "!");
-            }
+                String nextEvent = action.nextRandEvent();
+                while(nextEvent.equals("sad"))
+                {
+                    model.getMyPet().setHappyMeter(model.getMyPet().getHappyMeter() + 3);
+                    nextEvent = action.nextRandEvent();
+                }
+                gameView.getPetIsLabel().setText("You just played with " +model.getMyPet().getName()+ ". Now they are " +nextEvent+ "!");            }
             if(source == gameView.getFeedButton())
             {
-                System.out.println("feed pressed");
                 action.pickFeed();
-                gameView.getPetIsLabel().setText("You just fed " +model.getMyPet().getName()+ ". Now they are " +action.nextRandEvent()+ "!");
-            }
+                String nextEvent = action.nextRandEvent();
+                while(nextEvent.equals("hungry"))
+                {
+                    model.getMyPet().setHungerMeter(model.getMyPet().getHungerMeter() + 3);
+                    nextEvent = action.nextRandEvent();
+                }
+                gameView.getPetIsLabel().setText("You just fed " +model.getMyPet().getName()+ ". Now they are " +nextEvent+ "!");            }
             if(source == gameView.getCleanButton())
             {
-                System.out.println("clean pressed");
                 action.pickClean();
-                gameView.getPetIsLabel().setText("You just cleaned " +model.getMyPet().getName()+ ". Now they are " +action.nextRandEvent()+ "!");
+                String nextEvent = action.nextRandEvent();
+                while(nextEvent.equals("dirty"))
+                {
+                    model.getMyPet().setCleanMeter(model.getMyPet().getCleanMeter() + 3);
+                    nextEvent = action.nextRandEvent();
+                }
+                gameView.getPetIsLabel().setText("You just cleaned " +model.getMyPet().getName()+ ". Now they are " +nextEvent+ "!");
             }
             
             
@@ -234,11 +277,10 @@ public class Control implements ActionListener, MouseListener
                 
                 gameView.getPetIsLabel().setVisible(false);
                 gameView.getPetIsPanel().add(gameView.getEndLabel());
-                gameView.getPetIsPanel().add(gameView.getEndButton());
             }
             gameView.getGamePanel().repaint();
             
-            if(source == gameView.getEndButton())
+            if(source == gameView.getQuitButton())
             {
                 gameView.setVisible(false);
                 menuView.setVisible(true);

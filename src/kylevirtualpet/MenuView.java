@@ -31,7 +31,7 @@ public class MenuView extends JFrame{
     private JButton howToButton;
     private JFrame howToFrame;
     private JPanel howToPanel;
-    private JLabel howToText;
+    private JLabel howToLabel;
     private JButton doneButton;
     private JPanel menuPanel;
     
@@ -85,21 +85,25 @@ public class MenuView extends JFrame{
         howToPanel.setLayout(null);
         howToPanel.setBackground(backgroundColour);
         
-        String text = "To play my virtual pet game first you must choose a pet. "
-                + "Each pet has a happiness, food and cleanliness meter. "
-                + "To increase the stats you a meter you can do an activity with your pet. "
-                + "To increase happiness you can play with your pet, to increase food you feed your pet and to increase cleanliness you clean your pet. "
-                + "Each pet has a different difficulty level which determines their starting stats and how much you can increase them for each activity.";
-        this.howToText = new JLabel("<html>"+text+"</html>");
-        howToText.setForeground(fontColour);
-        howToText.setBounds(25, 10, 400, 150);
-        howToPanel.add(howToText);
+        String howToText = "To play first pick a pet. Each pet has a different difficulty level. "
+                + "Once you've picked your pet you can play, feed and clean them. "
+                + "A harder difficulty means lower starting stats and a smaller increase to these stats when playing, feeding or cleaning. "
+                + "By playing with your pet you increase their hapiness meter. "
+                + "By feeding them you increase their food meter. "
+                + "And by cleaning them you increase their cleanliness meter. "
+                + "The aim of this game to get the highest number of rounds. "
+                + "Your game will end if any of the meters go to or below 0.";
+        this.howToLabel = new JLabel("<html>"+howToText+"</html>");
+        howToLabel.setFont(new Font("Display", Font.PLAIN, 12));
+        howToLabel.setForeground(fontColour);
+        howToLabel.setBounds(25, 10, 400, 150);
+        howToPanel.add(howToLabel);
         
         this.doneButton = new JButton("Done");
         this.doneButton.setBounds(345, 160, 80, 25);
         howToPanel.add(doneButton);
         
-        this.setVisible(false);
+        this.setVisible(true);
         howToFrame.setVisible(false);
     }
     
@@ -114,7 +118,7 @@ public class MenuView extends JFrame{
     JButton getDoneButton() {
         return doneButton;
     }
-
+    
     public JFrame getHowToFrame() {
         return howToFrame;
     }

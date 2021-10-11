@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -57,6 +58,8 @@ public class SelectView extends JFrame{
     private ImageIcon birdIcon;
     private JLabel birdLabel;
     
+    private JButton backButton;
+    
     private boolean petSelected;
     
     public SelectView(String title){
@@ -75,6 +78,11 @@ public class SelectView extends JFrame{
         
         selectPanel.setLayout(null);
         selectPanel.setBackground(backgroundColour);
+        
+        this.backButton = new JButton("Back to Menu");
+        backButton.setFont(new Font("Display", Font.PLAIN, 15));
+        backButton.setBounds(10, 15, 150, 25);
+        selectPanel.add(backButton);
         
         this.selectLabel = new JLabel("Select A Pet");
         selectLabel.setFont(font);
@@ -176,6 +184,10 @@ public class SelectView extends JFrame{
     
     public void setPetSelected(boolean petSelected) {
         this.petSelected = petSelected;
+    }
+
+    public JButton getBackButton() {
+        return backButton;
     }
     
     

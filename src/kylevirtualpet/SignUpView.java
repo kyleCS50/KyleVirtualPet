@@ -27,15 +27,16 @@ public class SignUpView extends JFrame{
     private Font font = new Font("Display", Font.BOLD, 30);
     
     //signup
-    private JLabel suUserLabel;
-    private JLabel suPassLabel;
-    private JLabel suConfirmLabel;
-    private JTextField suUserField;
-    private JPasswordField suPassField;
-    private JPasswordField suConfirmField;
-    private JButton suCreateButton;
-    private JLabel suSuccessLabel;
+    private JLabel userLabel;
+    private JLabel passLabel;
+    private JLabel confirmPassLabel;
+    private JTextField userField;
+    private JPasswordField passField;
+    private JPasswordField confirmPassField;
+    private JButton createButton;
+    private JLabel successLabel;
     private JPanel signUpPanel;
+    private JButton backButton;
     
     public SignUpView(String title) {
         super(title);
@@ -54,62 +55,70 @@ public class SignUpView extends JFrame{
         signUpPanel.setBackground(backgroundColour);
         
         //create elements
-        this.suUserLabel = new JLabel("Username: ");
-        this.suUserLabel.setForeground(fontColour);
-        this.suUserLabel.setBounds(40, 20, 80, 25);
-        signUpPanel.add(suUserLabel);
+        this.userLabel = new JLabel("Username: ");
+        this.userLabel.setForeground(fontColour);
+        this.userLabel.setBounds(40, 30, 80, 25);
+        signUpPanel.add(userLabel);
         
-        this.suUserField = new JTextField(10);
-        this.suUserField.setBounds(160, 20, 150, 25);
-        signUpPanel.add(suUserField);
+        this.userField = new JTextField(10);
+        this.userField.setBounds(160, 30, 150, 25);
+        signUpPanel.add(userField);
         
-        this.suPassLabel = new JLabel("Password: ");
-        this.suPassLabel.setForeground(fontColour);
-        this.suPassLabel.setBounds(40, 50, 80, 25);
-        signUpPanel.add(suPassLabel);
+        this.passLabel = new JLabel("Password: ");
+        this.passLabel.setForeground(fontColour);
+        this.passLabel.setBounds(40, 60, 80, 25);
+        signUpPanel.add(passLabel);
         
-        this.suPassField = new JPasswordField(10);
-        this.suPassField.setBounds(160, 50, 150, 25);
-        signUpPanel.add(suPassField);
+        this.passField = new JPasswordField(10);
+        this.passField.setBounds(160, 60, 150, 25);
+        signUpPanel.add(passField);
         
-        this.suConfirmLabel = new JLabel("Confirm Password: ");
-        this.suConfirmLabel.setForeground(fontColour);
-        this.suConfirmLabel.setBounds(40, 80, 130, 25);
-        signUpPanel.add(suConfirmLabel);
+        this.confirmPassLabel = new JLabel("Confirm Password: ");
+        this.confirmPassLabel.setForeground(fontColour);
+        this.confirmPassLabel.setBounds(40, 90, 130, 25);
+        signUpPanel.add(confirmPassLabel);
         
-        this.suConfirmField = new JPasswordField(10);
-        this.suConfirmField.setBounds(160, 80, 150, 25);
-        signUpPanel.add(suConfirmField);
+        this.confirmPassField = new JPasswordField(10);
+        this.confirmPassField.setBounds(160, 90, 150, 25);
+        signUpPanel.add(confirmPassField);
         
-        this.suCreateButton = new JButton("Create Account");
-        this.suCreateButton.setBounds(30, 115, 120, 25);
-        signUpPanel.add(suCreateButton);
+        this.createButton = new JButton("Create Account");
+        this.createButton.setBounds(195, 120, 120, 25);
+        signUpPanel.add(createButton);
         
-        this.suSuccessLabel = new JLabel("");
-        this.suSuccessLabel.setBounds(40, 140, 300, 25);
-        signUpPanel.add(suSuccessLabel);
+        this.backButton = new JButton("Back to Menu");
+        backButton.setBounds(5, 5, 120, 25);
+        signUpPanel.add(backButton);
+        
+        this.successLabel = new JLabel("");
+        this.successLabel.setBounds(40, 145, 300, 25);
+        signUpPanel.add(successLabel);
         
         this.setVisible(false);
     }
     
-    JButton getSuCreateButton() {
-        return suCreateButton;
+    JButton getCreateButton() {
+        return createButton;
     }
-
-    public JTextField getSuUserField() {
-        return suUserField;
+    
+    JButton getBackButton(){
+        return backButton;
     }
-
-    public JTextField getSuPassField() {
-        return suPassField;
+    
+    public JTextField getUserField() {
+        return userField;
     }
-
-    public JTextField getSuConfirmField() {
-        return suConfirmField;
+    
+    public JTextField getPassField() {
+        return passField;
     }
-
-    public JLabel getSuSuccessLabel() {
-        return suSuccessLabel;
+    
+    public JTextField getConfirmPassField() {
+        return confirmPassField;
+    }
+    
+    public JLabel getSuccessLabel() {
+        return successLabel;
     }
     
     

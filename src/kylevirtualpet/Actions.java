@@ -42,12 +42,10 @@ public class Actions {
         {
             return animal.isHungry();
         }
-        else if(number == 3)
+        else
         {
             return animal.isDirty();
         }
-        else
-            return "test";
     }
     
 //user picks to play with pet

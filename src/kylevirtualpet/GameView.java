@@ -56,7 +56,7 @@ public class GameView extends JFrame{
     private JLabel petDiff;
     private JLabel numRounds;
     private JLabel endLabel;
-    private JButton endButton;
+    private JButton quitButton;
     
     public GameView(String title, File file) {
         super(title);
@@ -198,9 +198,10 @@ public class GameView extends JFrame{
         endLabel.setForeground(fontColour);
         endLabel.setBounds(10, petIsPanel.getHeight()/2, 850, 35);
         
-        this.endButton = new JButton("End Game");
-        endButton.setFont(font);
-        endButton.setBounds(300, 10, 190, 190);
+        this.quitButton = new JButton("Quit");
+        quitButton.setFont(font);
+        quitButton.setBounds(800, 5, 95, 95);
+        petIsPanel.add(quitButton);
         
         this.setVisible(false);
     }
@@ -217,8 +218,8 @@ public class GameView extends JFrame{
         return cleanButton;
     }
     
-    JButton getEndButton() {
-        return endButton;
+    JButton getQuitButton() {
+        return quitButton;
     }
     
     public JLabel getPetIsLabel() {
@@ -251,10 +252,6 @@ public class GameView extends JFrame{
     
     public JLabel getNumRounds() {
         return numRounds;
-    }
-    
-    public void setEndButton(JButton endButton) {
-        this.endButton = endButton;
     }
     
     public JPanel getGamePanel() {
