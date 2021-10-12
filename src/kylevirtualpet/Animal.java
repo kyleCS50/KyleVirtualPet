@@ -102,4 +102,8 @@ public abstract class Animal {
         this.setCleanMeter(this.getCleanMeter() - 3);
         return "dirty";
     }
+    
+    public abstract String happyAtZero();
+    public abstract String foodAtZero();
+    public abstract String cleanAtZero();
 }

@@ -23,4 +23,19 @@ public class Labrador extends Animal{
         this.setCleanMeter(3);
         this.setDiff(Difficulty.HARD);
     }
+
+    @Override
+    public String happyAtZero() {
+        return this.getName()+ " has run away!";
+    }
+    
+    @Override
+    public String foodAtZero() {
+        return this.getName()+ " went WACKO™ for a SCHMACKOS™!";
+    }
+    
+    @Override
+    public String cleanAtZero() {
+        return this.getName()+ " has gone to roll in the mud!";
+    }
 }

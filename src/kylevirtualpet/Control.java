@@ -223,7 +223,7 @@ public class Control implements ActionListener, MouseListener
             signUpView.setVisible(false);
             menuView.setVisible(true);
         }
-            
+        
         if(source == selectView.getBackButton())
         {
             selectView.setVisible(false);
@@ -278,6 +278,14 @@ public class Control implements ActionListener, MouseListener
                 gameView.getCleanButton().setEnabled(false);
                 
                 gameView.getPetIsLabel().setVisible(false);
+                
+                if(model.getMyPet().getHappyMeter() <= 0)
+                    gameView.getEndLabel().setText(model.getMyPet().happyAtZero()+ " " +gameView.getEndLabel().getText());
+                else if(model.getMyPet().getHungerMeter() <= 0)
+                    gameView.getEndLabel().setText(model.getMyPet().foodAtZero()+ " " +gameView.getEndLabel().getText());
+                else if(model.getMyPet().getCleanMeter() <= 0)
+                    gameView.getEndLabel().setText(model.getMyPet().cleanAtZero()+ " " +gameView.getEndLabel().getText());
+                
                 gameView.getPetIsPanel().add(gameView.getEndLabel());
             }
             gameView.getGamePanel().repaint();
