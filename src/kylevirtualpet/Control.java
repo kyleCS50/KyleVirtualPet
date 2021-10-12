@@ -28,6 +28,10 @@ public class Control implements ActionListener, MouseListener
     private Actions action;
     
     public Control(Model model, LoginView loginView, SignUpView signUpView, MenuView menuView, SelectView selectView) {
+        
+        VirtualPetsDB.connectVirtualPetDB();
+        VirtualPetsDB.createOwners();
+        
         this.model = model;
         this.loginView = loginView;
         this.signUpView = signUpView;
@@ -53,22 +57,27 @@ public class Control implements ActionListener, MouseListener
     @Override
     public void mouseClicked(MouseEvent me) {
         Object source = me.getSource();
+        int id = 0;
         if(source == selectView.getBirdLabel())
         {
             model.setMyPet(new BlueJay("Mordecai"));
             gameView = new GameView("Virtual Pet Game - Mordecai", new File("petAssets/bluejay.jpg"));
+            id = 1;
         }
         if(source == selectView.getCatLabel())
         {
             model.setMyPet(new Shorthair("Eve"));
             gameView = new GameView("Virtual Pet Game - Eve", new File("petAssets/shorthair.jpg"));
+            id = 2;
         }
         if(source == selectView.getDogLabel())
         {
             model.setMyPet(new Labrador("Charlie"));
             gameView = new GameView("Virtual Pet Game - Charlie", new File("petAssets/lab.jpg"));
+            id = 3;
         }
         
+        VirtualPetsDB.insertOwner(model.getUser(),model.getPass(), id);
         this.action = new Actions(model.getMyPet(), model.getOwner());
         
         gameView.getPlayButton().addActionListener(this);
@@ -164,6 +173,8 @@ public class Control implements ActionListener, MouseListener
                 {
                     signUpView.getSuSuccessLabel().setForeground(new Color(6, 156, 24));
                     signUpView.getSuSuccessLabel().setText("Account Created Successfully!");
+                    model.setUser(user);
+                    model.setPass(pass2);
                     signUpView.setVisible(false);
                     menuView.setVisible(true);
                     System.out.println("Create Account Successful");

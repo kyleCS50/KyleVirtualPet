@@ -13,15 +13,13 @@ import java.util.logging.Logger;
 
 public class VirtualPetsDB {
     
-    private final DBManager dbManager;
-    private final Connection conn;
+    private static final DBManager dbManager = new DBManager();;
+    private static final Connection conn  = dbManager.getConnection();;
     
-    public VirtualPetsDB() {
-        dbManager = new DBManager();
-        conn = dbManager.getConnection();
+    private VirtualPetsDB() {
     }
     
-    public void connectVirtualPetDB() {
+    public static void connectVirtualPetDB() {
         try {
             String createBook = "CREATE TABLE PETS (PETID INT, NAME VARCHAR(50), ANIMAL VARCHAR(50), BREED VARCHAR(50), DIFF VARCHAR(20), HAPPY INT, FOOD INT, CLEAN INT)";
             String insertBook = "INSERT INTO PETS VALUES " +
@@ -46,31 +44,7 @@ public class VirtualPetsDB {
         }
     }
     
-    public ResultSet getPetsInfo() {
-        ResultSet rs = null;
-        try {
-            String selectPets = "SELECT name, happy, food, clean, diff FROM pets";
-            
-            Statement statement = conn.createStatement();
-            rs = statement.executeQuery(selectPets);
-            
-            while(rs.next())
-            {
-                String name = rs.getString(1);
-                int happy = rs.getInt(2);
-                int food = rs.getInt(3);
-                int clean = rs.getInt(4);
-                String diff = rs.getString(5);
-                
-                System.out.println(name+ "\nHappy: " +happy+ "\tFood: " +food+ "\tClean: " +clean+ "\tDiff: " +diff);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(VirtualPetsDB.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return (rs);
-    }
-    
-    public void createOwners()
+    public static void createOwners()
     {
         try {
             String createOwners = "CREATE TABLE OWNERS (ownerID INT, username VARCHAR(50), password VARCHAR(50), petID INT)";
@@ -87,7 +61,7 @@ public class VirtualPetsDB {
         }
     }
     
-    public void insertOwners(String username, String password, int petID)
+    public static void insertOwner(String username, String password, int petID)
     {
         if(petID > 0 && petID < 4)
         {
@@ -121,11 +95,27 @@ public class VirtualPetsDB {
             System.err.println("petID is not in range");
     }
     
-    public static void main(String[] args) {
-        VirtualPetsDB db = new VirtualPetsDB();
-        db.connectVirtualPetDB();
-        db.getPetsInfo();
-        //db.createOwners();
-        //db.insertOwners("test", "test", 3);
+        public static ResultSet getPetsInfo() {
+        ResultSet rs = null;
+        try {
+            String selectPets = "SELECT name, happy, food, clean, diff FROM pets";
+            
+            Statement statement = conn.createStatement();
+            rs = statement.executeQuery(selectPets);
+            
+            while(rs.next())
+            {
+                String name = rs.getString(1);
+                int happy = rs.getInt(2);
+                int food = rs.getInt(3);
+                int clean = rs.getInt(4);
+                String diff = rs.getString(5);
+                
+                System.out.println(name+ "\nHappy: " +happy+ "\tFood: " +food+ "\tClean: " +clean+ "\tDiff: " +diff);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(VirtualPetsDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return rs;
     }
 }
