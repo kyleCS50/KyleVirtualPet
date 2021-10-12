@@ -23,11 +23,6 @@ public final class DBManager {
         establishConnection();
     }
     
-    public static void main(String[] args) {
-        DBManager dbManager = new DBManager();
-        System.out.println(dbManager.getConnection());
-    }
-    
     public Connection getConnection() {
         return this.conn;
     }
