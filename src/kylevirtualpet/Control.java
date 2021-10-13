@@ -42,10 +42,8 @@ public class Control implements ActionListener, MouseListener
         
         loginView.getLoginButton().addActionListener(this);
         loginView.getSignUpButton().addActionListener(this);
-        loginView.getBackButton().addActionListener(this);
         
         signUpView.getCreateButton().addActionListener(this);
-        signUpView.getBackButton().addActionListener(this);
         
         selectView.getBirdLabel().addMouseListener(this);
         selectView.getCatLabel().addMouseListener(this);
@@ -125,10 +123,7 @@ public class Control implements ActionListener, MouseListener
         if(source == menuView.getPlayGameButton())
         {
             menuView.setVisible(false);
-            loginView.getUserField().setText("");
-            loginView.getPassField().setText("");
-            loginView.getSuccessLabel().setText("");
-            loginView.setVisible(true);
+            selectView.setVisible(true);
             System.out.println("Play button clicked");
         }
         
@@ -156,7 +151,7 @@ public class Control implements ActionListener, MouseListener
                 loginView.getSuccessLabel().setText("Login Successful");
                 System.out.println("Login Successful");
                 loginView.setVisible(false);
-                selectView.setVisible(true);
+                menuView.setVisible(true);
             }
             else
             {
@@ -175,12 +170,6 @@ public class Control implements ActionListener, MouseListener
             signUpView.getSuccessLabel().setText("");
             loginView.setVisible(false);
             signUpView.setVisible(true);
-        }
-        
-        if(source == loginView.getBackButton())
-        {
-            loginView.setVisible(false);
-            menuView.setVisible(true);
         }
         
         if(source == signUpView.getCreateButton())
@@ -204,7 +193,7 @@ public class Control implements ActionListener, MouseListener
                     model.setUser(user);
                     model.setPass(pass2);
                     signUpView.setVisible(false);
-                    selectView.setVisible(true);
+                    menuView.setVisible(true);
                     System.out.println("Create Account Successful");
                 }
                 else
@@ -216,12 +205,6 @@ public class Control implements ActionListener, MouseListener
                     System.out.println("Create Account Unsuccessful");
                 }
             }
-        }
-        
-        if(source == signUpView.getBackButton())
-        {
-            signUpView.setVisible(false);
-            menuView.setVisible(true);
         }
         
         if(source == selectView.getBackButton())

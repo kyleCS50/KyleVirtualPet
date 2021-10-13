@@ -35,7 +35,6 @@ public class LoginView extends JFrame{
     private JLabel successLabel;
     private JPanel loginPanel;
     private JButton signUpButton;
-    private JButton backButton;
     
     public LoginView(String title){
         super(title);
@@ -82,15 +81,11 @@ public class LoginView extends JFrame{
         this.signUpButton.setToolTipText("Don't have an account? Sign Up!");
         loginPanel.add(signUpButton);
         
-        this.backButton = new JButton("Back");
-        backButton.setBounds(5, 5, 80, 25);
-        loginPanel.add(backButton);
-        
         this.successLabel = new JLabel("");
         this.successLabel.setBounds(40, 125, 300, 25);
         loginPanel.add(successLabel);
         
-        this.setVisible(false);
+        this.setVisible(true);
     }
     
     JButton getLoginButton() {
@@ -99,10 +94,6 @@ public class LoginView extends JFrame{
     
     JButton getSignUpButton() {
         return signUpButton;
-    }
-    
-    JButton getBackButton(){
-        return backButton;
     }
     
     public JTextField getUserField() {

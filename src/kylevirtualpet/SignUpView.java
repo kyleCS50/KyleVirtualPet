@@ -36,7 +36,6 @@ public class SignUpView extends JFrame{
     private JButton createButton;
     private JLabel successLabel;
     private JPanel signUpPanel;
-    private JButton backButton;
     
     public SignUpView(String title) {
         super(title);
@@ -86,10 +85,6 @@ public class SignUpView extends JFrame{
         this.createButton.setBounds(195, 120, 120, 25);
         signUpPanel.add(createButton);
         
-        this.backButton = new JButton("Back to Menu");
-        backButton.setBounds(5, 5, 120, 25);
-        signUpPanel.add(backButton);
-        
         this.successLabel = new JLabel("");
         this.successLabel.setBounds(40, 145, 300, 25);
         signUpPanel.add(successLabel);
@@ -99,10 +94,6 @@ public class SignUpView extends JFrame{
     
     JButton getCreateButton() {
         return createButton;
-    }
-    
-    JButton getBackButton(){
-        return backButton;
     }
     
     public JTextField getUserField() {

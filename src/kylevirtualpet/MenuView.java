@@ -103,7 +103,7 @@ public class MenuView extends JFrame{
         this.doneButton.setBounds(345, 160, 80, 25);
         howToPanel.add(doneButton);
         
-        this.setVisible(true);
+        this.setVisible(false);
         howToFrame.setVisible(false);
     }
     
