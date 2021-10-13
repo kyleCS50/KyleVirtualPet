@@ -11,6 +11,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -166,23 +169,39 @@ public class Control implements ActionListener, MouseListener
             }
             else
             {
-                if(pass1.equals(pass2))
-                {
-                    signUpView.getSuSuccessLabel().setForeground(new Color(6, 156, 24));
-                    signUpView.getSuSuccessLabel().setText("Account Created Successfully!");
-                    model.setUser(user);
-                    model.setPass(pass2);
-                    signUpView.setVisible(false);
-                    menuView.setVisible(true);
-                    System.out.println("Create Account Successful");
-                }
-                else
-                {
-                    signUpView.getSuSuccessLabel().setForeground(Color.RED);
-                    signUpView.getSuSuccessLabel().setText("Passwords must match to create new account.");
-                    signUpView.getSuPassField().setText("");
-                    signUpView.getSuConfirmField().setText("");
-                    System.out.println("Create Account Unsuccessful");
+                try {
+                    if(VirtualPetsDB.usernameSet().contains(user))
+                    {
+                        signUpView.getSuSuccessLabel().setForeground(Color.RED);
+                        signUpView.getSuSuccessLabel().setText("Please enter a different username.");
+                        signUpView.getSuUserField().setText("");
+                        signUpView.getSuPassField().setText("");
+                        signUpView.getSuConfirmField().setText("");
+                        System.out.println("Create Account Unsuccessful");
+                    }
+                    else
+                    {
+                        if(pass1.equals(pass2))
+                        {
+                            signUpView.getSuSuccessLabel().setForeground(new Color(6, 156, 24));
+                            signUpView.getSuSuccessLabel().setText("Account Created Successfully!");
+                            model.setUser(user);
+                            model.setPass(pass2);
+                            signUpView.setVisible(false);
+                            menuView.setVisible(true);
+                            System.out.println("Create Account Successful");
+                        }
+                        else
+                        {
+                            signUpView.getSuSuccessLabel().setForeground(Color.RED);
+                            signUpView.getSuSuccessLabel().setText("Passwords must match to create new account.");
+                            signUpView.getSuPassField().setText("");
+                            signUpView.getSuConfirmField().setText("");
+                            System.out.println("Create Account Unsuccessful");
+                        }
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }

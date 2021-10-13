@@ -14,10 +14,10 @@ import java.util.logging.Logger;
 public class VirtualPetsDB {
     
     private static final DBManager dbManager = new DBManager();;
-    private static final Connection conn  = dbManager.getConnection();;
+    private static final Connection conn  = dbManager.getConnection();
+    private static Set<String> usernames = new LinkedHashSet<>();
     
-    private VirtualPetsDB() {
-    }
+    private VirtualPetsDB() {}
     
     public static void connectVirtualPetDB() {
         try {
@@ -61,6 +61,18 @@ public class VirtualPetsDB {
         }
     }
     
+    public static Set<String> usernameSet() throws SQLException
+    {
+        String getUsers = "SELECT username FROM owners";
+        ResultSet rs = dbManager.queryDB(getUsers);
+        while(rs.next())
+        {
+            String username = rs.getString(1);
+            usernames.add(username);
+        }
+        return usernames;
+    }
+    
     public static void insertOwner(String username, String password, int petID)
     {
         if(petID > 0 && petID < 4)
@@ -83,9 +95,16 @@ public class VirtualPetsDB {
                 {
                     ownerID++;
                 }
+                
+                VirtualPetsDB.usernameSet();
                 String insertOwner = "INSERT INTO OWNERS VALUES "
                         + "(" +ownerID+ ", '" +username+ "', '" +password+ "', " +petID+ ")";
-                dbManager.updateDB(insertOwner);
+                
+                if(!usernames.contains(username))
+                {
+                    dbManager.updateDB(insertOwner);
+                    usernames.add(username);
+                }
                 
             } catch (SQLException ex) {
                 Logger.getLogger(VirtualPetsDB.class.getName()).log(Level.SEVERE, null, ex);
