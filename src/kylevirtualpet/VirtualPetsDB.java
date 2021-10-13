@@ -95,27 +95,45 @@ public class VirtualPetsDB {
             System.err.println("petID is not in range");
     }
     
-        public static ResultSet getPetsInfo() {
-        ResultSet rs = null;
+    public static void createSavedPets()
+    {
         try {
-            String selectPets = "SELECT name, happy, food, clean, diff FROM pets";
-            
+            String createSaved = "CREATE TABLE SAVEDPETS (ownerID INT, petID INT, rounds INT, savedHappy INT, savedFood INT, savedClean INT)";
             Statement statement = conn.createStatement();
-            rs = statement.executeQuery(selectPets);
+            //drop if exists
+            DatabaseMetaData meta = conn.getMetaData();
+            ResultSet rs = meta.getTables(null, null, "SAVEDPETS", null);
+            if(rs.next())
+                statement.execute("DROP TABLE SAVEDPETS");
             
-            while(rs.next())
-            {
-                String name = rs.getString(1);
-                int happy = rs.getInt(2);
-                int food = rs.getInt(3);
-                int clean = rs.getInt(4);
-                String diff = rs.getString(5);
-                
-                System.out.println(name+ "\nHappy: " +happy+ "\tFood: " +food+ "\tClean: " +clean+ "\tDiff: " +diff);
-            }
+            dbManager.updateDB(createSaved);
+            
         } catch (SQLException ex) {
             Logger.getLogger(VirtualPetsDB.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return rs;
+    }
+    
+    public static void insertSavedPets(int rounds, int savedHappy, int savedFood, int savedClean)
+    {
+        try {
+            String selectPets = "SELECT o.ownerID, p.petID FROM owners o, pets p WHERE o.petID = p.petID ORDER BY o.ownerID";
+            
+            Statement statement = conn.createStatement();
+            int ownerID = 0;
+            int petID = 0;
+            ResultSet rs = statement.executeQuery(selectPets);
+            while(rs.next())
+            {
+                ownerID = rs.getInt(1);
+                petID = rs.getInt(2);
+            }
+            
+            String insertSaved = "INSERT INTO savedPets VALUES "
+                    + "(" +ownerID+ ", " +petID+ ", " +rounds+ ", " +savedHappy+ ", " +savedFood+ ", " +savedClean+ ")";
+            dbManager.updateDB(insertSaved);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(VirtualPetsDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

@@ -27,16 +27,13 @@ public class Control implements ActionListener, MouseListener
     private GameView gameView;
     private Actions action;
     
-    public Control(Model model, LoginView loginView, SignUpView signUpView, MenuView menuView, SelectView selectView) {
-        
-        VirtualPetsDB.connectVirtualPetDB();
-        VirtualPetsDB.createOwners();
+    public Control(Model model) {
         
         this.model = model;
-        this.loginView = loginView;
-        this.signUpView = signUpView;
-        this.menuView = menuView;
-        this.selectView = selectView;
+        this.loginView = new LoginView("Login");
+        this.signUpView = new SignUpView("Sign Up");
+        this.menuView = new MenuView("Menu");
+        this.selectView = new SelectView("Select a Pet");
         
         loginView.getLoginButton().addActionListener(this);
         loginView.getSignUpButton().addActionListener(this);
@@ -251,6 +248,7 @@ public class Control implements ActionListener, MouseListener
             
             if(source == gameView.getEndButton())
             {
+                VirtualPetsDB.insertSavedPets(model.getOwner().getRounds(), model.getMyPet().getHappyMeter(), model.getMyPet().getHungerMeter(),  model.getMyPet().getCleanMeter());
                 gameView.setVisible(false);
                 menuView.setVisible(true);
             }
