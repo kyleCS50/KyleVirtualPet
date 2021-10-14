@@ -6,6 +6,8 @@ import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.logging.Level;
@@ -15,7 +17,7 @@ public class VirtualPetsDB {
     
     private static final DBManager dbManager = new DBManager();;
     private static final Connection conn  = dbManager.getConnection();
-    private static Set<String> usernames = new LinkedHashSet<>();
+    private static HashMap<String, String> ownersMap = new LinkedHashMap<>();
     
     private VirtualPetsDB() {}
     
@@ -61,16 +63,17 @@ public class VirtualPetsDB {
         }
     }
     
-    public static Set<String> usernameSet() throws SQLException
+    public static HashMap<String, String> getOwnersMap() throws SQLException
     {
-        String getUsers = "SELECT username FROM owners";
+        String getUsers = "SELECT username, password FROM owners";
         ResultSet rs = dbManager.queryDB(getUsers);
         while(rs.next())
         {
             String username = rs.getString(1);
-            usernames.add(username);
+            String password = rs.getString(2);
+            ownersMap.put(username, password);
         }
-        return usernames;
+        return ownersMap;
     }
     
     public static void insertOwner(String username, String password, int petID)
@@ -96,14 +99,14 @@ public class VirtualPetsDB {
                     ownerID++;
                 }
                 
-                VirtualPetsDB.usernameSet();
+                VirtualPetsDB.getOwnersMap();
                 String insertOwner = "INSERT INTO OWNERS VALUES "
                         + "(" +ownerID+ ", '" +username+ "', '" +password+ "', " +petID+ ")";
                 
-                if(!usernames.contains(username))
+                if(!ownersMap.containsKey(username))
                 {
                     dbManager.updateDB(insertOwner);
-                    usernames.add(username);
+                    ownersMap.put(username, password);
                 }
                 
             } catch (SQLException ex) {

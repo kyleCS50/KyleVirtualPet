@@ -58,7 +58,7 @@ public class MenuView extends JFrame{
         menuLabel.setBounds(445, 20, 360, 50);
         menuPanel.add(menuLabel);
         
-        this.playGameButton = new JButton("Play Game");
+        this.playGameButton = new JButton("Select and Play");
         playGameButton.setFont(font);
         playGameButton.setBounds(85, 190, 320, 320);
         menuPanel.add(playGameButton);
@@ -105,6 +105,11 @@ public class MenuView extends JFrame{
     
     JButton getPlayGameButton() {
         return playGameButton;
+    }
+    
+    JButton getStatsButton()
+    {
+        return statsButton;
     }
     
     JButton getHowToButton() {

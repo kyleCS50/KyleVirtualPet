@@ -36,6 +36,7 @@ public class SignUpView extends JFrame{
     private JButton suCreateButton;
     private JLabel suSuccessLabel;
     private JPanel signUpPanel;
+    private JLabel createTipLabel;
     
     public SignUpView(String title) {
         super(title);
@@ -81,9 +82,14 @@ public class SignUpView extends JFrame{
         this.suConfirmField.setBounds(160, 80, 150, 25);
         signUpPanel.add(suConfirmField);
         
-        this.suCreateButton = new JButton("Create Account");
+        this.suCreateButton = new JButton("Create Owner");
         this.suCreateButton.setBounds(30, 115, 120, 25);
         signUpPanel.add(suCreateButton);
+        
+        this.createTipLabel = new JLabel("<html>To save owner you must select a pet</html>");
+        createTipLabel.setBounds(160, 115, 200, 30);
+        createTipLabel.setForeground(fontColour);
+        signUpPanel.add(createTipLabel);
         
         this.suSuccessLabel = new JLabel("");
         this.suSuccessLabel.setBounds(40, 140, 300, 25);
