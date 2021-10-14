@@ -51,6 +51,8 @@ public class Control implements ActionListener, MouseListener
         menuView.getHowToButton().addActionListener(this);
         menuView.getDoneButton().addActionListener(this);
         
+        statsView.getDiffButton().addActionListener(this);
+                
         selectView.getBirdLabel().addMouseListener(this);
         selectView.getCatLabel().addMouseListener(this);
         selectView.getDogLabel().addMouseListener(this);
@@ -81,7 +83,7 @@ public class Control implements ActionListener, MouseListener
             id = 3;
         }
         
-        VirtualPetsDB.insertOwner(model.getAdminUsername(),model.getAdminPassword(), id);
+        VirtualPetsDB.insertOwner(model.getUsername(),model.getPassword(), id);
         this.action = new Actions(model.getMyPet(), model.getOwner());
         
         gameView.getPlayButton().addActionListener(this);
@@ -137,7 +139,7 @@ public class Control implements ActionListener, MouseListener
                 String user = loginView.getLiUserField().getText();
                 String password = loginView.getLiPassField().getText();
                 
-                if(model.getAdminUsername().equals(user) && model.getAdminPassword().equals(password))
+                if(model.getUsername().equals(user) && model.getPassword().equals(password))
                 {
                     loginView.setVisible(false);
                     menuView.setVisible(true);
@@ -208,6 +210,8 @@ public class Control implements ActionListener, MouseListener
                         {
                             signUpView.getSuSuccessLabel().setForeground(new Color(6, 156, 24));
                             signUpView.getSuSuccessLabel().setText("Owner Created Successfully!");
+                            model.setUsername(user);
+                            model.setPassword(pass2);
                             signUpView.setVisible(false);
                             menuView.setVisible(true);
                             System.out.println("Create Owner Successful");
@@ -249,6 +253,15 @@ public class Control implements ActionListener, MouseListener
         {
             menuView.getHowToFrame().setVisible(false);
             System.out.println("How To Done button clicked");
+        }
+        
+        if(source == statsView.getDiffButton())
+        {
+            try {
+                statsView.getDiffOwnersLabel().setText("<html>"+VirtualPetsDB.getDiff(statsView.getDiffBox().getSelectedItem().toString())+"</html>");
+            } catch (SQLException ex) {
+                Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         if(selectView.isPetSelected())

@@ -25,9 +25,9 @@ public class VirtualPetsDB {
         try {
             String createBook = "CREATE TABLE PETS (PETID INT, NAME VARCHAR(50), ANIMAL VARCHAR(50), BREED VARCHAR(50), DIFF VARCHAR(20), HAPPY INT, FOOD INT, CLEAN INT)";
             String insertBook = "INSERT INTO PETS VALUES " +
-                    "(1, 'Mordecai', 'Bird', 'Blue Jay', 'Easy', 10, 8, 9),\n" +
-                    "(2, 'Eve', 'Cat', 'Shorthair', 'Medium', 7, 6, 6),\n" +
-                    "(3, 'Charlie', 'Dog', 'Labrador', 'Hard', 5, 4, 3)";
+                    "(1, 'Mordecai', 'Bird', 'Blue Jay', 'EASY', 10, 8, 9),\n" +
+                    "(2, 'Eve', 'Cat', 'Shorthair', 'MEDIUM', 7, 6, 6),\n" +
+                    "(3, 'Charlie', 'Dog', 'Labrador', 'HARD', 5, 4, 3)";
             
             dbManager.establishConnection();
             Statement statement = conn.createStatement();
@@ -157,5 +157,25 @@ public class VirtualPetsDB {
         } catch (SQLException ex) {
             Logger.getLogger(VirtualPetsDB.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public static String getDiff(String diff) throws SQLException
+    {
+        Set<String> owners = new LinkedHashSet<>();
+        String output = "";
+        String select = "SELECT o.username FROM owners o, pets p WHERE o.petID = p.petID AND p.diff = '"+diff.toUpperCase()+"'";
+        ResultSet rs = dbManager.queryDB(select);
+        
+        while(rs.next())
+        {
+            String owner = rs.getString(1);
+            owners.add(owner.toUpperCase());
+        }
+        
+        for(String owner: owners)
+        {
+            output += owner+"<br/>";
+        }
+        return output;
     }
 }

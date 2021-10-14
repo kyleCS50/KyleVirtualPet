@@ -11,31 +11,31 @@ package kylevirtualpet;
  */
 public class Model {
     
-    private String adminUsername;
-    private String adminPassword;
+    private String username;
+    private String password;
     private Animal myPet;
     private Owner owner;
     
     public Model(String adminUsername, String adminPassword) {
-        this.adminUsername = adminUsername;
-        this.adminPassword = adminPassword;
+        this.username = adminUsername;
+        this.password = adminPassword;
         owner = new Owner(adminUsername);
     }
 
-    public String getAdminUsername() {
-        return adminUsername;
+    public String getUsername() {
+        return username;
     }
 
-    public void setAdminUsername(String adminUsername) {
-        this.adminUsername = adminUsername;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getAdminPassword() {
-        return adminPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setAdminPassword(String adminPassword) {
-        this.adminPassword = adminPassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Animal getMyPet() {

@@ -28,17 +28,19 @@ public class StatsView extends JFrame{
     private JLabel statsLabel;
     private JLabel scoresLabel;
     private JLabel diffLabel;
+    private JLabel diffOwnersLabel;
     private JLabel petLabel;
     private JLabel scoreOne;
     private JLabel scoreTwo;
     private JLabel scoreThree;
     private JButton backButton;
+    private JButton diffButton;
     private JComboBox petBox;
+    private JComboBox diffBox;
     private JPanel scoresPanel;
     private JPanel diffPanel;
     private JPanel petPanel;
     private JPanel statsPanel;
-    private JComboBox diffBox;
     
     public StatsView(String title)
     {
@@ -78,10 +80,56 @@ public class StatsView extends JFrame{
         petPanel.setBounds(836, 200, 403, 460);
         petPanel.setLayout(null);
         
+        this.scoresLabel = new JLabel("High Scores");
+        scoresLabel.setFont(font);
+        scoresLabel.setForeground(fontColour);
+        scoresLabel.setBounds(112, 150, 200, 35);
+        statsPanel.add(scoresLabel);
+        
+        this.diffLabel = new JLabel("Difficulty");
+        diffLabel.setFont(font);
+        diffLabel.setForeground(fontColour);
+        diffLabel.setBounds(535, 150, 200, 35);
+        statsPanel.add(diffLabel);
+        
+        this.petLabel = new JLabel("Pet Owners");
+        petLabel.setFont(font);
+        petLabel.setForeground(fontColour);
+        petLabel.setBounds(948, 150, 200, 35);
+        statsPanel.add(petLabel);
+        
+        String[] diff = new String[]{"Easy", "Medium", "Hard"};
+        this.diffBox = new JComboBox(diff);
+        diffBox.setBounds(80, 10, 100, 25);
+        diffPanel.add(diffBox);
+        
+        this.diffButton = new JButton("See Owners");
+        diffButton.setBounds(190, 10, 100, 25);
+        diffPanel.add(diffButton);
+        
+        this.diffOwnersLabel = new JLabel();
+        diffOwnersLabel.setForeground(fontColour);
+        diffOwnersLabel.setFont(font);
+        diffOwnersLabel.setBounds(10, 0, 383, 460);
+        diffPanel.add(diffOwnersLabel);
+        
         statsPanel.add(scoresPanel);
         statsPanel.add(diffPanel);
         statsPanel.add(petPanel);
+        
         this.setVisible(true);
+    }
+    
+    public JButton getDiffButton() {
+        return diffButton;
+    }
+    
+    public JComboBox getDiffBox() {
+        return diffBox;
+    }
+    
+    public JLabel getDiffOwnersLabel() {
+        return diffOwnersLabel;
     }
     
 }
