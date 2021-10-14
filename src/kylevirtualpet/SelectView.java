@@ -79,7 +79,7 @@ public class SelectView extends JFrame{
         selectPanel.setLayout(null);
         selectPanel.setBackground(backgroundColour);
         
-        this.backButton = new JButton("Back to Menu");
+        this.backButton = new JButton("Back");
         backButton.setFont(new Font("Display", Font.PLAIN, 15));
         backButton.setBounds(10, 15, 150, 25);
         selectPanel.add(backButton);

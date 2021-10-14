@@ -111,11 +111,6 @@ public class MenuView extends JFrame{
         return playGameButton;
     }
     
-    JButton getStatsButton()
-    {
-        return statsButton;
-    }
-    
     JButton getHowToButton() {
         return howToButton;
     }
@@ -126,6 +121,10 @@ public class MenuView extends JFrame{
     
     public JFrame getHowToFrame() {
         return howToFrame;
+    }
+
+    public JButton getStatsButton() {
+        return statsButton;
     }
     
 }

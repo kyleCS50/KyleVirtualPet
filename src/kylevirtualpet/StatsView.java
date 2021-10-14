@@ -80,6 +80,11 @@ public class StatsView extends JFrame{
         petPanel.setBounds(836, 200, 403, 460);
         petPanel.setLayout(null);
         
+        this.backButton = new JButton("Back");
+        backButton.setFont(new Font("Display", Font.PLAIN, 15));
+        backButton.setBounds(10, 15, 150, 25);
+        statsPanel.add(backButton);
+        
         this.scoresLabel = new JLabel("High Scores");
         scoresLabel.setFont(font);
         scoresLabel.setForeground(fontColour);
@@ -117,7 +122,7 @@ public class StatsView extends JFrame{
         statsPanel.add(diffPanel);
         statsPanel.add(petPanel);
         
-        this.setVisible(true);
+        this.setVisible(false);
     }
     
     public JButton getDiffButton() {
@@ -130,6 +135,14 @@ public class StatsView extends JFrame{
     
     public JLabel getDiffOwnersLabel() {
         return diffOwnersLabel;
+    }
+
+    public JButton getBackButton() {
+        return backButton;
+    }
+
+    public JPanel getStatsPanel() {
+        return statsPanel;
     }
     
 }

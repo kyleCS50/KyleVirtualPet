@@ -82,18 +82,18 @@ public class SignUpView extends JFrame{
         this.confirmPassField.setBounds(160, 90, 150, 25);
         signUpPanel.add(confirmPassField);
         
-        this.suCreateButton = new JButton("Create Owner");
-        this.suCreateButton.setBounds(30, 115, 120, 25);
-        signUpPanel.add(suCreateButton);
+        this.createButton = new JButton("Create Owner");
+        this.createButton.setBounds(30, 115, 120, 25);
+        signUpPanel.add(createButton);
         
         this.createTipLabel = new JLabel("<html>To save owner you must select a pet</html>");
-        createTipLabel.setBounds(160, 115, 200, 30);
+        createTipLabel.setBounds(160, 115, 170, 30);
         createTipLabel.setForeground(fontColour);
         signUpPanel.add(createTipLabel);
         
-        this.suSuccessLabel = new JLabel("");
-        this.suSuccessLabel.setBounds(40, 140, 300, 25);
-        signUpPanel.add(suSuccessLabel);
+        this.successLabel = new JLabel("");
+        this.successLabel.setBounds(40, 140, 300, 25);
+        signUpPanel.add(successLabel);
         
         this.setVisible(false);
     }

@@ -50,9 +50,10 @@ public class Control implements ActionListener, MouseListener
         loginView.getSignUpButton().addActionListener(this);
         
         signUpView.getCreateButton().addActionListener(this);
-
+        
+        statsView.getBackButton().addActionListener(this);
         statsView.getDiffButton().addActionListener(this);
-                
+        
         selectView.getBirdLabel().addMouseListener(this);
         selectView.getCatLabel().addMouseListener(this);
         selectView.getDogLabel().addMouseListener(this);
@@ -71,12 +72,12 @@ public class Control implements ActionListener, MouseListener
             gameView = new GameView("Mordecai", new File("petAssets/bluejay.jpg"));
             id = 1;
         }
-
+        
         if(source == selectView.getCatLabel())
         {
             model.setMyPet(new Shorthair("Eve"));
             gameView = new GameView("Eve", new File("petAssets/shorthair.jpg"));
-   id = 2;
+            id = 2;
         }
         if(source == selectView.getDogLabel())
         {
@@ -157,8 +158,8 @@ public class Control implements ActionListener, MouseListener
         {
             try {
                 System.out.println("Log In button pressed");
-                String user = loginView.getLiUserField().getText();
-                String password = loginView.getLiPassField().getText();
+                String user = loginView.getUserField().getText();
+                String password = loginView.getPassField().getText();
                 
                 if(model.getUsername().equals(user) && model.getPassword().equals(password))
                 {
@@ -170,23 +171,23 @@ public class Control implements ActionListener, MouseListener
                 {
                     if(VirtualPetsDB.getOwnersMap().get(user).equals(password))
                     {
-                        loginView.getLiSuccessLabel().setForeground(new Color(6, 156, 24));
-                        loginView.getLiSuccessLabel().setText("Login Successful");
+                        loginView.getSuccessLabel().setForeground(new Color(6, 156, 24));
+                        loginView.getSuccessLabel().setText("Login Successful");
                         System.out.println("Login Successful");
                         loginView.setVisible(false);
                         menuView.setVisible(true);
                     }
                     else
                     {
-                        loginView.getLiSuccessLabel().setForeground(Color.RED);
-                        loginView.getLiSuccessLabel().setText("Incorrect password. Please try again");
+                        loginView.getSuccessLabel().setForeground(Color.RED);
+                        loginView.getSuccessLabel().setText("Incorrect password. Please try again");
                         System.out.println("Login Unsuccessful");
                     }
                 }
                 else
                 {
-                    loginView.getLiSuccessLabel().setForeground(Color.RED);
-                    loginView.getLiSuccessLabel().setText("Owner not found, try Signing Up!");
+                    loginView.getSuccessLabel().setForeground(Color.RED);
+                    loginView.getSuccessLabel().setText("Owner not found, try Signing Up!");
                     System.out.println("Login Unsuccessful");
                 }
             } catch (SQLException ex) {
@@ -208,9 +209,9 @@ public class Control implements ActionListener, MouseListener
         if(source == signUpView.getCreateButton())
         {
             System.out.println("Create Owner button clicked");
-            String user = signUpView.getSuUserField().getText().trim();
-            String pass1 = signUpView.getSuPassField().getText();
-            String pass2 = signUpView.getSuConfirmField().getText();
+            String user = signUpView.getUserField().getText().trim();
+            String pass1 = signUpView.getPassField().getText();
+            String pass2 = signUpView.getConfirmPassField().getText();
             
             if(user.equals("") || pass1.equals("") || pass2.equals(""))
             {
@@ -222,19 +223,19 @@ public class Control implements ActionListener, MouseListener
                 try {
                     if(VirtualPetsDB.getOwnersMap().containsKey(user))
                     {
-                        signUpView.getSuSuccessLabel().setForeground(Color.RED);
-                        signUpView.getSuSuccessLabel().setText("Please enter a different username.");
-                        signUpView.getSuUserField().setText("");
-                        signUpView.getSuPassField().setText("");
-                        signUpView.getSuConfirmField().setText("");
+                        signUpView.getSuccessLabel().setForeground(Color.RED);
+                        signUpView.getSuccessLabel().setText("Please enter a different username.");
+                        signUpView.getUserField().setText("");
+                        signUpView.getPassField().setText("");
+                        signUpView.getConfirmPassField().setText("");
                         System.out.println("Create Owner Unsuccessful");
                     }
                     else
                     {
                         if(pass1.equals(pass2))
                         {
-                            signUpView.getSuSuccessLabel().setForeground(new Color(6, 156, 24));
-                            signUpView.getSuSuccessLabel().setText("Owner Created Successfully!");
+                            signUpView.getSuccessLabel().setForeground(new Color(6, 156, 24));
+                            signUpView.getSuccessLabel().setText("Owner Created Successfully!");
                             model.setUsername(user);
                             model.setPassword(pass2);
                             signUpView.setVisible(false);
@@ -243,10 +244,10 @@ public class Control implements ActionListener, MouseListener
                         }
                         else
                         {
-                            signUpView.getSuSuccessLabel().setForeground(Color.RED);
-                            signUpView.getSuSuccessLabel().setText("Passwords must match to create new owner.");
-                            signUpView.getSuPassField().setText("");
-                            signUpView.getSuConfirmField().setText("");
+                            signUpView.getSuccessLabel().setForeground(Color.RED);
+                            signUpView.getSuccessLabel().setText("Passwords must match to create new owner.");
+                            signUpView.getPassField().setText("");
+                            signUpView.getConfirmPassField().setText("");
                             System.out.println("Create Owner Unsuccessful");
                         }
                     }
@@ -257,11 +258,11 @@ public class Control implements ActionListener, MouseListener
         }
         
         if(source == selectView.getBackButton())
-    {
+        {
             selectView.setVisible(false);
             menuView.setVisible(true);
         }
-
+        
         if(source == menuView.getPlayGameButton())
         {
             menuView.setVisible(false);
@@ -271,8 +272,8 @@ public class Control implements ActionListener, MouseListener
         
         if(source == menuView.getStatsButton())
         {
-            menuView.setVisible(false(;
-statsView.setVisible(true);
+            menuView.setVisible(false);
+            statsView.setVisible(true);
         }
         
         if(source == menuView.getHowToButton())
@@ -280,8 +281,12 @@ statsView.setVisible(true);
             menuView.getHowToFrame().setVisible(true);
             System.out.println("How To button clicked");
         }
-       
-    
+        
+        if(source == statsView.getBackButton())
+        {
+            statsView.setVisible(false);
+            menuView.setVisible(true);
+        }
         
         if(source == statsView.getDiffButton())
         {
