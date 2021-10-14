@@ -108,6 +108,11 @@ public class VirtualPetsDB {
                     dbManager.updateDB(insertOwner);
                     ownersMap.put(username, password);
                 }
+                else
+                {
+                    String updateOwner = "UPDATE OWNERS SET petID = "+petID+" WHERE username = '"+username+"'";
+                    dbManager.updateDB(updateOwner);
+                }
                 
             } catch (SQLException ex) {
                 Logger.getLogger(VirtualPetsDB.class.getName()).log(Level.SEVERE, null, ex);
@@ -163,8 +168,8 @@ public class VirtualPetsDB {
     {
         Set<String> owners = new LinkedHashSet<>();
         String output = "";
-        String select = "SELECT o.username FROM owners o, pets p WHERE o.petID = p.petID AND p.diff = '"+diff.toUpperCase()+"'";
-        ResultSet rs = dbManager.queryDB(select);
+        String selectDiff = "SELECT o.username FROM owners o, savedPets s, pets p WHERE o.ownerID = s.ownerID AND p.petID = s.petID AND p.diff = '"+diff.toUpperCase()+"'";
+        ResultSet rs = dbManager.queryDB(selectDiff);
         
         while(rs.next())
         {
@@ -177,5 +182,25 @@ public class VirtualPetsDB {
             output += owner+"<br/>";
         }
         return output;
+    }
+    
+    public static String getTopRounds() throws SQLException
+    {
+        String output = "";
+        String selectRounds = "SELECT o.username, s.rounds FROM owners o, savedPets s WHERE o.ownerID = s.ownerID ORDER BY s.rounds DESC";
+        
+        ResultSet rs = dbManager.queryDB(selectRounds);
+        while(rs.next())
+        {
+            String name = rs.getString(1);
+            int rounds = rs.getInt(2);
+            System.out.println(name+" "+rounds);
+            output += name+" "+rounds+"<br/>";
+        }
+        return output;
+    }
+    
+    public static void main(String[] args) throws SQLException {
+        VirtualPetsDB.getTopRounds();
     }
 }

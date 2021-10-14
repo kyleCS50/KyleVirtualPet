@@ -9,6 +9,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -27,15 +30,12 @@ public class StatsView extends JFrame{
     
     private JLabel statsLabel;
     private JLabel scoresLabel;
+    private JLabel topThreeLabel;
     private JLabel diffLabel;
     private JLabel diffOwnersLabel;
     private JLabel petLabel;
-    private JLabel scoreOne;
-    private JLabel scoreTwo;
-    private JLabel scoreThree;
     private JButton backButton;
     private JButton diffButton;
-    private JComboBox petBox;
     private JComboBox diffBox;
     private JPanel scoresPanel;
     private JPanel diffPanel;
@@ -102,6 +102,16 @@ public class StatsView extends JFrame{
         petLabel.setForeground(fontColour);
         petLabel.setBounds(948, 150, 200, 35);
         statsPanel.add(petLabel);
+        
+        try {
+            this.topThreeLabel = new JLabel("<html>"+VirtualPetsDB.getTopRounds()+"</html>");
+        } catch (SQLException ex) {
+            Logger.getLogger(StatsView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        topThreeLabel.setFont(font);
+        topThreeLabel.setForeground(fontColour);
+        topThreeLabel.setBounds(80, 10, 400, 400);
+        scoresPanel.add(topThreeLabel);
         
         String[] diff = new String[]{"Easy", "Medium", "Hard"};
         this.diffBox = new JComboBox(diff);
