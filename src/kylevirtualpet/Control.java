@@ -11,6 +11,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -23,20 +26,23 @@ public class Control implements ActionListener, MouseListener
     private LoginView loginView;
     private SignUpView signUpView;
     private MenuView menuView;
+    private StatsView statsView;
     private SelectView selectView;
     private GameView gameView;
+    
     private Actions action;
     
-    public Control(Model model)
-    {
-        this.model = model;
+    public Control(Model model) {
         
-        this.menuView = new MenuView("Menu");
-        this.loginView = new LoginView("LogIn");
+        this.model = model;
+        this.loginView = new LoginView("Login");
         this.signUpView = new SignUpView("Sign Up");
-        this.selectView = new SelectView("Select Pet");
+        this.menuView = new MenuView("Menu");
+        this.statsView = new StatsView("Game Stats");
+        this.selectView = new SelectView("Select a Pet");
         
         menuView.getPlayGameButton().addActionListener(this);
+        menuView.getStatsButton().addActionListener(this);
         menuView.getHowToButton().addActionListener(this);
         menuView.getDoneButton().addActionListener(this);
         
@@ -44,7 +50,9 @@ public class Control implements ActionListener, MouseListener
         loginView.getSignUpButton().addActionListener(this);
         
         signUpView.getCreateButton().addActionListener(this);
-        
+
+        statsView.getDiffButton().addActionListener(this);
+                
         selectView.getBirdLabel().addMouseListener(this);
         selectView.getCatLabel().addMouseListener(this);
         selectView.getDogLabel().addMouseListener(this);
@@ -56,22 +64,28 @@ public class Control implements ActionListener, MouseListener
     @Override
     public void mouseClicked(MouseEvent me) {
         Object source = me.getSource();
+        int id = 0;
         if(source == selectView.getBirdLabel())
         {
             model.setMyPet(new BlueJay("Mordecai"));
             gameView = new GameView("Mordecai", new File("petAssets/bluejay.jpg"));
+            id = 1;
         }
+
         if(source == selectView.getCatLabel())
         {
             model.setMyPet(new Shorthair("Eve"));
             gameView = new GameView("Eve", new File("petAssets/shorthair.jpg"));
+   id = 2;
         }
         if(source == selectView.getDogLabel())
         {
             model.setMyPet(new Labrador("Charlie"));
             gameView = new GameView("Charlie", new File("petAssets/lab.jpg"));
+            id = 3;
         }
         
+        VirtualPetsDB.insertOwner(model.getUsername(),model.getPassword(), id);
         this.action = new Actions(model.getMyPet(), model.getOwner());
         
         gameView.getPlayButton().addActionListener(this);
@@ -141,23 +155,42 @@ public class Control implements ActionListener, MouseListener
         
         if(source == loginView.getLoginButton())
         {
-            System.out.println("Log In button pressed");
-            String user = loginView.getUserField().getText();
-            String password = loginView.getPassField().getText();
-            
-            if(user.equals(model.getUser()) && password.equals(model.getPass()))
-            {
-                loginView.getSuccessLabel().setForeground(new Color(6, 156, 24));
-                loginView.getSuccessLabel().setText("Login Successful");
-                System.out.println("Login Successful");
-                loginView.setVisible(false);
-                menuView.setVisible(true);
-            }
-            else
-            {
-                loginView.getSuccessLabel().setForeground(Color.RED);
-                loginView.getSuccessLabel().setText("Wrong username or password");
-                System.out.println("Login Unsuccessful");
+            try {
+                System.out.println("Log In button pressed");
+                String user = loginView.getLiUserField().getText();
+                String password = loginView.getLiPassField().getText();
+                
+                if(model.getUsername().equals(user) && model.getPassword().equals(password))
+                {
+                    loginView.setVisible(false);
+                    menuView.setVisible(true);
+                }
+                
+                if(VirtualPetsDB.getOwnersMap().containsKey(user))
+                {
+                    if(VirtualPetsDB.getOwnersMap().get(user).equals(password))
+                    {
+                        loginView.getLiSuccessLabel().setForeground(new Color(6, 156, 24));
+                        loginView.getLiSuccessLabel().setText("Login Successful");
+                        System.out.println("Login Successful");
+                        loginView.setVisible(false);
+                        menuView.setVisible(true);
+                    }
+                    else
+                    {
+                        loginView.getLiSuccessLabel().setForeground(Color.RED);
+                        loginView.getLiSuccessLabel().setText("Incorrect password. Please try again");
+                        System.out.println("Login Unsuccessful");
+                    }
+                }
+                else
+                {
+                    loginView.getLiSuccessLabel().setForeground(Color.RED);
+                    loginView.getLiSuccessLabel().setText("Owner not found, try Signing Up!");
+                    System.out.println("Login Unsuccessful");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
@@ -174,10 +207,10 @@ public class Control implements ActionListener, MouseListener
         
         if(source == signUpView.getCreateButton())
         {
-            System.out.println("Create Account button clicked");
-            String user = signUpView.getUserField().getText().trim();
-            String pass1 = signUpView.getPassField().getText();
-            String pass2 = signUpView.getConfirmPassField().getText();
+            System.out.println("Create Owner button clicked");
+            String user = signUpView.getSuUserField().getText().trim();
+            String pass1 = signUpView.getSuPassField().getText();
+            String pass2 = signUpView.getSuConfirmField().getText();
             
             if(user.equals("") || pass1.equals("") || pass2.equals(""))
             {
@@ -186,31 +219,77 @@ public class Control implements ActionListener, MouseListener
             }
             else
             {
-                if(pass1.equals(pass2))
-                {
-                    signUpView.getSuccessLabel().setForeground(new Color(6, 156, 24));
-                    signUpView.getSuccessLabel().setText("Account Created Successfully!");
-                    model.setUser(user);
-                    model.setPass(pass2);
-                    signUpView.setVisible(false);
-                    menuView.setVisible(true);
-                    System.out.println("Create Account Successful");
-                }
-                else
-                {
-                    signUpView.getSuccessLabel().setForeground(Color.RED);
-                    signUpView.getSuccessLabel().setText("Passwords must match to create new account.");
-                    signUpView.getPassField().setText("");
-                    signUpView.getConfirmPassField().setText("");
-                    System.out.println("Create Account Unsuccessful");
+                try {
+                    if(VirtualPetsDB.getOwnersMap().containsKey(user))
+                    {
+                        signUpView.getSuSuccessLabel().setForeground(Color.RED);
+                        signUpView.getSuSuccessLabel().setText("Please enter a different username.");
+                        signUpView.getSuUserField().setText("");
+                        signUpView.getSuPassField().setText("");
+                        signUpView.getSuConfirmField().setText("");
+                        System.out.println("Create Owner Unsuccessful");
+                    }
+                    else
+                    {
+                        if(pass1.equals(pass2))
+                        {
+                            signUpView.getSuSuccessLabel().setForeground(new Color(6, 156, 24));
+                            signUpView.getSuSuccessLabel().setText("Owner Created Successfully!");
+                            model.setUsername(user);
+                            model.setPassword(pass2);
+                            signUpView.setVisible(false);
+                            menuView.setVisible(true);
+                            System.out.println("Create Owner Successful");
+                        }
+                        else
+                        {
+                            signUpView.getSuSuccessLabel().setForeground(Color.RED);
+                            signUpView.getSuSuccessLabel().setText("Passwords must match to create new owner.");
+                            signUpView.getSuPassField().setText("");
+                            signUpView.getSuConfirmField().setText("");
+                            System.out.println("Create Owner Unsuccessful");
+                        }
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
         
         if(source == selectView.getBackButton())
-        {
+    {
             selectView.setVisible(false);
             menuView.setVisible(true);
+        }
+
+        if(source == menuView.getPlayGameButton())
+        {
+            menuView.setVisible(false);
+            selectView.setVisible(true);
+            System.out.println("Play button clicked");
+        }
+        
+        if(source == menuView.getStatsButton())
+        {
+            menuView.setVisible(false(;
+statsView.setVisible(true);
+        }
+        
+        if(source == menuView.getHowToButton())
+        {
+            menuView.getHowToFrame().setVisible(true);
+            System.out.println("How To button clicked");
+        }
+       
+    
+        
+        if(source == statsView.getDiffButton())
+        {
+            try {
+                statsView.getDiffOwnersLabel().setText("<html>"+VirtualPetsDB.getDiff(statsView.getDiffBox().getSelectedItem().toString())+"</html>");
+            } catch (SQLException ex) {
+                Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         if(selectView.isPetSelected())
@@ -275,6 +354,7 @@ public class Control implements ActionListener, MouseListener
             
             if(source == gameView.getQuitButton())
             {
+                VirtualPetsDB.insertSavedPets(model.getOwner().getRounds(), model.getMyPet().getHappyMeter(), model.getMyPet().getHungerMeter(),  model.getMyPet().getCleanMeter());
                 gameView.setVisible(false);
                 menuView.setVisible(true);
             }
