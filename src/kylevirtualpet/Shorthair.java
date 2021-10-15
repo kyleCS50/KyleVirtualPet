@@ -12,15 +12,20 @@ package kylevirtualpet;
  */
 public class Shorthair extends Animal{
     
-    public Shorthair(String name) //shorthair constructor
+    //shorthair constructor
+    public Shorthair() 
     {
-        //set variables
-        super(name);
+        this(7, 6, 6);
+    }
+    
+    public Shorthair(int happy, int food, int clean)
+    {
+        super("Eve");
         this.setAnimalType("Cat");
         this.setBreed("Shorthair");
-        this.setHappyMeter(7);
-        this.setHungerMeter(6);
-        this.setCleanMeter(6);
+        this.setHappyMeter(happy);
+        this.setFoodMeter(food);
+        this.setCleanMeter(clean);
         this.setDiff(Difficulty.MEDIUM);
     }
     

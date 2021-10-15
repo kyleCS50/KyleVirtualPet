@@ -9,9 +9,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -33,13 +30,11 @@ public class StatsView extends JFrame{
     private JLabel topThreeLabel;
     private JLabel diffLabel;
     private JLabel diffOwnersLabel;
-    private JLabel petLabel;
     private JButton backButton;
     private JButton diffButton;
     private JComboBox diffBox;
     private JPanel scoresPanel;
     private JPanel diffPanel;
-    private JPanel petPanel;
     private JPanel statsPanel;
     
     public StatsView(String title)
@@ -67,18 +62,13 @@ public class StatsView extends JFrame{
         
         this.scoresPanel = new JPanel();
         scoresPanel.setBackground(new Color(62, 62, 64));
-        scoresPanel.setBounds(10, 200, 403, 460);
+        scoresPanel.setBounds(212, 200, 403, 460);
         scoresPanel.setLayout(null);
         
         this.diffPanel = new JPanel();
         diffPanel.setBackground(new Color(62, 62, 64));
-        diffPanel.setBounds(423, 200, 403, 460);
+        diffPanel.setBounds(635, 200, 403, 460);
         diffPanel.setLayout(null);
-        
-        this.petPanel = new JPanel();
-        petPanel.setBackground(new Color(62, 62, 64));
-        petPanel.setBounds(836, 200, 403, 460);
-        petPanel.setLayout(null);
         
         this.backButton = new JButton("Back");
         backButton.setFont(new Font("Display", Font.PLAIN, 15));
@@ -88,20 +78,14 @@ public class StatsView extends JFrame{
         this.scoresLabel = new JLabel("High Scores");
         scoresLabel.setFont(font);
         scoresLabel.setForeground(fontColour);
-        scoresLabel.setBounds(112, 150, 200, 35);
+        scoresLabel.setBounds(314, 150, 200, 35);
         statsPanel.add(scoresLabel);
         
         this.diffLabel = new JLabel("Difficulty");
         diffLabel.setFont(font);
         diffLabel.setForeground(fontColour);
-        diffLabel.setBounds(535, 150, 200, 35);
+        diffLabel.setBounds(747, 150, 200, 35);
         statsPanel.add(diffLabel);
-        
-        this.petLabel = new JLabel("Pet Owners");
-        petLabel.setFont(font);
-        petLabel.setForeground(fontColour);
-        petLabel.setBounds(948, 150, 200, 35);
-        statsPanel.add(petLabel);
         
         this.topThreeLabel = new JLabel();
         topThreeLabel.setFont(font);
@@ -126,7 +110,6 @@ public class StatsView extends JFrame{
         
         statsPanel.add(scoresPanel);
         statsPanel.add(diffPanel);
-        statsPanel.add(petPanel);
         
         this.setVisible(false);
     }

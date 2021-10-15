@@ -12,18 +12,23 @@ package kylevirtualpet;
  */
 public class Labrador extends Animal{
     
-    public Labrador(String name) //labrador constructor
+    //labrador constructors
+    public Labrador()
     {
-        //setting variables
-        super(name);
+        this(5, 4, 3);
+    }
+    
+    public Labrador(int happy, int food, int clean)
+    {
+        super("Charlie");
         this.setAnimalType("Dog");
         this.setBreed("Labrador");
-        this.setHappyMeter(5);
-        this.setHungerMeter(4);
-        this.setCleanMeter(3);
+        this.setHappyMeter(happy);
+        this.setFoodMeter(food);
+        this.setCleanMeter(clean);
         this.setDiff(Difficulty.HARD);
     }
-
+    
     @Override
     public String happyAtZero() {
         return this.getName()+ " has run away!";

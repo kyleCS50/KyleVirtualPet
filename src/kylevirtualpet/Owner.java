@@ -67,7 +67,7 @@ public class Owner {
     
     public void feed(Animal a)
     {
-        a.setHungerMeter(a.getHungerMeter() + addStat(a));
+        a.setFoodMeter(a.getFoodMeter() + addStat(a));
     }
     
     public void clean(Animal a)

@@ -12,6 +12,7 @@ import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 
 /**
@@ -26,14 +27,23 @@ public class MenuView extends JFrame{
     
     //menu screen
     private JLabel menuLabel;
-    private JButton playGameButton;
+    private JButton newGameButton;
+    private JButton loadGameButton;
     private JButton statsButton;
     private JButton howToButton;
+    private JPanel menuPanel;
+    private JButton logOutButton;
+    
     private JFrame howToFrame;
     private JPanel howToPanel;
     private JLabel howToLabel;
     private JButton doneButton;
-    private JPanel menuPanel;
+    
+    private JFrame loadFrame;
+    private JPanel loadPanel;
+    private JList petList;
+    private JButton loadButton;
+    private boolean petSelected;
     
     public MenuView(String title)
     {
@@ -41,11 +51,11 @@ public class MenuView extends JFrame{
         this.menuPanel = new JPanel();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1250, 700);
-        Toolkit tk = Toolkit.getDefaultToolkit();
-        Dimension screenDimension = tk.getScreenSize();
-        Dimension frameDimension = this.getSize();
-        this.setLocation((screenDimension.width-frameDimension.width)/2,
-                (screenDimension.height-frameDimension.height)/2);
+        Toolkit tk1 = Toolkit.getDefaultToolkit();
+        Dimension screenDimension1 = tk1.getScreenSize();
+        Dimension frameDimension1 = this.getSize();
+        this.setLocation((screenDimension1.width-frameDimension1.width)/2,
+                (screenDimension1.height-frameDimension1.height)/2);
         this.add(menuPanel);
         this.setResizable(false);
         
@@ -58,27 +68,39 @@ public class MenuView extends JFrame{
         menuLabel.setBounds(445, 20, 360, 50);
         menuPanel.add(menuLabel);
         
-        this.playGameButton = new JButton("Select and Play");
-        playGameButton.setFont(font);
-        playGameButton.setBounds(85, 190, 320, 320);
-        menuPanel.add(playGameButton);
+        this.logOutButton = new JButton("Log Out");
+        logOutButton.setBounds(10, 10, 80, 25);
+        menuPanel.add(logOutButton);
+        
+        this.newGameButton = new JButton("New Game");
+        newGameButton.setFont(font);
+        newGameButton.setBounds(370, 150, 240, 240);
+        menuPanel.add(newGameButton);
+        
+        this.loadGameButton = new JButton("Load Game");
+        loadGameButton.setFont(font);
+        loadGameButton.setBounds(620, 150, 240, 240);
+        menuPanel.add(loadGameButton);
         
         this.statsButton = new JButton("Game Stats");
         statsButton.setFont(font);
-        statsButton.setBounds(465, 190, 320, 320);
+        statsButton.setBounds(370, 400, 240, 240);
         menuPanel.add(statsButton);
         
         this.howToButton = new JButton("How To Play");
         howToButton.setFont(font);
-        howToButton.setBounds(845, 190, 320, 320);
+        howToButton.setBounds(620, 400, 240, 240);
         menuPanel.add(howToButton);
         
         this.howToFrame = new JFrame("How To Play");
         this.howToPanel = new JPanel();
         howToFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         howToFrame.setSize(450, 220);
-        howToFrame.setLocation((screenDimension.width-frameDimension.width)/2,
-                (screenDimension.height-frameDimension.height)/2);
+        Toolkit tk2 = Toolkit.getDefaultToolkit();
+        Dimension screenDimension2 = tk2.getScreenSize();
+        Dimension frameDimension2 = howToFrame.getSize();
+        howToFrame.setLocation((screenDimension2.width-frameDimension2.width)/2,
+                (screenDimension2.height-frameDimension2.height)/2);
         howToFrame.add(howToPanel);
         howToFrame.setResizable(false);
         
@@ -103,12 +125,49 @@ public class MenuView extends JFrame{
         this.doneButton.setBounds(345, 160, 80, 25);
         howToPanel.add(doneButton);
         
+        this.loadFrame = new JFrame("Load Game");
+        this.loadPanel = new JPanel();
+        loadFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        loadFrame.setSize(450, 220);
+        Toolkit tk3 = Toolkit.getDefaultToolkit();
+        Dimension screenDimension3 = tk3.getScreenSize();
+        Dimension frameDimension3 = loadFrame.getSize();
+        loadFrame.setLocation((screenDimension3.width-frameDimension3.width)/2,
+                (screenDimension3.height-frameDimension3.height)/2);
+        loadFrame.add(loadPanel);
+        loadFrame.setResizable(false);
+        
+        loadPanel.setLayout(null);
+        loadPanel.setBackground(backgroundColour);
+        
+        this.petList = new JList();
+        petList.setBackground(new Color(62, 62, 64));
+        petList.setForeground(fontColour);
+        petList.setBounds(10, 10, 430, 140);
+        loadPanel.add(petList);
+        
+        this.loadButton = new JButton("Load Game");
+        loadButton.setBounds(345, 160, 80, 25);
+        loadPanel.add(loadButton);
+        
+        this.petSelected = false;
+        
         this.setVisible(false);
         howToFrame.setVisible(false);
+        loadFrame.setVisible(false);
+    }
+
+    public JButton getLoadButton() {
+        return loadButton;
     }
     
-    JButton getPlayGameButton() {
-        return playGameButton;
+    JButton getNewGameButton() {
+        return newGameButton;
+    }
+    
+    JButton getLoadGameButton()
+    {
+        return loadGameButton;
     }
     
     JButton getHowToButton() {
@@ -122,9 +181,31 @@ public class MenuView extends JFrame{
     public JFrame getHowToFrame() {
         return howToFrame;
     }
-
+    
     public JButton getStatsButton() {
         return statsButton;
+    }
+    
+    public JButton getLogOutButton() {
+        return logOutButton;
+    }
+    
+    public JFrame getLoadFrame()
+    {
+        return loadFrame;
+    }
+    
+    public JList getPetList()
+    {
+        return petList;
+    }
+
+    public boolean isPetSelected() {
+        return petSelected;
+    }
+
+    public void setPetSelected(boolean petSelected) {
+        this.petSelected = petSelected;
     }
     
 }

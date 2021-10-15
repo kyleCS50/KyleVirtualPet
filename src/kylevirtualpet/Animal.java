@@ -18,7 +18,7 @@ public abstract class Animal {
     private String breed;
     private Difficulty diff;
     
-    private int hungerMeter;
+    private int foodMeter;
     private int happyMeter;
     private int cleanMeter;
     
@@ -56,12 +56,12 @@ public abstract class Animal {
         this.diff = diff;
     }
     
-    public int getHungerMeter() {
-        return hungerMeter;
+    public int getFoodMeter() {
+        return foodMeter;
     }
     
-    public void setHungerMeter(int hungerMeter) {
-        this.hungerMeter = hungerMeter;
+    public void setFoodMeter(int foodMeter) {
+        this.foodMeter = foodMeter;
     }
     
     public int getHappyMeter() {
@@ -94,7 +94,7 @@ public abstract class Animal {
     }
     public String isHungry()
     {
-        this.setHungerMeter(this.getHungerMeter() - 3);
+        this.setFoodMeter(this.getFoodMeter() - 3);
         return "hungry";
     }
     public String isDirty()

@@ -12,15 +12,19 @@ package kylevirtualpet;
  */
 public class BlueJay extends Animal{
     
-    public BlueJay(String name) //blue jay constructor
+    public BlueJay() //blue jay constructor
     {
-        //set variables
-        super(name);
+        this(10, 8, 9);
+    }
+    
+    public BlueJay(int happy, int food, int clean)
+    {
+        super("Charlie");
         this.setAnimalType("Bird");
         this.setBreed("Blue Jay");
-        this.setHappyMeter(10);
-        this.setHungerMeter(8);
-        this.setCleanMeter(9);
+        this.setHappyMeter(happy);
+        this.setFoodMeter(food);
+        this.setCleanMeter(clean);
         this.setDiff(Difficulty.EASY);
     }
     
