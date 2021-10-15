@@ -13,9 +13,9 @@ public class App {
     public static void main(String[] args) {
         Model m = new Model("pdc", "pdc");
         Control c = new Control(m);
-
+        
         VirtualPetsDB.connectVirtualPetDB();
-        //VirtualPetsDB.createOwners();
-        //VirtualPetsDB.createSavedPets();
+        VirtualPetsDB.createOwners();
+        VirtualPetsDB.createSavedPets();
     }
 }

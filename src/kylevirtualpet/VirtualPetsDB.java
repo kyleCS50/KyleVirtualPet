@@ -81,23 +81,20 @@ public class VirtualPetsDB {
         if(petID > 0 && petID < 4)
         {
             try {
-                String selectWeek = "SELECT ownerID FROM owners";
-                
-                Statement statement = conn.createStatement();
-                Set<Integer> idSet = new LinkedHashSet<>();
-                ResultSet rs = statement.executeQuery(selectWeek);
-                int ownerID = 1;
+                int ownerID = 0;
+                ResultSet rs = dbManager.queryDB("SELECT ownerID, username FROM owners");
+                HashMap<String, Integer> idSet = new LinkedHashMap<>();
                 while(rs.next())
                 {
                     int id = rs.getInt(1);
-                    ownerID++;
-                    idSet.add(id);
-                }
-                
-                while(!idSet.add(ownerID))
-                {
+                    String name = rs.getString(2);
+                    idSet.put(name, id);
                     ownerID++;
                 }
+                if(!idSet.containsKey(username))
+                    ownerID++;
+                else
+                    ownerID = idSet.get(username);
                 
                 VirtualPetsDB.getOwnersMap();
                 String insertOwner = "INSERT INTO OWNERS VALUES "
@@ -110,6 +107,7 @@ public class VirtualPetsDB {
                 }
                 else
                 {
+                    System.out.println("owner updated "+username+" "+petID);
                     String updateOwner = "UPDATE OWNERS SET petID = "+petID+" WHERE username = '"+username+"'";
                     dbManager.updateDB(updateOwner);
                 }
@@ -198,9 +196,5 @@ public class VirtualPetsDB {
             output += name+" "+rounds+"<br/>";
         }
         return output;
-    }
-    
-    public static void main(String[] args) throws SQLException {
-        VirtualPetsDB.getTopRounds();
     }
 }

@@ -103,11 +103,7 @@ public class StatsView extends JFrame{
         petLabel.setBounds(948, 150, 200, 35);
         statsPanel.add(petLabel);
         
-        try {
-            this.topThreeLabel = new JLabel("<html>"+VirtualPetsDB.getTopRounds()+"</html>");
-        } catch (SQLException ex) {
-            Logger.getLogger(StatsView.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.topThreeLabel = new JLabel();
         topThreeLabel.setFont(font);
         topThreeLabel.setForeground(fontColour);
         topThreeLabel.setBounds(80, 10, 400, 400);
@@ -146,13 +142,18 @@ public class StatsView extends JFrame{
     public JLabel getDiffOwnersLabel() {
         return diffOwnersLabel;
     }
-
+    
     public JButton getBackButton() {
         return backButton;
     }
-
+    
     public JPanel getStatsPanel() {
         return statsPanel;
+    }
+    
+    public JLabel getTopThreeLabel()
+    {
+        return topThreeLabel;
     }
     
 }

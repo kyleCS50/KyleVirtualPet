@@ -72,7 +72,6 @@ public class Control implements ActionListener, MouseListener
             gameView = new GameView("Mordecai", new File("petAssets/bluejay.jpg"));
             id = 1;
         }
-        
         if(source == selectView.getCatLabel())
         {
             model.setMyPet(new Shorthair("Eve"));
@@ -174,6 +173,8 @@ public class Control implements ActionListener, MouseListener
                         loginView.getSuccessLabel().setForeground(new Color(6, 156, 24));
                         loginView.getSuccessLabel().setText("Login Successful");
                         System.out.println("Login Successful");
+                        model.setUsername(user);
+                        model.setPassword(password);
                         loginView.setVisible(false);
                         menuView.setVisible(true);
                     }
@@ -274,6 +275,11 @@ public class Control implements ActionListener, MouseListener
         {
             menuView.setVisible(false);
             statsView.setVisible(true);
+            try {
+                statsView.getTopThreeLabel().setText("<html>"+VirtualPetsDB.getTopRounds()+"</html>");
+            } catch (SQLException ex) {
+                Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         if(source == menuView.getHowToButton())
