@@ -123,7 +123,7 @@ public class VirtualPetsDB {
             }
         }
         else
-            System.err.println("petID is not in range");
+            System.err.println("petID "+petID+" is not in range");
     }
     
     public static void insertSavedPets(String name, int rounds, int savedHappy, int savedFood, int savedClean)
@@ -161,7 +161,7 @@ public class VirtualPetsDB {
             {
                 String username = rs.getString(1);
                 String password = rs.getString(2);
-                ownersMap.put(username, password);
+                ownersMap.put(username.toUpperCase(), password);
             }
         } catch (SQLException ex) {
             Logger.getLogger(VirtualPetsDB.class.getName()).log(Level.SEVERE, null, ex);
@@ -197,14 +197,29 @@ public class VirtualPetsDB {
     {
         String output = "";
         try {
-            String selectRounds = "SELECT o.username, s.rounds FROM owners o, savedPets s WHERE o.ownerID = s.ownerID ORDER BY s.rounds DESC";
-            
+            String selectRounds = "SELECT o.username, s.rounds FROM owners o, savedPets s WHERE o.ownerID = s.ownerID "
+                    + " AND s.savedHappy <= 0 OR s.savedFood <= 0 OR s.savedClean <= 0 ORDER BY s.rounds DESC";
+            String[] topPlayers = new String[5];
+            int position = 0;
             ResultSet rs = dbManager.queryDB(selectRounds);
             while(rs.next())
             {
-                String name = rs.getString(1);
-                int rounds = rs.getInt(2);
-                output += name+" "+rounds+"<br/>";
+                if(position < 5)
+                {
+                    String name = rs.getString(1);
+                    int rounds = rs.getInt(2);
+                    String playerStat = name+" | "+rounds;
+                    topPlayers[position] = playerStat;
+                    position++;
+                }
+            }
+            
+            for(int i = 0; i < topPlayers.length; i++)
+            {
+                if(topPlayers[i] != null)
+                    output += (i+1)+". "+topPlayers[i]+"<br/>";
+                else
+                    output += (i+1)+". _____ | ___<br/>";
             }
         } catch (SQLException ex) {
             Logger.getLogger(VirtualPetsDB.class.getName()).log(Level.SEVERE, null, ex);
@@ -236,5 +251,23 @@ public class VirtualPetsDB {
             Logger.getLogger(VirtualPetsDB.class.getName()).log(Level.SEVERE, null, ex);
         }
         return savedPets;
+    }
+    
+    public static void removeSavedPet(String username, int petID, int rounds, int happy, int food, int clean)
+    {
+        try {
+            String getOwnerID = "SELECT s.ownerID FROM savedPets s, owners o WHERE o.username = '"+username+"' AND o.ownerID = s.ownerID";
+            ResultSet ownerRS = dbManager.queryDB(getOwnerID);
+            int ownerID = 0;
+            while(ownerRS.next())
+            {
+                ownerID = ownerRS.getInt(1);
+            }
+            String delete = "DELETE FROM savedPets WHERE ownerID = "+ownerID+" AND petID = "+petID+" AND rounds = "+rounds+" "
+                    + "AND savedHappy = "+happy+" AND savedFood = "+food+" AND savedClean = "+clean;
+            dbManager.updateDB(delete);
+        } catch (SQLException ex) {
+            Logger.getLogger(VirtualPetsDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

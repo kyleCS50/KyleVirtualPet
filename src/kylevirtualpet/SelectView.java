@@ -87,25 +87,25 @@ public class SelectView extends JFrame{
         this.selectLabel = new JLabel("Select A Pet");
         selectLabel.setFont(font);
         selectLabel.setForeground(fontColour);
-        selectLabel.setBounds(445, 20, 300, 50);
+        selectLabel.setBounds(535, 20, 200, 50);
         selectPanel.add(selectLabel);
         
         this.birdDiffLabel = new JLabel("Easy");
         birdDiffLabel.setFont(font);
         birdDiffLabel.setForeground(Color.GREEN);
-        birdDiffLabel.setBounds(85, 150, 350, 50);
+        birdDiffLabel.setBounds(85, 150, 100, 50);
         selectPanel.add(birdDiffLabel);
         
         this.catDiffLabel = new JLabel("Medium");
         catDiffLabel.setFont(font);
         catDiffLabel.setForeground(Color.ORANGE);
-        catDiffLabel.setBounds(465, 150, 270, 50);
+        catDiffLabel.setBounds(465, 150, 150, 50);
         selectPanel.add(catDiffLabel);
         
         this.dogDiffLabel = new JLabel("Hard");
         dogDiffLabel.setFont(font);
         dogDiffLabel.setForeground(Color.RED);
-        dogDiffLabel.setBounds(845, 150, 350, 50);
+        dogDiffLabel.setBounds(845, 150, 100, 50);
         selectPanel.add(dogDiffLabel);
         
         this.birdNameLabel = new JLabel("Mordecai the Blue Jay");

@@ -110,7 +110,7 @@ public class GameView extends JFrame{
         this.petIsLabel = new JLabel();
         petIsLabel.setFont(font);
         petIsLabel.setForeground(fontColour);
-        petIsLabel.setBounds(10, petIsPanel.getHeight()/2, 850, 35);
+        petIsLabel.setBounds(10, 10, 850, 210);
         petIsPanel.add(petIsLabel);
         
         this.happyLabel = new JLabel("Happiness");
@@ -196,7 +196,7 @@ public class GameView extends JFrame{
         this.endLabel = new JLabel("Game Over!");
         endLabel.setFont(font);
         endLabel.setForeground(fontColour);
-        endLabel.setBounds(10, petIsPanel.getHeight()/2, 850, 35);
+        endLabel.setBounds(10, 10, 850, 210);
         
         this.quitButton = new JButton("Quit");
         quitButton.setFont(font);

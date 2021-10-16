@@ -51,6 +51,7 @@ public class Control implements ActionListener, MouseListener
         loginView.getSignUpButton().addActionListener(this);
         
         signUpView.getCreateButton().addActionListener(this);
+        signUpView.getBackButton().addActionListener(this);
         
         statsView.getBackButton().addActionListener(this);
         statsView.getDiffButton().addActionListener(this);
@@ -226,7 +227,7 @@ public class Control implements ActionListener, MouseListener
             }
             else
             {
-                if(VirtualPetsDB.getOwnersMap().containsKey(user))
+                if(VirtualPetsDB.getOwnersMap().containsKey(user.toUpperCase()))
                 {
                     signUpView.getSuccessLabel().setForeground(Color.RED);
                     signUpView.getSuccessLabel().setText("Please enter a different username.");
@@ -259,6 +260,15 @@ public class Control implements ActionListener, MouseListener
             }
         }
         
+        if(source == signUpView.getBackButton())
+        {
+            signUpView.setVisible(false);
+            loginView.getUserField().setText("");
+            loginView.getPassField().setText("");
+            loginView.getSuccessLabel().setText("");
+            loginView.setVisible(true);
+        }
+        
         if(!VirtualPetsDB.getOwnersMap().containsKey(model.getUsername()))
             menuView.getLoadGameButton().setEnabled(false);
         else
@@ -282,7 +292,7 @@ public class Control implements ActionListener, MouseListener
         {
             menuView.setVisible(false);
             statsView.setVisible(true);
-            statsView.getTopThreeLabel().setText("<html>"+VirtualPetsDB.getTopRounds()+"</html>");
+            statsView.getTopFiveLabel().setText("<html>"+VirtualPetsDB.getTopRounds()+"</html>");
         }
         
         if(source == menuView.getHowToButton())
@@ -327,7 +337,6 @@ public class Control implements ActionListener, MouseListener
             if(!menuView.getPetList().isSelectionEmpty())
             {
                 String selectedPet = menuView.getPetList().getSelectedValue().toString();
-                int index = menuView.getPetList().getSelectedIndex();
                 int id = 0;
                 String[] pet = selectedPet.split(" \\| ", 5);
                 int rounds = Integer.parseInt(pet[1].split(": ")[1]) + 1;
@@ -347,18 +356,19 @@ public class Control implements ActionListener, MouseListener
                     model.setMyPet(new Shorthair(happy, food, clean));
                     model.getOwner().setRounds(rounds);
                     gameView = new GameView("Eve", new File("petAssets/shorthair.jpg"));
-                    id = 1;
+                    id = 2;
                 }
-                else if(pet[0].equals("Charlie the Labarador"))
+                else if(pet[0].equals("Charlie the Labrador"))
                 {
                     model.setMyPet(new Labrador(happy, food, clean));
                     model.getOwner().setRounds(rounds);
                     gameView = new GameView("Charlie", new File("petAssets/lab.jpg"));
-                    id = 1;
+                    id = 3;
                 }
-                VirtualPetsDB.getSavedPets(model.getUsername()).remove(index);
                 this.petSelected(gameView, id);
+                menuView.getLoadFrame().setVisible(false);
                 menuView.setPetSelected(true);
+                VirtualPetsDB.removeSavedPet(model.getUsername(), id, rounds - 1, happy, food, clean);
             }
         }
         
@@ -393,7 +403,7 @@ public class Control implements ActionListener, MouseListener
                     model.getMyPet().setCleanMeter(model.getMyPet().getCleanMeter() + 3);
                     nextEvent = action.nextRandEvent();
                 }
-                gameView.getPetIsLabel().setText("You just cleaned " +model.getMyPet().getName()+ ". Now they are " +nextEvent+ "!");
+                gameView.getPetIsLabel().setText("<html>You just cleaned " +model.getMyPet().getName()+ ". Now they are " +nextEvent+ "!</html>");
             }
             
             
@@ -412,11 +422,11 @@ public class Control implements ActionListener, MouseListener
                 gameView.getPetIsLabel().setVisible(false);
                 
                 if(model.getMyPet().getHappyMeter() <= 0)
-                    gameView.getEndLabel().setText(model.getMyPet().happyAtZero()+ " " +gameView.getEndLabel().getText());
+                    gameView.getEndLabel().setText("<html>"+model.getMyPet().happyAtZero()+ " " +gameView.getEndLabel().getText()+"</html>");
                 else if(model.getMyPet().getFoodMeter() <= 0)
-                    gameView.getEndLabel().setText(model.getMyPet().foodAtZero()+ " " +gameView.getEndLabel().getText());
+                    gameView.getEndLabel().setText("<html>"+model.getMyPet().foodAtZero()+ " " +gameView.getEndLabel().getText()+"</html>");
                 else if(model.getMyPet().getCleanMeter() <= 0)
-                    gameView.getEndLabel().setText(model.getMyPet().cleanAtZero()+ " " +gameView.getEndLabel().getText());
+                    gameView.getEndLabel().setText("<html>"+model.getMyPet().cleanAtZero()+ " " +gameView.getEndLabel().getText()+"</html>");
                 
                 gameView.getPetIsPanel().add(gameView.getEndLabel());
             }

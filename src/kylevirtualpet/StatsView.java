@@ -27,7 +27,7 @@ public class StatsView extends JFrame{
     
     private JLabel statsLabel;
     private JLabel scoresLabel;
-    private JLabel topThreeLabel;
+    private JLabel topFiveLabel;
     private JLabel diffLabel;
     private JLabel diffOwnersLabel;
     private JButton backButton;
@@ -87,11 +87,11 @@ public class StatsView extends JFrame{
         diffLabel.setBounds(747, 150, 200, 35);
         statsPanel.add(diffLabel);
         
-        this.topThreeLabel = new JLabel();
-        topThreeLabel.setFont(font);
-        topThreeLabel.setForeground(fontColour);
-        topThreeLabel.setBounds(80, 10, 400, 400);
-        scoresPanel.add(topThreeLabel);
+        this.topFiveLabel = new JLabel();
+        topFiveLabel.setFont(font);
+        topFiveLabel.setForeground(fontColour);
+        topFiveLabel.setBounds(80, 10, 400, 400);
+        scoresPanel.add(topFiveLabel);
         
         String[] diff = new String[]{"Easy", "Medium", "Hard"};
         this.diffBox = new JComboBox(diff);
@@ -134,9 +134,9 @@ public class StatsView extends JFrame{
         return statsPanel;
     }
     
-    public JLabel getTopThreeLabel()
+    public JLabel getTopFiveLabel()
     {
-        return topThreeLabel;
+        return topFiveLabel;
     }
     
 }

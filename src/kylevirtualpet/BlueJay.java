@@ -19,7 +19,7 @@ public class BlueJay extends Animal{
     
     public BlueJay(int happy, int food, int clean)
     {
-        super("Charlie");
+        super("Mordecai");
         this.setAnimalType("Bird");
         this.setBreed("Blue Jay");
         this.setHappyMeter(happy);
