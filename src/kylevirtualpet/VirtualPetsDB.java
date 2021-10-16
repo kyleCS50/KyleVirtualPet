@@ -216,7 +216,8 @@ public class VirtualPetsDB {
     {
         ArrayList<String> savedPets = new ArrayList<>();
         try {
-            String selectSavedPets = "SELECT p.name, p.breed, s.rounds, s.savedHappy, s.savedFood, s.savedClean FROM pets p, savedPets s, owners o WHERE o.username = '"+username+"' AND o.ownerID = s.ownerID AND p.petID = s.petID";
+            String selectSavedPets = "SELECT p.name, p.breed, s.rounds, s.savedHappy, s.savedFood, s.savedClean FROM pets p, savedPets s, owners o "
+                    + "WHERE o.username = '"+username+"' AND o.ownerID = s.ownerID AND p.petID = s.petID";
             ResultSet rs = dbManager.queryDB(selectSavedPets);
             
             while(rs.next())
@@ -227,8 +228,8 @@ public class VirtualPetsDB {
                 int savedHappy = rs.getInt(4);
                 int savedFood = rs.getInt(5);
                 int savedClean = rs.getInt(6);
-                
-                String petStats = petName+" the "+petBreed+" | Rounds: "+rounds+" | H: "+savedHappy+" F: "+savedFood+" C: "+savedClean;
+                System.out.println(petName);
+                String petStats = petName+" the "+petBreed+" | Rounds: "+rounds+" | Happiness: "+savedHappy+" | Food: "+savedFood+" | Cleanliness: "+savedClean;
                 if(savedHappy > 0 && savedFood > 0 && savedClean > 0)
                     savedPets.add(petStats);
             }

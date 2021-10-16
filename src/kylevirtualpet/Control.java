@@ -45,6 +45,7 @@ public class Control implements ActionListener, MouseListener
         menuView.getDoneButton().addActionListener(this);
         menuView.getLogOutButton().addActionListener(this);
         menuView.getLoadButton().addActionListener(this);
+        menuView.getBackButton().addActionListener(this);
         
         loginView.getLoginButton().addActionListener(this);
         loginView.getSignUpButton().addActionListener(this);
@@ -277,12 +278,6 @@ public class Control implements ActionListener, MouseListener
             System.out.println("Load Game button clicked");
         }
         
-        if(source == menuView.getLoadButton())
-        {
-            System.out.println(menuView.getPetList().getSelectedValue());
-            menuView.setPetSelected(true);
-        }
-        
         if(source == menuView.getStatsButton())
         {
             menuView.setVisible(false);
@@ -320,6 +315,50 @@ public class Control implements ActionListener, MouseListener
         {
             selectView.setVisible(false);
             menuView.setVisible(true);
+        }
+        
+        if(source == menuView.getBackButton())
+        {
+            menuView.getLoadFrame().setVisible(false);
+        }
+        
+        if(source == menuView.getLoadButton())
+        {
+            if(!menuView.getPetList().isSelectionEmpty())
+            {
+                String selectedPet = menuView.getPetList().getSelectedValue().toString();
+                //int index = menuView.getPetList().getSelectedIndex();
+                int id = 0;
+                String[] pet = selectedPet.split(" \\| ", 5);
+                int rounds = Integer.parseInt(pet[1].split(": ")[1]);
+                int happy = Integer.parseInt(pet[2].split(": ")[1]);
+                int food = Integer.parseInt(pet[3].split(": ")[1]);
+                int clean = Integer.parseInt(pet[4].split(": ")[1]);
+                
+                if(pet[0].equals("Mordecai the Blue Jay"))
+                {
+                    model.setMyPet(new BlueJay(happy, food, clean));
+                    model.getOwner().setRounds(rounds);
+                    gameView = new GameView("Mordecai", new File("petAssets/bluejay.jpg"));
+                    id = 1;
+                }
+                else if(pet[0].equals("Eve the Shorthair"))
+                {
+                    model.setMyPet(new Shorthair(happy, food, clean));
+                    model.getOwner().setRounds(rounds);
+                    gameView = new GameView("Eve", new File("petAssets/shorthair.jpg"));
+                    id = 1;
+                }
+                else if(pet[0].equals("Charlie the Labarador"))
+                {
+                    model.setMyPet(new Labrador(happy, food, clean));
+                    model.getOwner().setRounds(rounds);
+                    gameView = new GameView("Charlie", new File("petAssets/lab.jpg"));
+                    id = 1;
+                }
+                this.petSelected(gameView, id);
+                menuView.setPetSelected(true);
+            }
         }
         
         if(selectView.isPetSelected() || menuView.isPetSelected())

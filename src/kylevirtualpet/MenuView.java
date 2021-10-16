@@ -43,6 +43,8 @@ public class MenuView extends JFrame{
     private JPanel loadPanel;
     private JList petList;
     private JButton loadButton;
+    private JButton backButton;
+    
     private boolean petSelected;
     
     public MenuView(String title)
@@ -128,7 +130,7 @@ public class MenuView extends JFrame{
         this.loadFrame = new JFrame("Load Game");
         this.loadPanel = new JPanel();
         loadFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        loadFrame.setSize(450, 220);
+        loadFrame.setSize(500, 220);
         Toolkit tk3 = Toolkit.getDefaultToolkit();
         Dimension screenDimension3 = tk3.getScreenSize();
         Dimension frameDimension3 = loadFrame.getSize();
@@ -143,11 +145,15 @@ public class MenuView extends JFrame{
         this.petList = new JList();
         petList.setBackground(new Color(62, 62, 64));
         petList.setForeground(fontColour);
-        petList.setBounds(10, 10, 430, 140);
+        petList.setBounds(10, 10, 480, 140);
         loadPanel.add(petList);
         
-        this.loadButton = new JButton("Load Game");
-        loadButton.setBounds(345, 160, 80, 25);
+        this.backButton = new JButton("Back");
+        backButton.setBounds(10, 160, 80, 25);
+        loadPanel.add(backButton);
+        
+        this.loadButton = new JButton("Load Pet");
+        loadButton.setBounds(410, 160, 80, 25);
         loadPanel.add(loadButton);
         
         this.petSelected = false;
@@ -156,7 +162,7 @@ public class MenuView extends JFrame{
         howToFrame.setVisible(false);
         loadFrame.setVisible(false);
     }
-
+    
     public JButton getLoadButton() {
         return loadButton;
     }
@@ -195,15 +201,20 @@ public class MenuView extends JFrame{
         return loadFrame;
     }
     
+    public JButton getBackButton()
+    {
+        return backButton;
+    }
+    
     public JList getPetList()
     {
         return petList;
     }
-
+    
     public boolean isPetSelected() {
         return petSelected;
     }
-
+    
     public void setPetSelected(boolean petSelected) {
         this.petSelected = petSelected;
     }
