@@ -37,7 +37,7 @@ public class Owner {
     public Owner(String name)
     {
         this.setName(name);
-        this.rounds = 0;
+        this.rounds = 1;
     }
     
     //define addStat

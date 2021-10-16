@@ -87,7 +87,7 @@ public class Control implements ActionListener, MouseListener
         }
         selectView.setPetSelected(true);
         selectView.setVisible(false);
-        
+        model.getOwner().setRounds(1);
         this.petSelected(gameView, id);
     }
     
@@ -113,7 +113,7 @@ public class Control implements ActionListener, MouseListener
     
     private void petSelected(GameView gameView, int id)
     {
-        VirtualPetsDB.insertOwner(model.getUsername(),model.getPassword(), id);
+        VirtualPetsDB.insertOwner(model.getUsername(), model.getPassword(), id);
         this.action = new Actions(model.getMyPet(), model.getOwner());
         
         gameView.getPlayButton().addActionListener(this);
@@ -327,10 +327,10 @@ public class Control implements ActionListener, MouseListener
             if(!menuView.getPetList().isSelectionEmpty())
             {
                 String selectedPet = menuView.getPetList().getSelectedValue().toString();
-                //int index = menuView.getPetList().getSelectedIndex();
+                int index = menuView.getPetList().getSelectedIndex();
                 int id = 0;
                 String[] pet = selectedPet.split(" \\| ", 5);
-                int rounds = Integer.parseInt(pet[1].split(": ")[1]);
+                int rounds = Integer.parseInt(pet[1].split(": ")[1]) + 1;
                 int happy = Integer.parseInt(pet[2].split(": ")[1]);
                 int food = Integer.parseInt(pet[3].split(": ")[1]);
                 int clean = Integer.parseInt(pet[4].split(": ")[1]);
@@ -356,6 +356,7 @@ public class Control implements ActionListener, MouseListener
                     gameView = new GameView("Charlie", new File("petAssets/lab.jpg"));
                     id = 1;
                 }
+                VirtualPetsDB.getSavedPets(model.getUsername()).remove(index);
                 this.petSelected(gameView, id);
                 menuView.setPetSelected(true);
             }

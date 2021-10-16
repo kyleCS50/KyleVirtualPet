@@ -228,7 +228,6 @@ public class VirtualPetsDB {
                 int savedHappy = rs.getInt(4);
                 int savedFood = rs.getInt(5);
                 int savedClean = rs.getInt(6);
-                System.out.println(petName);
                 String petStats = petName+" the "+petBreed+" | Rounds: "+rounds+" | Happiness: "+savedHappy+" | Food: "+savedFood+" | Cleanliness: "+savedClean;
                 if(savedHappy > 0 && savedFood > 0 && savedClean > 0)
                     savedPets.add(petStats);

@@ -25,7 +25,7 @@ public class Actions {
         this.animal = animal;
         this.owner = owner;
         this.scan = new Scanner(System.in);
-        roundCount = 1;
+        roundCount = owner.getRounds();
     }
     
     //method to randomly pick the next event
