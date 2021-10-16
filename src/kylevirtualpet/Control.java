@@ -114,7 +114,7 @@ public class Control implements ActionListener, MouseListener
     
     private void petSelected(GameView gameView, int id)
     {
-        VirtualPetsDB.insertOwner(model.getUsername(), model.getPassword(), id);
+        VirtualPetDB.insertOwner(model.getUsername(), model.getPassword(), id);
         this.action = new Actions(model.getMyPet(), model.getOwner());
         
         gameView.getPlayButton().addActionListener(this);
@@ -174,9 +174,9 @@ public class Control implements ActionListener, MouseListener
             }
             else
             {
-                if(VirtualPetsDB.getOwnersMap().containsKey(user))
+                if(VirtualPetDB.getOwnersMap().containsKey(user))
                 {
-                    if(VirtualPetsDB.getOwnersMap().get(user).equals(password))
+                    if(VirtualPetDB.getOwnersMap().get(user).equals(password))
                     {
                         loginView.getSuccessLabel().setForeground(new Color(6, 156, 24));
                         loginView.getSuccessLabel().setText("Login Successful");
@@ -227,7 +227,7 @@ public class Control implements ActionListener, MouseListener
             }
             else
             {
-                if(VirtualPetsDB.getOwnersMap().containsKey(user.toUpperCase()))
+                if(VirtualPetDB.getOwnersMap().containsKey(user.toUpperCase()))
                 {
                     signUpView.getSuccessLabel().setForeground(Color.RED);
                     signUpView.getSuccessLabel().setText("Please enter a different username.");
@@ -269,7 +269,7 @@ public class Control implements ActionListener, MouseListener
             loginView.setVisible(true);
         }
         
-        if(!VirtualPetsDB.getOwnersMap().containsKey(model.getUsername()))
+        if(!VirtualPetDB.getOwnersMap().containsKey(model.getUsername()))
             menuView.getLoadGameButton().setEnabled(false);
         else
             menuView.getLoadGameButton().setEnabled(true);
@@ -284,7 +284,7 @@ public class Control implements ActionListener, MouseListener
         if(source == menuView.getLoadGameButton())
         {
             menuView.getLoadFrame().setVisible(true);
-            menuView.getPetList().setListData(VirtualPetsDB.getSavedPets(model.getUsername()).toArray());
+            menuView.getPetList().setListData(VirtualPetDB.getSavedPets(model.getUsername()).toArray());
             System.out.println("Load Game button clicked");
         }
         
@@ -292,7 +292,7 @@ public class Control implements ActionListener, MouseListener
         {
             menuView.setVisible(false);
             statsView.setVisible(true);
-            statsView.getTopFiveLabel().setText("<html>"+VirtualPetsDB.getTopRounds()+"</html>");
+            statsView.getTopFiveLabel().setText("<html>"+VirtualPetDB.getTopRounds()+"</html>");
         }
         
         if(source == menuView.getHowToButton())
@@ -318,7 +318,7 @@ public class Control implements ActionListener, MouseListener
         
         if(source == statsView.getDiffButton())
         {
-            statsView.getDiffOwnersLabel().setText("<html>"+VirtualPetsDB.getDiff(statsView.getDiffBox().getSelectedItem().toString())+"</html>");
+            statsView.getDiffOwnersLabel().setText("<html>"+VirtualPetDB.getDiff(statsView.getDiffBox().getSelectedItem().toString())+"</html>");
         }
         
         if(source == selectView.getBackButton())
@@ -368,7 +368,7 @@ public class Control implements ActionListener, MouseListener
                 this.petSelected(gameView, id);
                 menuView.getLoadFrame().setVisible(false);
                 menuView.setPetSelected(true);
-                VirtualPetsDB.removeSavedPet(model.getUsername(), id, rounds - 1, happy, food, clean);
+                VirtualPetDB.removeSavedPet(model.getUsername(), id, rounds - 1, happy, food, clean);
             }
         }
         
@@ -434,7 +434,7 @@ public class Control implements ActionListener, MouseListener
             
             if(source == gameView.getQuitButton())
             {
-                VirtualPetsDB.insertSavedPets(model.getUsername(), model.getOwner().getRounds(), model.getMyPet().getHappyMeter(), model.getMyPet().getFoodMeter(),  model.getMyPet().getCleanMeter());
+                VirtualPetDB.insertSavedPets(model.getUsername(), model.getOwner().getRounds(), model.getMyPet().getHappyMeter(), model.getMyPet().getFoodMeter(),  model.getMyPet().getCleanMeter());
                 gameView.setVisible(false);
                 menuView.setVisible(true);
             }

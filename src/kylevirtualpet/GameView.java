@@ -116,52 +116,52 @@ public class GameView extends JFrame{
         this.happyLabel = new JLabel("Happiness");
         happyLabel.setFont(font);
         happyLabel.setForeground(fontColour);
-        happyLabel.setBounds(10, 10, 250, 30);
+        happyLabel.setBounds(30, 10, 170, 30);
         petStatsPanel.add(happyLabel);
         
         this.foodLabel = new JLabel("Food");
         foodLabel.setFont(font);
         foodLabel.setForeground(fontColour);
-        foodLabel.setBounds(300, 10, 250, 30);
+        foodLabel.setBounds(390, 10, 100, 30);
         petStatsPanel.add(foodLabel);
         
         this.cleanLabel = new JLabel("Cleanliness");
         cleanLabel.setFont(font);
         cleanLabel.setForeground(fontColour);
-        cleanLabel.setBounds(600, 10, 250, 30);
+        cleanLabel.setBounds(690, 10, 180, 30);
         petStatsPanel.add(cleanLabel);
         
         this.happyStatLabel = new JLabel();
-        happyStatLabel.setFont(font);
+        happyStatLabel.setFont(new Font("Display", Font.BOLD, 120));
         happyStatLabel.setForeground(fontColour);
-        happyStatLabel.setBounds(10, 50, 250, 30);
+        happyStatLabel.setBounds(30, 70, 160, 100);
         petStatsPanel.add(happyStatLabel);
         
         this.foodStatLabel = new JLabel();
-        foodStatLabel.setFont(font);
+        foodStatLabel.setFont(new Font("Display", Font.BOLD, 120));
         foodStatLabel.setForeground(fontColour);
-        foodStatLabel.setBounds(300, 50, 250, 30);
+        foodStatLabel.setBounds(390, 70, 160, 100);
         petStatsPanel.add(foodStatLabel);
         
         this.cleanStatLabel = new JLabel();
-        cleanStatLabel.setFont(font);
+        cleanStatLabel.setFont(new Font("Display", Font.BOLD, 120));
         cleanStatLabel.setForeground(fontColour);
-        cleanStatLabel.setBounds(600, 50, 250, 30);
+        cleanStatLabel.setBounds(690, 70, 160, 100);
         petStatsPanel.add(cleanStatLabel);
         
         this.playButton = new JButton("Play");
         playButton.setFont(font);
-        playButton.setBounds(10, 10, 190, 190);
+        playButton.setBounds(30, 10, 190, 190);
         petActionsPanel.add(playButton);
         
         this.feedButton = new JButton("Feed");
         feedButton.setFont(font);
-        feedButton.setBounds(300, 10, 190, 190);
+        feedButton.setBounds(390, 10, 190, 190);
         petActionsPanel.add(feedButton);
         
         this.cleanButton = new JButton("Clean");
         cleanButton.setFont(font);
-        cleanButton.setBounds(600, 10, 190, 190);
+        cleanButton.setBounds(690, 10, 190, 190);
         petActionsPanel.add(cleanButton);
         
         this.petName = new JLabel();

@@ -14,7 +14,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class VirtualPetsDB {
+public class VirtualPetDB {
     
     private static final DBManager dbManager = new DBManager();;
     private static final Connection conn  = dbManager.getConnection();
@@ -22,7 +22,7 @@ public class VirtualPetsDB {
     private static HashMap<String, Integer> idSet = new LinkedHashMap<>();
     
     
-    private VirtualPetsDB() {}
+    private VirtualPetDB() {}
     
     public static void connectVirtualPetDB() {
         try {
@@ -45,7 +45,7 @@ public class VirtualPetsDB {
             dbManager.updateDB(insertBook);
             
         } catch (SQLException ex) {
-            Logger.getLogger(VirtualPetsDB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VirtualPetDB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -62,7 +62,7 @@ public class VirtualPetsDB {
             
             dbManager.updateDB(createOwners);
         } catch (SQLException ex) {
-            Logger.getLogger(VirtualPetsDB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VirtualPetDB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -80,7 +80,7 @@ public class VirtualPetsDB {
             dbManager.updateDB(createSaved);
             
         } catch (SQLException ex) {
-            Logger.getLogger(VirtualPetsDB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VirtualPetDB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -103,7 +103,7 @@ public class VirtualPetsDB {
                 else
                     ownerID = idSet.get(username);
                 
-                VirtualPetsDB.getOwnersMap();
+                VirtualPetDB.getOwnersMap();
                 String insertOwner = "INSERT INTO OWNERS VALUES "
                         + "(" +ownerID+ ", '" +username+ "', '" +password+ "', " +petID+ ")";
                 
@@ -119,7 +119,7 @@ public class VirtualPetsDB {
                 }
                 
             } catch (SQLException ex) {
-                Logger.getLogger(VirtualPetsDB.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(VirtualPetDB.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         else
@@ -148,7 +148,7 @@ public class VirtualPetsDB {
             dbManager.updateDB(insertSaved);
             
         } catch (SQLException ex) {
-            Logger.getLogger(VirtualPetsDB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VirtualPetDB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -164,7 +164,7 @@ public class VirtualPetsDB {
                 ownersMap.put(username.toUpperCase(), password);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(VirtualPetsDB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VirtualPetDB.class.getName()).log(Level.SEVERE, null, ex);
         }
         return ownersMap;
     }
@@ -188,7 +188,7 @@ public class VirtualPetsDB {
                 output += owner+"<br/>";
             }
         } catch (SQLException ex) {
-            Logger.getLogger(VirtualPetsDB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VirtualPetDB.class.getName()).log(Level.SEVERE, null, ex);
         }
         return output;
     }
@@ -222,7 +222,7 @@ public class VirtualPetsDB {
                     output += (i+1)+". _____ | ___<br/>";
             }
         } catch (SQLException ex) {
-            Logger.getLogger(VirtualPetsDB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VirtualPetDB.class.getName()).log(Level.SEVERE, null, ex);
         }
         return output;
     }
@@ -248,7 +248,7 @@ public class VirtualPetsDB {
                     savedPets.add(petStats);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(VirtualPetsDB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VirtualPetDB.class.getName()).log(Level.SEVERE, null, ex);
         }
         return savedPets;
     }
@@ -267,7 +267,7 @@ public class VirtualPetsDB {
                     + "AND savedHappy = "+happy+" AND savedFood = "+food+" AND savedClean = "+clean;
             dbManager.updateDB(delete);
         } catch (SQLException ex) {
-            Logger.getLogger(VirtualPetsDB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VirtualPetDB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

@@ -9,13 +9,13 @@ package kylevirtualpet;
  *
  * @author kylefrancis
  */
-public class App {
+public class VirtualPetApp {
     public static void main(String[] args) {
         Model m = new Model("pdc", "pdc");
         Control c = new Control(m);
         
-        VirtualPetsDB.connectVirtualPetDB();
-        VirtualPetsDB.createOwners();
-        VirtualPetsDB.createSavedPets();
+        VirtualPetDB.connectVirtualPetDB();
+        VirtualPetDB.createOwners();
+        VirtualPetDB.createSavedPets();
     }
 }
