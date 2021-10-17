@@ -209,7 +209,6 @@ public class VirtualPetDB {
                     String name = rs.getString(1);
                     int rounds = rs.getInt(2);
                     String playerStat = name+" | "+rounds;
-                    System.out.println(playerStat + " (sout on line 212 of db)"); //SYSTEM OUT IS HERE
                     topPlayers[position] = playerStat;
                     position++;
                 }

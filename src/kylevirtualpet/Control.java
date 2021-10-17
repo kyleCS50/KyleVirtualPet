@@ -26,9 +26,7 @@ public class Control implements ActionListener, MouseListener
     private StatsView statsView;
     private SelectView selectView;
     private GameView gameView;
-    
-    private Actions action;
-    
+        
     public Control(OwnerModel owner) {
         
         this.owner = owner;
@@ -115,7 +113,6 @@ public class Control implements ActionListener, MouseListener
     private void petSelected(GameView gameView, int id)
     {
         VirtualPetDB.insertOwner(owner.getUsername(), owner.getPassword(), id);
-        this.action = new Actions(owner);
         
         gameView.getPlayButton().addActionListener(this);
         gameView.getFeedButton().addActionListener(this);
@@ -376,32 +373,32 @@ public class Control implements ActionListener, MouseListener
         {
             if(source == gameView.getPlayButton())
             {
-                action.pickPlay();
-                String nextEvent = action.nextRandEvent();
+                owner.play();
+                String nextEvent = owner.getMyPet().nextRandEvent();
                 while(nextEvent.equals("sad"))
                 {
                     owner.getMyPet().setHappyMeter(owner.getMyPet().getHappyMeter() + 3);
-                    nextEvent = action.nextRandEvent();
+                    nextEvent = owner.getMyPet().nextRandEvent();
                 }
                 gameView.getPetIsLabel().setText("You just played with " +owner.getMyPet().getName()+ ". Now they are " +nextEvent+ "!");            }
             if(source == gameView.getFeedButton())
             {
-                action.pickFeed();
-                String nextEvent = action.nextRandEvent();
+                owner.feed();
+                String nextEvent = owner.getMyPet().nextRandEvent();
                 while(nextEvent.equals("hungry"))
                 {
                     owner.getMyPet().setFoodMeter(owner.getMyPet().getFoodMeter() + 3);
-                    nextEvent = action.nextRandEvent();
+                    nextEvent = owner.getMyPet().nextRandEvent();
                 }
                 gameView.getPetIsLabel().setText("You just fed " +owner.getMyPet().getName()+ ". Now they are " +nextEvent+ "!");            }
             if(source == gameView.getCleanButton())
             {
-                action.pickClean();
-                String nextEvent = action.nextRandEvent();
+                owner.clean();
+                String nextEvent = owner.getMyPet().nextRandEvent();
                 while(nextEvent.equals("dirty"))
                 {
                     owner.getMyPet().setCleanMeter(owner.getMyPet().getCleanMeter() + 3);
-                    nextEvent = action.nextRandEvent();
+                    nextEvent = owner.getMyPet().nextRandEvent();
                 }
                 gameView.getPetIsLabel().setText("<html>You just cleaned " +owner.getMyPet().getName()+ ". Now they are " +nextEvent+ "!</html>");
             }

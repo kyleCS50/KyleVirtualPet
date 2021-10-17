@@ -82,16 +82,19 @@ public class OwnerModel {
     public void play()
     {
         myPet.setHappyMeter(myPet.getHappyMeter() + addStat());
+        rounds++;
     }
     
     public void feed()
     {
         myPet.setFoodMeter(myPet.getFoodMeter() + addStat());
+        rounds++;
     }
     
     public void clean()
     {
         myPet.setCleanMeter(myPet.getCleanMeter() + addStat());
+        rounds++;
     }
     
 }

@@ -5,6 +5,8 @@
 */
 package kylevirtualpet;
 
+import java.util.Random;
+
 
 /**
  *
@@ -101,6 +103,25 @@ public abstract class Animal {
     {
         this.setCleanMeter(this.getCleanMeter() - 3);
         return "dirty";
+    }
+    
+    public String nextRandEvent()
+    {
+        Random random = new Random();
+        int number = random.nextInt(3)+1;
+        
+        if (number == 1)
+        {
+            return isSad();
+        }
+        else if (number == 2)
+        {
+            return isHungry();
+        }
+        else
+        {
+            return isDirty();
+        }
     }
     
     public abstract String happyAtZero();
