@@ -11,8 +11,8 @@ package kylevirtualpet;
  */
 public class VirtualPetApp {
     public static void main(String[] args) {
-        Model m = new Model("pdc", "pdc");
-        Control c = new Control(m);
+        OwnerModel owner = new OwnerModel("pdc", "pdc");
+        Control c = new Control(owner);
         
         VirtualPetDB.connectVirtualPetDB();
         VirtualPetDB.createOwners();
