@@ -227,7 +227,7 @@ public class Control implements ActionListener, MouseListener
             }
             else
             {
-                if(VirtualPetDB.getOwnersMap().containsKey(user.toUpperCase()))
+                if(VirtualPetDB.getOwnersMap().containsKey(user))
                 {
                     signUpView.getSuccessLabel().setForeground(Color.RED);
                     signUpView.getSuccessLabel().setText("Please enter a different username.");

@@ -161,7 +161,7 @@ public class VirtualPetDB {
             {
                 String username = rs.getString(1);
                 String password = rs.getString(2);
-                ownersMap.put(username.toUpperCase(), password);
+                ownersMap.put(username, password);
             }
         } catch (SQLException ex) {
             Logger.getLogger(VirtualPetDB.class.getName()).log(Level.SEVERE, null, ex);
@@ -180,7 +180,7 @@ public class VirtualPetDB {
             while(rs.next())
             {
                 String owner = rs.getString(1);
-                owners.add(owner.toUpperCase());
+                owners.add(owner);
             }
             
             for(String owner: owners)
@@ -197,7 +197,7 @@ public class VirtualPetDB {
     {
         String output = "";
         try {
-            String selectRounds = "SELECT o.username, s.rounds FROM owners o, savedPets s WHERE o.ownerID = s.ownerID "
+            String selectRounds = "SELECT o.username, s.rounds FROM owners o INNER JOIN savedPets s ON o.ownerID = s.ownerID WHERE o.ownerID = s.ownerID "
                     + " AND s.savedHappy <= 0 OR s.savedFood <= 0 OR s.savedClean <= 0 ORDER BY s.rounds DESC";
             String[] topPlayers = new String[5];
             int position = 0;
@@ -209,6 +209,7 @@ public class VirtualPetDB {
                     String name = rs.getString(1);
                     int rounds = rs.getInt(2);
                     String playerStat = name+" | "+rounds;
+                    System.out.println(playerStat + " (sout on line 212 of db)"); //SYSTEM OUT IS HERE
                     topPlayers[position] = playerStat;
                     position++;
                 }

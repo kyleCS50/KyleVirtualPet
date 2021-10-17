@@ -15,7 +15,7 @@ public class VirtualPetApp {
         Control c = new Control(owner);
         
         VirtualPetDB.connectVirtualPetDB();
-        VirtualPetDB.createOwners();
-        VirtualPetDB.createSavedPets();
+        //VirtualPetDB.createOwners();
+        //VirtualPetDB.createSavedPets();
     }
 }
