@@ -11,10 +11,14 @@ package kylevirtualpet;
  */
 public class VirtualPetApp {
     public static void main(String[] args) {
+        //instansiate model and controller
         OwnerModel owner = new OwnerModel("pdc", "pdc");
         Control c = new Control(owner);
         
+        //connect to database
         VirtualPetDB.connectVirtualPetDB();
+        
+        //if wanting to wipe database of owners and their progress
         //VirtualPetDB.createOwners();
         //VirtualPetDB.createSavedPets();
     }

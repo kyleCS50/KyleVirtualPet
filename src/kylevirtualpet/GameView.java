@@ -156,7 +156,7 @@ public class GameView extends JFrame{
         
         this.feedButton = new JButton("Feed");
         feedButton.setFont(font);
-        feedButton.setBounds(390, 10, 190, 190);
+        feedButton.setBounds(340, 10, 190, 190);
         petActionsPanel.add(feedButton);
         
         this.cleanButton = new JButton("Clean");

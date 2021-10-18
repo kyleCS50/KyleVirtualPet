@@ -26,7 +26,7 @@ public class LoginView extends JFrame{
     private Color backgroundColour = new Color(35, 36, 38);
     private Font font = new Font("Display", Font.BOLD, 30);
     
-    //login
+//instantiate login components
     private JLabel liUserLabel;
     private JLabel liPassLabel;
     private JTextField userField;
@@ -36,6 +36,7 @@ public class LoginView extends JFrame{
     private JPanel loginPanel;
     private JButton signUpButton;
     
+    //login constructor
     public LoginView(String title){
         super(title);
         //login frame setup
@@ -88,6 +89,7 @@ public class LoginView extends JFrame{
         this.setVisible(true);
     }
     
+    //getter methods
     JButton getLoginButton() {
         return loginButton;
     }

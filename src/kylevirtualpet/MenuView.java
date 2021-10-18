@@ -25,7 +25,7 @@ public class MenuView extends JFrame{
     private Color backgroundColour = new Color(35, 36, 38);
     private Font font = new Font("Display", Font.BOLD, 30);
     
-    //menu screen
+    //instansiate menu components
     private JLabel menuLabel;
     private JButton newGameButton;
     private JButton loadGameButton;
@@ -47,9 +47,11 @@ public class MenuView extends JFrame{
     
     private boolean petSelected;
     
+    //meny constructor
     public MenuView(String title)
     {
         super(title);
+        //menu frame
         this.menuPanel = new JPanel();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1250, 700);
@@ -94,6 +96,7 @@ public class MenuView extends JFrame{
         howToButton.setBounds(620, 400, 240, 240);
         menuPanel.add(howToButton);
         
+        //how to frame
         this.howToFrame = new JFrame("How To Play");
         this.howToPanel = new JPanel();
         howToFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -127,6 +130,7 @@ public class MenuView extends JFrame{
         this.doneButton.setBounds(345, 160, 80, 25);
         howToPanel.add(doneButton);
         
+        //load game frame
         this.loadFrame = new JFrame("Load Game");
         this.loadPanel = new JPanel();
         loadFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -163,6 +167,7 @@ public class MenuView extends JFrame{
         loadFrame.setVisible(false);
     }
     
+    //getters and setters
     public JButton getLoadButton() {
         return loadButton;
     }

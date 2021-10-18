@@ -18,7 +18,7 @@ public class OwnerModel {
     private Animal myPet;
     private int rounds;
     
-//getters and setters
+    //getters and setters
     public String getUsername() {
         return username;
     }

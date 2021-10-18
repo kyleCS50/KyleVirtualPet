@@ -25,6 +25,7 @@ public class StatsView extends JFrame{
     private Color backgroundColour = new Color(35, 36, 38);
     private Font font = new Font("Display", Font.BOLD, 30);
     
+    //instansiate stats compnents
     private JLabel statsLabel;
     private JLabel scoresLabel;
     private JLabel topFiveLabel;
@@ -37,8 +38,10 @@ public class StatsView extends JFrame{
     private JPanel diffPanel;
     private JPanel statsPanel;
     
+    //stats constructor
     public StatsView(String title)
     {
+        //stats frame
         super(title);
         this.statsPanel = new JPanel();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -114,6 +117,7 @@ public class StatsView extends JFrame{
         this.setVisible(false);
     }
     
+    //getter methods
     public JButton getDiffButton() {
         return diffButton;
     }

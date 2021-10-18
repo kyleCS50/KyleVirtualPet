@@ -26,7 +26,7 @@ public class SignUpView extends JFrame{
     private Color backgroundColour = new Color(35, 36, 38);
     private Font font = new Font("Display", Font.BOLD, 30);
     
-    //signup
+    //instansiate signup comopnents
     private JLabel userLabel;
     private JLabel passLabel;
     private JLabel confirmPassLabel;
@@ -39,8 +39,10 @@ public class SignUpView extends JFrame{
     private JPanel signUpPanel;
     private JLabel createTipLabel;
     
+    //sign up constructor
     public SignUpView(String title) {
         super(title);
+        //sign up frame
         this.signUpPanel = new JPanel();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(350, 200);
@@ -103,6 +105,7 @@ public class SignUpView extends JFrame{
         this.setVisible(false);
     }
     
+    //getters and setters
     JButton getCreateButton() {
         return createButton;
     }

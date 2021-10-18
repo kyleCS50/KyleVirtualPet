@@ -24,6 +24,7 @@ public class VirtualPetDB {
     
     private VirtualPetDB() {}
     
+    //connect to database and create pets table and insert pets 
     public static void connectVirtualPetDB() {
         try {
             String createBook = "CREATE TABLE PETS (PETID INT, NAME VARCHAR(50), ANIMAL VARCHAR(50), BREED VARCHAR(50), DIFF VARCHAR(20), HAPPY INT, FOOD INT, CLEAN INT)";
@@ -49,6 +50,7 @@ public class VirtualPetDB {
         }
     }
     
+    //create owners table
     public static void createOwners()
     {
         try {
@@ -66,6 +68,7 @@ public class VirtualPetDB {
         }
     }
     
+    //create saved pets table
     public static void createSavedPets()
     {
         try {
@@ -84,12 +87,15 @@ public class VirtualPetDB {
         }
     }
     
+    //insert value into owners table
     public static void insertOwner(String username, String password, int petID)
     {
+        //if pet id is in range
         if(petID > 0 && petID < 4)
         {
             try {
                 int ownerID = 0;
+                //checking what owners are already in table
                 ResultSet rs = dbManager.queryDB("SELECT ownerID, username FROM owners");
                 while(rs.next())
                 {
@@ -98,6 +104,7 @@ public class VirtualPetDB {
                     idSet.put(name, id);
                     ownerID++;
                 }
+                //if user is already inserted
                 if(!idSet.containsKey(username))
                     ownerID++;
                 else
@@ -107,15 +114,16 @@ public class VirtualPetDB {
                 String insertOwner = "INSERT INTO OWNERS VALUES "
                         + "(" +ownerID+ ", '" +username+ "', '" +password+ "', " +petID+ ")";
                 
+                //insert new owner
                 if(!ownersMap.containsKey(username))
                 {
                     dbManager.updateDB(insertOwner);
                     ownersMap.put(username, password);
                 }
-                else
+                else //if owner already exists
                 {
                     String updateOwner = "UPDATE OWNERS SET petID = "+petID+" WHERE username = '"+username+"'";
-                    dbManager.updateDB(updateOwner);
+                    dbManager.updateDB(updateOwner); //update their pet
                 }
                 
             } catch (SQLException ex) {
@@ -126,6 +134,7 @@ public class VirtualPetDB {
             System.err.println("petID "+petID+" is not in range");
     }
     
+    //insert saved pets
     public static void insertSavedPets(String name, int rounds, int savedHappy, int savedFood, int savedClean)
     {
         try {
@@ -138,20 +147,21 @@ public class VirtualPetDB {
             {
                 ownerID = rs.getInt(1);
                 petID = rs.getInt(2);
-                if(idSet.containsKey(name) && idSet.get(name).equals(ownerID))
+                if(idSet.containsKey(name) && idSet.get(name).equals(ownerID)) //if current ownerID is in idSet
                     break;
             }
             
             
             String insertSaved = "INSERT INTO savedPets VALUES "
                     + "(" +ownerID+ ", " +petID+ ", " +rounds+ ", " +savedHappy+ ", " +savedFood+ ", " +savedClean+ ")";
-            dbManager.updateDB(insertSaved);
+            dbManager.updateDB(insertSaved); //insert values into saved table
             
         } catch (SQLException ex) {
             Logger.getLogger(VirtualPetDB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
+    //return a map of owners
     public static HashMap<String, String> getOwnersMap()
     {
         try {
@@ -169,6 +179,7 @@ public class VirtualPetDB {
         return ownersMap;
     }
     
+    //return which owners picked which difficulty
     public static String getDiff(String diff)
     {
         String output = "";
@@ -193,6 +204,7 @@ public class VirtualPetDB {
         return output;
     }
     
+    //return top 5 scores
     public static String getTopRounds()
     {
         String output = "";
@@ -202,6 +214,7 @@ public class VirtualPetDB {
             String[] topPlayers = new String[5];
             int position = 0;
             ResultSet rs = dbManager.queryDB(selectRounds);
+            //select all owners who have finished a game and add them in order to array
             while(rs.next())
             {
                 if(position < 5)
@@ -214,6 +227,7 @@ public class VirtualPetDB {
                 }
             }
             
+            //display top 5 players
             for(int i = 0; i < topPlayers.length; i++)
             {
                 if(topPlayers[i] != null)
@@ -227,6 +241,7 @@ public class VirtualPetDB {
         return output;
     }
     
+    //return an owners saved pets
     public static ArrayList<String> getSavedPets(String username)
     {
         ArrayList<String> savedPets = new ArrayList<>();
@@ -235,6 +250,7 @@ public class VirtualPetDB {
                     + "WHERE o.username = '"+username+"' AND o.ownerID = s.ownerID AND p.petID = s.petID";
             ResultSet rs = dbManager.queryDB(selectSavedPets);
             
+            //if an owner hasn't finished a game show that pet and their stats
             while(rs.next())
             {
                 String petName = rs.getString(1);
@@ -253,6 +269,7 @@ public class VirtualPetDB {
         return savedPets;
     }
     
+    //remove saved pet once selected from load screen
     public static void removeSavedPet(String username, int petID, int rounds, int happy, int food, int clean)
     {
         try {

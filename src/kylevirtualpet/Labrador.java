@@ -29,6 +29,7 @@ public class Labrador extends Animal{
         this.setDiff(Difficulty.HARD);
     }
     
+    //methods to dsiplay message if stat is at 0
     @Override
     public String happyAtZero() {
         return this.getName()+ " has run away!";

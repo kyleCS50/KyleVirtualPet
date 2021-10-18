@@ -88,7 +88,7 @@ public abstract class Animal {
         this.setName(name);
     }
     
-    //methods
+    //change stat methods
     public String isSad()
     {
         this.setHappyMeter(this.getHappyMeter() - 3);
@@ -105,6 +105,7 @@ public abstract class Animal {
         return "dirty";
     }
     
+    //method to randomly call stat methods
     public String nextRandEvent()
     {
         Random random = new Random();
@@ -124,6 +125,7 @@ public abstract class Animal {
         }
     }
     
+    //abstract methods
     public abstract String happyAtZero();
     public abstract String foodAtZero();
     public abstract String cleanAtZero();

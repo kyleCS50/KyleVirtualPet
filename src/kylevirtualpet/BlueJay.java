@@ -12,7 +12,8 @@ package kylevirtualpet;
  */
 public class BlueJay extends Animal{
     
-    public BlueJay() //blue jay constructor
+    //blue jay constructors
+    public BlueJay() 
     {
         this(10, 8, 9);
     }
@@ -28,6 +29,7 @@ public class BlueJay extends Animal{
         this.setDiff(Difficulty.EASY);
     }
     
+    //methods to dsiplay message if stat is at 0
     @Override
     public String happyAtZero() {
         return this.getName()+ " has flown away!";

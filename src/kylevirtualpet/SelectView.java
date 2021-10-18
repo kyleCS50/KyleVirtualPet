@@ -29,6 +29,7 @@ import javax.swing.JPanel;
  */
 public class SelectView extends JFrame{
     
+    //instansiate select components
     private Color fontColour = new Color(220, 219, 217);
     private Color backgroundColour = new Color(35, 36, 38);
     private Font font = new Font("Display", Font.BOLD, 30);
@@ -62,6 +63,7 @@ public class SelectView extends JFrame{
     
     private boolean petSelected;
     
+    //select constructor
     public SelectView(String title){
         super(title);
         
@@ -166,6 +168,7 @@ public class SelectView extends JFrame{
         
     }
     
+    //getters and setters
     JLabel getBirdLabel() {
         return birdLabel;
     }

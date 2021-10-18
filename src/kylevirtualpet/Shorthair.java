@@ -13,7 +13,7 @@ package kylevirtualpet;
 public class Shorthair extends Animal{
     
     //shorthair constructor
-    public Shorthair() 
+    public Shorthair()
     {
         this(7, 6, 6);
     }
@@ -29,6 +29,7 @@ public class Shorthair extends Animal{
         this.setDiff(Difficulty.MEDIUM);
     }
     
+    //methods to dsiplay message if stat is at 0
     @Override
     public String happyAtZero() {
         return this.getName()+ " has started hissing!";

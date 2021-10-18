@@ -19,10 +19,12 @@ public final class DBManager {
     
     Connection conn;
     
+    //dbManager constructor
     public DBManager() {
         establishConnection();
     }
     
+    //getter for connection
     public Connection getConnection() {
         return this.conn;
     }
@@ -50,6 +52,7 @@ public final class DBManager {
         }
     }
     
+    //query db method
     public ResultSet queryDB(String sql) {
         
         Connection connection = this.conn;
@@ -66,6 +69,7 @@ public final class DBManager {
         return resultSet;
     }
     
+    //update db method
     public void updateDB(String sql) {
         
         Connection connection = this.conn;

@@ -9,6 +9,7 @@ package kylevirtualpet;
  *
  * @author kylefrancis
  */
+//difficulty for each pet
 public enum Difficulty {
     HARD, MEDIUM, EASY;
 }
