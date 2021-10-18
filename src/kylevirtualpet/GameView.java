@@ -107,7 +107,7 @@ public class GameView extends JFrame{
         infoPanel.setBounds(10, 340, 320, 320);
         infoPanel.setLayout(null);
         
-        this.petIsLabel = new JLabel();
+        this.petIsLabel = new JLabel("What will you do first? Play, Feed or Clean?");
         petIsLabel.setFont(font);
         petIsLabel.setForeground(fontColour);
         petIsLabel.setBounds(10, 10, 850, 210);

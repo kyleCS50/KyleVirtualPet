@@ -14,6 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -42,6 +44,7 @@ public class MenuView extends JFrame{
     private JFrame loadFrame;
     private JPanel loadPanel;
     private JList petList;
+    private JScrollPane scrollPane;
     private JButton loadButton;
     private JButton backButton;
     
@@ -149,11 +152,16 @@ public class MenuView extends JFrame{
         this.petList = new JList();
         petList.setBackground(new Color(62, 62, 64));
         petList.setForeground(fontColour);
-        petList.setBounds(10, 10, 480, 140);
+        petList.setBounds(10, 50, 480, 140);
+        petList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         loadPanel.add(petList);
         
+        this.scrollPane = new JScrollPane(petList);
+        scrollPane.setBounds(10, 50, 480, 80);
+        loadPanel.add(scrollPane);
+        
         this.backButton = new JButton("Back");
-        backButton.setBounds(10, 160, 80, 25);
+        backButton.setBounds(10, 10, 80, 25);
         loadPanel.add(backButton);
         
         this.loadButton = new JButton("Load Pet");

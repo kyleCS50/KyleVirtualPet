@@ -150,7 +150,6 @@ public class Control implements ActionListener, MouseListener
         //if login button is clicked
         if(source == loginView.getLoginButton())
         {
-            System.out.println("Log In button pressed");
             String user = loginView.getUserField().getText();
             String password = loginView.getPassField().getText();
             
@@ -159,7 +158,6 @@ public class Control implements ActionListener, MouseListener
             {
                 loginView.setVisible(false);
                 menuView.setVisible(true);
-                System.out.println("Login Successful");
             }
             else
             {
@@ -171,7 +169,6 @@ public class Control implements ActionListener, MouseListener
                     {
                         loginView.getSuccessLabel().setForeground(new Color(6, 156, 24));
                         loginView.getSuccessLabel().setText("Login Successful");
-                        System.out.println("Login Successful");
                         owner.setUsername(user);
                         owner.setPassword(password);
                         loginView.setVisible(false);
@@ -181,14 +178,12 @@ public class Control implements ActionListener, MouseListener
                     {
                         loginView.getSuccessLabel().setForeground(Color.RED);
                         loginView.getSuccessLabel().setText("Incorrect password. Please try again");
-                        System.out.println("Login Unsuccessful");
                     }
                 }
                 else
                 {
                     loginView.getSuccessLabel().setForeground(Color.RED);
                     loginView.getSuccessLabel().setText("Owner not found, try Signing Up!");
-                    System.out.println("Login Unsuccessful");
                 }
             }
         }
@@ -196,7 +191,6 @@ public class Control implements ActionListener, MouseListener
         //if sign up button is clicked on log in frame
         if(source == loginView.getSignUpButton())
         {
-            System.out.println("Sign Up button clicked");
             signUpView.getUserField().setText("");
             signUpView.getPassField().setText("");
             signUpView.getConfirmPassField().setText("");
@@ -208,7 +202,6 @@ public class Control implements ActionListener, MouseListener
         //if create account button is clicked
         if(source == signUpView.getCreateButton())
         {
-            System.out.println("Create Owner button clicked");
             String user = signUpView.getUserField().getText().trim();
             String pass1 = signUpView.getPassField().getText();
             String pass2 = signUpView.getConfirmPassField().getText();
@@ -229,7 +222,6 @@ public class Control implements ActionListener, MouseListener
                     signUpView.getUserField().setText("");
                     signUpView.getPassField().setText("");
                     signUpView.getConfirmPassField().setText("");
-                    System.out.println("Create Owner Unsuccessful");
                 }
                 else
                 {
@@ -242,7 +234,6 @@ public class Control implements ActionListener, MouseListener
                         owner.setPassword(pass2);
                         signUpView.setVisible(false);
                         menuView.setVisible(true);
-                        System.out.println("Create Owner Successful");
                     }
                     else
                     {
@@ -250,7 +241,6 @@ public class Control implements ActionListener, MouseListener
                         signUpView.getSuccessLabel().setText("Passwords must match to create new owner.");
                         signUpView.getPassField().setText("");
                         signUpView.getConfirmPassField().setText("");
-                        System.out.println("Create Owner Unsuccessful");
                     }
                 }
             }
@@ -277,7 +267,6 @@ public class Control implements ActionListener, MouseListener
         {
             menuView.setVisible(false);
             selectView.setVisible(true);
-            System.out.println("New Game button clicked");
         }
         
         //if owner clicks load button open load screen
@@ -285,7 +274,6 @@ public class Control implements ActionListener, MouseListener
         {
             menuView.getLoadFrame().setVisible(true);
             menuView.getPetList().setListData(VirtualPetDB.getSavedPets(owner.getUsername()).toArray());
-            System.out.println("Load Game button clicked");
         }
         
         //if owner clicks stats button open stats screen
@@ -300,14 +288,12 @@ public class Control implements ActionListener, MouseListener
         if(source == menuView.getHowToButton())
         {
             menuView.getHowToFrame().setVisible(true);
-            System.out.println("How To button clicked");
         }
         
         //if done button is clicked on how to
         if(source == menuView.getDoneButton())
         {
             menuView.getHowToFrame().setVisible(false);
-            System.out.println("How To Done button clicked");
         }
         
         //if owner logs out enable login frame set fields to empty
@@ -356,7 +342,7 @@ public class Control implements ActionListener, MouseListener
                 int id = 0;
                 String[] pet = selectedPet.split(" \\| ", 5);
                 //split string into stats
-                int rounds = Integer.parseInt(pet[1].split(": ")[1]) + 1;
+                int rounds = Integer.parseInt(pet[1].split(": ")[1]);
                 int happy = Integer.parseInt(pet[2].split(": ")[1]);
                 int food = Integer.parseInt(pet[3].split(": ")[1]);
                 int clean = Integer.parseInt(pet[4].split(": ")[1]);
@@ -389,7 +375,7 @@ public class Control implements ActionListener, MouseListener
                 menuView.getLoadFrame().setVisible(false);
                 menuView.setPetSelected(true);
                 //removed selected pet
-                VirtualPetDB.removeSavedPet(owner.getUsername(), id, rounds - 1, happy, food, clean);
+                VirtualPetDB.removeSavedPet(owner.getUsername(), id, rounds, happy, food, clean);
             }
         }
         
