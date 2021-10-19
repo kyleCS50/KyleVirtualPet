@@ -56,7 +56,7 @@ public class OwnerModel {
     {
         this.username = username;
         this.password = password;
-        this.rounds = 1;
+        this.rounds = 0;
     }
     
     //define addStat

@@ -90,6 +90,7 @@ public class Control implements ActionListener, MouseListener
         selectView.setPetSelected(true); //set pet selected to true
         selectView.setVisible(false); //make select view not visible
         this.petSelected(gameView, id); //run pet selected method
+        owner.setRounds(0);
     }
     
     @Override

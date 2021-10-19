@@ -19,7 +19,7 @@ public class VirtualPetApp {
         VirtualPetDB.connectVirtualPetDB();
         
         //if wanting to wipe database of owners and their progress
-        //VirtualPetDB.createOwners();
-        //VirtualPetDB.createSavedPets();
+        VirtualPetDB.createOwners();
+        VirtualPetDB.createSavedPets();
     }
 }
